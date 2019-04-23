@@ -8,16 +8,16 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class SoupChef {
-	public static void getSoup(String link) throws IOException {
+	public static void makeSoup(String link) throws IOException {
         String url = link;
         Document document = Jsoup.connect(url).get();
 
-        String question = document.select("#question .post-text").text();
-        System.out.println("Question: " + question);
-
-        Elements answerers = document.select("#answers .user-details a");
-        for (Element answerer : answerers) {
-            System.out.println("Answerer: " + answerer.text());
+        Elements paragraphs = document.select("p");
+        for (Element p : paragraphs) {
+            System.out.println(p.text());
+            p.addClass("MIAAW_Resizeable");
         }
+        document.append("<style>.MIAAW_Resizeable {color:red;}</style>");
+        System.out.println(document);
 	}
 }
