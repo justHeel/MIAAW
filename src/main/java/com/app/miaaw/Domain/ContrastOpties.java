@@ -12,7 +12,7 @@ import org.hibernate.annotations.NotFoundAction;
 import javax.persistence.Id;
 
 @Entity
-@Table(name = "conctrast_opties")
+@Table(name = "contrast_opties")
 public class ContrastOpties {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

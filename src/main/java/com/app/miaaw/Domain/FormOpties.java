@@ -19,10 +19,6 @@ public class FormOpties {
 	@JoinColumn(name="form_id")
 	private long formId;
 	
-	@OneToOne
-	@NotFound(action=NotFoundAction.IGNORE)
-	private CodeTemplate codeTemplate;
-	
 	private String code;
 
 	public long getFormId() {
@@ -31,14 +27,6 @@ public class FormOpties {
 
 	public void setFormId(long formId) {
 		this.formId = formId;
-	}
-
-	public CodeTemplate getCodeTemplate() {
-		return codeTemplate;
-	}
-
-	public void setCodeTemplate(CodeTemplate codeTemplate) {
-		this.codeTemplate = codeTemplate;
 	}
 
 	public String getCode() {

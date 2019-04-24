@@ -13,15 +13,11 @@ import javax.persistence.Id;
 
 @Entity
 @Table(name = "video_opties")
-public class Videoopties {
+public class VideoOpties {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JoinColumn(name="video_id")
 	private long videoId;
-	
-	@OneToOne
-	@NotFound(action=NotFoundAction.IGNORE)
-	private CodeTemplate codeTemplate;
 	
 	private String code;
 
@@ -31,15 +27,6 @@ public class Videoopties {
 
 	public void setVideoId(long videoId) {
 		this.videoId = videoId;
-	}
-
-
-	public CodeTemplate getCodeTemplate() {
-		return codeTemplate;
-	}
-
-	public void setCodeTemplate(CodeTemplate codeTemplate) {
-		this.codeTemplate = codeTemplate;
 	}
 
 	public String getCode() {
