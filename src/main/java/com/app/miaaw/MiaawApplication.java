@@ -3,6 +3,7 @@ package com.app.miaaw;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.app.miaaw.WebpageEnhancer.ImageDescriber;
 import com.cmeza.sdgenerator.annotation.SDGenerator;
 @SDGenerator(
         entityPackage = "com.app.miaaw.Domain",
@@ -19,5 +20,6 @@ public class MiaawApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MiaawApplication.class, args);
+		/*System.out.println(ImageDescriber.getDescription());*/
 	}
 }

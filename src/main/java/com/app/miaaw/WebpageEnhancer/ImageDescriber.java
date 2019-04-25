@@ -30,7 +30,7 @@ public class ImageDescriber {
 	    private static final String uriBase =
 	            "https://northeurope.api.cognitive.microsoft.com//vision/v2.0/analyze";
 
-	    private static final String imageToAnalyze = "https://www.jebentmeer.nl/wp-content/uploads/2017/12/appel-pink-lady-400x253.jpg";
+	    private static final String imageToAnalyze = "https://www.thomann.de/pics/bdb/371903/10395977_800.jpg";
 
 	    public static String getDescription() {
 	    	String returnVal = "";
