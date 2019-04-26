@@ -1,9 +1,15 @@
 package com.app.miaaw.managers;
 
 import com.app.miaaw.Domain.Admin;
+import com.app.miaaw.Domain.BasicBar;
 import com.app.miaaw.Domain.CodeTemplate;
 import com.app.miaaw.WebpageEnhancer.Enhancer;
+import com.app.miaaw.repos.BasicBarRepository;
 import com.app.miaaw.repos.CodeTemplateRepository;
+import com.app.miaaw.repos.ContrastOptiesRepository;
+import com.app.miaaw.repos.FormOptiesRepository;
+import com.app.miaaw.repos.TextToSpeechRepository;
+import com.app.miaaw.repos.VideoOptiesRepository;
 import com.app.miaaw.requests.EnhanceRequestLink;
 
 import java.io.IOException;
@@ -27,19 +33,50 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/enhance")
 public class CodeTemplateManager {
-
 	private CodeTemplateRepository codeTemplateRepository;
+	private FormOptiesRepository formOptiesRepository;
+	private BasicBarRepository basicBarRepository;
+	private ContrastOptiesRepository contrastRepository;
+	private TextToSpeechRepository textToSpeechRepository;
+	private VideoOptiesRepository videoOptiesRepository;
+	
 
 	@Autowired
-	public CodeTemplateManager(CodeTemplateRepository codeTemplateRepository) {
+	public CodeTemplateManager(	CodeTemplateRepository codeTemplateRepository, 
+								FormOptiesRepository formOptiesRepository, 
+								BasicBarRepository basicBarRepository, 
+								ContrastOptiesRepository contrastOptiesRepository, 
+								TextToSpeechRepository textToSpeechRepository,
+								VideoOptiesRepository videoOptiesRepository) {
+		
 		this.codeTemplateRepository = codeTemplateRepository;
+		this.formOptiesRepository = formOptiesRepository;
+		this.basicBarRepository = basicBarRepository;
+		this.contrastRepository = contrastOptiesRepository;
+		this.textToSpeechRepository = textToSpeechRepository;
 	}
 	@PostMapping
 	public ResponseEntity getEnhanced(@RequestBody EnhanceRequestLink request) throws IOException {
 		String htmlCode = "";
 		String link = request.getLink();
-		//Moet nog de juiste codetemplate meegeven     \/\/\/\/\/
-		htmlCode = Enhancer.enhanceDocument(link, new CodeTemplate()).toString();
+		
+		CodeTemplate codeTemplate = new CodeTemplate();
+		if (request.getFormOpties() != 0) {
+			codeTemplate.setFormOpties(formOptiesRepository.findById(request.getFormOpties()).get());
+		}
+		if (request.getBasicBar() != 0) {
+			codeTemplate.setBasicBar(basicBarRepository.findById(request.getBasicBar()).get());
+		}
+		if (request.getTextToSpeech() != 0 ) {
+			codeTemplate.setTextToSpeech(textToSpeechRepository.findById(request.getTextToSpeech()).get());
+		}
+		if (request.getVideoOpties() != 0) {
+			codeTemplate.setVideoOpties(videoOptiesRepository.findById(request.getVideoOpties()).get());
+		}
+		
+		codeTemplateRepository.save(codeTemplate);
+		
+		htmlCode = Enhancer.enhanceDocument(link, codeTemplate).toString();
 		return ResponseEntity.status(200).body(htmlCode);
 	}
 

@@ -21,8 +21,8 @@ body {
 	list-style: none;
 	padding: 0;
 	margin: 28px auto 0;
-	color: #fff;
 	width: 100%;
+	overflow:hidden;
 }
 
 .content li {
@@ -32,7 +32,6 @@ body {
 	height: 319px;
 	overflow: hidden;
 	text-decoration: none;
-	color: #ffffff;
 	z-index:5;
 }
 .content a:hover, .content .optionPic:hover{
@@ -48,14 +47,14 @@ body {
 	height: 319px;
 	overflow: hidden;
 	text-decoration: none;
-	color: #ffffff;
 	z-index:5;
 	animation:startUp;
 	animation-fill-mode:forwards;
+	color:white;
 }
 .content li h3 {
 	margin-top:20%;
-	color: #ffffff;
+	color:white;
 }
 .content h3 {
 	text-decoration: none;
@@ -77,31 +76,23 @@ body {
 
 #textbased {
 	width:59%;
-	animation-duration:1s;
-	animation-delay:1;
 /* 	background-image:url("../fotos/textBG.jpg");
 	background-repeat:no-repeat;
 	background-size:cover; */
 }
 #videobased {
 	width:39%;
-	animation-duration:1.2s;
-	animation-delay:0.3;
 /* 	background-image:url("../fotos/videoBG.jpg");
 	background-repeat:no-repeat;
 	background-size:cover;	 */
 	
 }
 #picturebased {
-	animation-duration:0.8s;
-	animation-delay:0.5;
 /* 	background-image:url("../fotos/pictureBG.jpg");
 	background-repeat:no-repeat;
 	background-size:cover;	 */
 }
 #custom {
-	animation-duration:0.9s;
-	animation-delay:0.7;
 /* 	background-image:url("../fotos/customBG.jpg");
 	background-repeat:no-repeat;
 	background-size:cover;	 */

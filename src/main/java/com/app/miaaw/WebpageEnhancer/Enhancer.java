@@ -12,11 +12,13 @@ public class Enhancer {
 	public static Document enhanceDocument(String link, CodeTemplate codeTemplate) throws IOException {
 		Document htmlDocument = SoupChef.makeSoup(link);
 		
-		Elements paragraphs = htmlDocument.select("p");
+/*		Elements paragraphs = htmlDocument.select("p");
         for (Element p : paragraphs) {
             p.addClass("MIAAW_Resizeable");
         }
-        htmlDocument.append("<style>.MIAAW_Resizeable {color:red;}</style>");
+        htmlDocument.append("<style>.MIAAW_Resizeable {color:red;}</style>");*/
+		htmlDocument.append(codeTemplate.getFormOpties().getCode());
+        
         return htmlDocument;
 	}
 }
