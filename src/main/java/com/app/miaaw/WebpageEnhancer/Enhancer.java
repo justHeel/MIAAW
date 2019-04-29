@@ -17,7 +17,10 @@ public class Enhancer {
             p.addClass("MIAAW_Resizeable");
         }
         htmlDocument.append("<style>.MIAAW_Resizeable {color:red;}</style>");*/
-		htmlDocument.append(codeTemplate.getFormOpties().getCode());
+		if (codeTemplate.getFormOpties() != null) {
+			htmlDocument.append("<p>" + codeTemplate.getFormOpties().getCode() + "</p>");
+		}
+		
         
         return htmlDocument;
 	}

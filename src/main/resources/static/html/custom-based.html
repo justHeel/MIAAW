@@ -31,7 +31,7 @@
 
         Text-to-speech: &nbsp; &nbsp;
          <label class="switch">
-             <input type="checkbox">
+             <input id="TextToSpeechCheck"type="checkbox">
              <span class=slider round"></span>
          </label><br><br>
 
@@ -52,7 +52,14 @@
                         <input type="checkbox">
                         <span class=slider round"></span>
                     </label><br><br>
-
+		
+		<form id="FetchViaLinkForm">
+			<label>Via link:</label>
+			<input id="linkFetchField"type="text" placeholder="Link"></input>
+			
+		</form>
+		<button id="FetchViaLinkFormButton">GO!</button>
+		
         <div class="contents">
             Upload your html page: 
             <br>
@@ -60,4 +67,9 @@
             <br>
                 <textarea rows="4" cols="50" placeholder="Your code"></textarea>
 
-                </div>
+        </div>
+        </body>
+        <script src="../js/EnhancerFetcher.js"></script>
+        </html>
+        
+        

@@ -6,7 +6,6 @@ import com.app.miaaw.Domain.CodeTemplate;
 import com.app.miaaw.WebpageEnhancer.Enhancer;
 import com.app.miaaw.repos.BasicBarRepository;
 import com.app.miaaw.repos.CodeTemplateRepository;
-import com.app.miaaw.repos.ContrastOptiesRepository;
 import com.app.miaaw.repos.FormOptiesRepository;
 import com.app.miaaw.repos.TextToSpeechRepository;
 import com.app.miaaw.repos.VideoOptiesRepository;
@@ -36,7 +35,6 @@ public class CodeTemplateManager {
 	private CodeTemplateRepository codeTemplateRepository;
 	private FormOptiesRepository formOptiesRepository;
 	private BasicBarRepository basicBarRepository;
-	private ContrastOptiesRepository contrastRepository;
 	private TextToSpeechRepository textToSpeechRepository;
 	private VideoOptiesRepository videoOptiesRepository;
 	
@@ -45,14 +43,12 @@ public class CodeTemplateManager {
 	public CodeTemplateManager(	CodeTemplateRepository codeTemplateRepository, 
 								FormOptiesRepository formOptiesRepository, 
 								BasicBarRepository basicBarRepository, 
-								ContrastOptiesRepository contrastOptiesRepository, 
 								TextToSpeechRepository textToSpeechRepository,
 								VideoOptiesRepository videoOptiesRepository) {
 		
 		this.codeTemplateRepository = codeTemplateRepository;
 		this.formOptiesRepository = formOptiesRepository;
 		this.basicBarRepository = basicBarRepository;
-		this.contrastRepository = contrastOptiesRepository;
 		this.textToSpeechRepository = textToSpeechRepository;
 	}
 	@PostMapping
@@ -79,5 +75,4 @@ public class CodeTemplateManager {
 		htmlCode = Enhancer.enhanceDocument(link, codeTemplate).toString();
 		return ResponseEntity.status(200).body(htmlCode);
 	}
-
 }
