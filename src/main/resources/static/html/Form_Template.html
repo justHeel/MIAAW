@@ -17,8 +17,8 @@
         </div>
     </div>
 
-    <button id=play>Play</button>
-    <button id=stop>Stop</button>
+    <button class="play">Play</button>
+    <button id="stop">Stop</button>
         
     <form id="MIAAW_form">
         <div class="MIAAW_form_speech">
@@ -30,9 +30,13 @@
         </div>
     </form>
 
-    <article>
-        <p>HELP HELP HELP HELP</p>
-    </article>
+    <div class="yo">
+        <p>ik haat me leven. hier hebben we dagen lang over gedaan en niks werkt</p>
+    </div>
+
+    <div class="yo">
+        <p>2 2 2 22 2 2 </p>
+    </div>
 
     <a href="#" class="say">Say It</a>
     <audio src="" class="MIAAW_form_speech" hidden></audio>
@@ -46,7 +50,6 @@ onload = function() {
         var flag = false;
 
         playEle.addEventListener('click', onClickPlay);
-        pauseEle.addEventListener('click', onClickPause);
         stopEle.addEventListener('click', onClickStop);
 
         function onClickPlay() {
@@ -56,9 +59,6 @@ onload = function() {
 
                 utterance.lang = 'nl-NL';
                 utterance.rate = 0.7;
-                utterance.onend = function(){
-                    flag = false; playEle.className = pauseEle.className = ''; stopEle.className = 'stopped';
-                };
                 playEle.className = 'played';
                 stopEle.className = '';
                 speak(utterance);
@@ -74,6 +74,7 @@ onload = function() {
 
             }
         }
+        }
 
     else { /* speech synthesis not supported */
         msg = document.createElement('h5');
@@ -86,7 +87,7 @@ onload = function() {
     }
 
 }
-}
+
 </script>
 <script>
 function startDictation() {
@@ -131,9 +132,9 @@ startDictation();
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script>
     $(function() {
-        $('a.say').on('click',function(e){
+        $('button.play').on('click',function(e){
         e.preventDefault();
-        var text= $('input[name="q"]').val();
+        var text= $('div.yo').text();
         text = encodeURIComponent(text);
         console.log(text);
         var url = "http://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
