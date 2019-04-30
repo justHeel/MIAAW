@@ -10,14 +10,15 @@
     <div id="popup"> 
         <div class="tts">
             <p>Text-to-Speech</p>
-            <button id=play><img style="height: 40px; width: 40px;" src="../fotos/play.png">Play</button>
-            <button id=pause><img style="height: 40px; width: 40px;" src="../fotos/pause.png">Pause</button>
-            <button id=stop><img style="height: 40px; width: 40px;" src="../fotos/stop.png">Stop</button>
+            
 
             <button class="exit" onclick="document.getElementById('popup').style.display='none'">Exit</button>
 
         </div>
     </div>
+
+    <button id=play>Play</button>
+    <button id=stop>Stop</button>
         
     <form id="MIAAW_form">
         <div class="MIAAW_form_speech">
@@ -29,15 +30,18 @@
         </div>
     </form>
 
+    <article>
+        <p>HELP HELP HELP HELP</p>
+    </article>
+
     <a href="#" class="say">Say It</a>
     <audio src="" class="MIAAW_form_speech" hidden></audio>
-
+</body>
 <script>
 onload = function() {
     if ('speechSynthesis' in window) with(speechSynthesis) {
 
         var playEle = document.querySelector('#play');
-        var pauseEle = document.querySelector('#pause');
         var stopEle = document.querySelector('#stop');
         var flag = false;
 
@@ -48,7 +52,7 @@ onload = function() {
         function onClickPlay() {
             if(!flag){
                 flag = true;
-                utterance = new SpeechSynthesisUtterance(document.querySelector('body').textContent);
+                utterance = new SpeechSynthesisUtterance(document.querySelector("article").textContent);
 
                 utterance.lang = 'nl-NL';
                 utterance.rate = 0.7;
@@ -58,19 +62,6 @@ onload = function() {
                 playEle.className = 'played';
                 stopEle.className = '';
                 speak(utterance);
-            }
-             if (paused) { 
-                playEle.className = 'played';
-                pauseEle.className = '';
-                resume();
-            } 
-        }
-
-        function onClickPause() {
-            if(speaking && !paused){ 
-                pauseEle.className = 'paused';
-                playEle.className = '';
-                pause();
             }
         }
 
@@ -84,8 +75,6 @@ onload = function() {
             }
         }
 
-    }
-
     else { /* speech synthesis not supported */
         msg = document.createElement('h5');
         msg.textContent = "Detected no support for Speech Synthesis";
@@ -96,6 +85,7 @@ onload = function() {
         document.body.insertBefore(msg, document.querySelector('div'));
     }
 
+}
 }
 </script>
 <script>
@@ -157,8 +147,6 @@ startDictation();
         document.querySelector('form').style.zoom = "250%";
     }
 </script>
-</body>
-</html>
 <style type="text/css">
 #popup{
     display:none; 
@@ -212,3 +200,4 @@ form{
     zoom: 100%;
 }
 </style>
+</html>
