@@ -9,6 +9,7 @@ import com.app.miaaw.repos.CodeTemplateRepository;
 import com.app.miaaw.repos.FormOptiesRepository;
 import com.app.miaaw.repos.TextToSpeechRepository;
 import com.app.miaaw.repos.VideoOptiesRepository;
+import com.app.miaaw.requests.EnhanceRequestFile;
 import com.app.miaaw.requests.EnhanceRequestLink;
 
 import java.io.IOException;
@@ -52,7 +53,7 @@ public class CodeTemplateManager {
 		this.textToSpeechRepository = textToSpeechRepository;
 	}
 	@PostMapping
-	public ResponseEntity getEnhanced(@RequestBody EnhanceRequestLink request) throws IOException {
+	public ResponseEntity getEnhancedLink(@RequestBody EnhanceRequestLink request) throws IOException {
 		String htmlCode = "";
 		String link = request.getLink();
 		
@@ -72,7 +73,34 @@ public class CodeTemplateManager {
 		
 		codeTemplateRepository.save(codeTemplate);
 		
-		htmlCode = Enhancer.enhanceDocument(link, codeTemplate).toString();
+		htmlCode = Enhancer.enhanceDocumentLink(link, codeTemplate).toString();
 		return ResponseEntity.status(200).body(htmlCode);
+		
+	}
+	
+	@PostMapping
+	public ResponseEntity getEnhancedFile(@RequestBody EnhanceRequestFile request) throws IOException{
+		String htmlCode = "";
+		String file = request.getFile();
+		
+		CodeTemplate codeTemplate = new CodeTemplate();
+		if (request.getFormOpties() != 0) {
+			codeTemplate.setFormOpties(formOptiesRepository.findById(request.getFormOpties()).get());
+		}
+		if (request.getBasicBar() != 0) {
+			codeTemplate.setBasicBar(basicBarRepository.findById(request.getBasicBar()).get());
+		}
+		if (request.getTextToSpeech() != 0 ) {
+			codeTemplate.setTextToSpeech(textToSpeechRepository.findById(request.getTextToSpeech()).get());
+		}
+		if (request.getVideoOpties() != 0) {
+			codeTemplate.setVideoOpties(videoOptiesRepository.findById(request.getVideoOpties()).get());
+		}
+		
+		codeTemplateRepository.save(codeTemplate);
+		
+		htmlCode = Enhancer.enhanceDocumentFile(file, codeTemplate).toString();
+		return ResponseEntity.status(200).body(htmlCode);
+		
 	}
 }
