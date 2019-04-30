@@ -19,20 +19,20 @@
         </div>
     </div>
         
-    <form id="labnol">
-        <div class="speech">
+    <form id="MIAAW_form">
+        <div class="MIAAW_form_speech">
             <input type="text" name="q" id="transcript"></input>
         </div>
-        <div class="speech">
+        <div class="MIAAW_form_speech">
             <input type="text" name="q" id="transcript1"></input>
         </div>
-        <div class="speech">
+        <div class="MIAAW_form_speech">
             <input type="text" name="q" id="transcript2"></input>
         </div>
     </form>
 
     <a href="#" class="say">Say It</a>
-    <audio src="" class="speech" hidden></audio>
+    <audio src="" class="MIAAW_form_speech" hidden></audio>
 
 <script>
 onload = function() {
@@ -103,7 +103,7 @@ onload = function() {
 <script>
 function startDictation() {
     var target = [];
-    document.getElementById("labnol").addEventListener("click", function(e) {
+    document.getElementById("MIAAW_form").addEventListener("click", function(e) {
         if(e.target && e.target.nodeName == "INPUT") {
             console.log("List item ", e.target.id.replace("post-", ""), " was clicked!");
             iets = e.target.id.replace("post-", "")
@@ -183,66 +183,6 @@ body{
     font-size: 16px;
 }
 
-.font-button{
-    height: 20px;
-    width: 20px;
-    display: inline-block;
-    text-align: center;
-    line-height: 50px;
-    font-size: 25pt;
-    cursor: pointer;
-}
-.fontsize{
-	margin-left: 5px;
-}
-
-.fontsize p{
-	display: inline;
-	margin-left: 20px;
-	margin-right: 20px;
-}
-
-.input-button{
-    height: 20px;
-    width: 20px;
-    display: inline-block;
-    text-align: center;
-    line-height: 50px;
-    font-size: 25pt;
-    cursor: pointer;
-}
-
-.inputsize{
-    margin-left: 5px;
-}
-
-.inputsize p{
-    display: inline;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.contrast{
-	margin-top: 30px;
-	margin-left: 20px;
-}
-
-.contrast button{
-	margin-left: 5px;
-	display: inline;
-    background-color:#ffffff;
-    border-radius:17px;
-    border:3px solid #000000;
-    cursor:pointer;
-    color:#000000;
-    font-family:Verdana;
-    font-size:18px;
-    font-weight:bold;
-    padding:7px 15px;
-    text-decoration:none;
-    text-shadow:0px 1px 0px #ffffff;
-}
-
 .exit{
     float: right;
 }
@@ -265,7 +205,7 @@ input[type="text"]
     font-size: 16px;
 }
 
-.speech img{
+.MIAAW_form_speech img{
     width: 20px;
     height: 20px;
 }

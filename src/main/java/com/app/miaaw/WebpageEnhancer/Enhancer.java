@@ -10,42 +10,53 @@ import com.app.miaaw.Domain.CodeTemplate;
 
 public class Enhancer {
 	public static Document enhanceDocumentLink(String link, CodeTemplate codeTemplate) throws IOException {
-		Document htmlDocumentLink = SoupChef.makeLinkSoup(link);
-		
-		
-/*		Elements paragraphs = htmlDocument.select("p");
-        for (Element p : paragraphs) {
-            p.addClass("MIAAW_Resizeable");
-        }
-        htmlDocument.append("<style>.MIAAW_Resizeable {color:red;}</style>");*/
+		Document htmlDocument = SoupChef.makeLinkSoup(link);
+
+		/*-------------Form Enhance-------------*/
 		if (codeTemplate.getFormOpties() != null) {
-			htmlDocumentLink.append("<p>" + codeTemplate.getFormOpties().getCode() + "</p>");
+			htmlDocument.append("<p>" + codeTemplate.getFormOpties().getCode() + "</p>");
+			Elements forms = htmlDocument.select("form");
+			for (Element f : forms) {
+				f.attr("id", "MIAAW_form");
+
+				Elements formInputs = htmlDocument.select("#MIAAW_form input");
+
+				f.append("<div class='MIAAW_form_speech'></div>");
+				Elements newDivs = htmlDocument.select(".MIAAW_form_speec");
+				for (Element div : newDivs) {
+					for (Element fI : formInputs) {
+						div.append(fI.toString());
+					}
+				}
+			}
+
 		}
+		/*-------------Basic Bar-------------*/
 		if (codeTemplate.getBasicBar() != null) {
-			htmlDocumentLink.append("<p>" + codeTemplate.getBasicBar().getBasicBarCode() + "</p>");
-			htmlDocumentLink.append("<p>" + codeTemplate.getBasicBar().getContrastOptiesCode() + "</p>");
-			htmlDocumentLink.append("<p>" + codeTemplate.getBasicBar().getFontOptiesCode() + "</p>");
+			htmlDocument.append("<p>" + codeTemplate.getBasicBar().getBasicBarCode() + "</p>");
+			htmlDocument.append("<p>" + codeTemplate.getBasicBar().getContrastOptiesCode() + "</p>");
+			htmlDocument.append("<p>" + codeTemplate.getBasicBar().getFontOptiesCode() + "</p>");
 		}
+		/*-------------TTS-------------*/
 		if (codeTemplate.getTextToSpeech() != null) {
-			htmlDocumentLink.append("<p>" + codeTemplate.getTextToSpeech().getCode() + "</p>");
+			htmlDocument.append("<p>" + codeTemplate.getTextToSpeech().getCode() + "</p>");
 		}
+		/*-------------Video Enhance-------------*/
 		if (codeTemplate.getVideoOpties() != null) {
-			htmlDocumentLink.append("<p>" + codeTemplate.getVideoOpties().getCode() + "</p>");
+			htmlDocument.append("<p>" + codeTemplate.getVideoOpties().getCode() + "</p>");
 		}
-		
-        
-        return htmlDocumentLink;
+
+		return htmlDocument;
 	}
-	
+
 	public static Document enhanceDocumentFile(String file, CodeTemplate codeTemplate) throws IOException {
 		Document htmlDocumentFile = SoupChef.makeLinkSoup(file);
-		
-		
-/*		Elements paragraphs = htmlDocument.select("p");
-        for (Element p : paragraphs) {
-            p.addClass("MIAAW_Resizeable");
-        }
-        htmlDocument.append("<style>.MIAAW_Resizeable {color:red;}</style>");*/
+
+		/*
+		 * Elements paragraphs = htmlDocument.select("p"); for (Element p : paragraphs)
+		 * { p.addClass("MIAAW_Resizeable"); }
+		 * htmlDocument.append("<style>.MIAAW_Resizeable {color:red;}</style>");
+		 */
 		if (codeTemplate.getFormOpties() != null) {
 			htmlDocumentFile.append("<p>" + codeTemplate.getFormOpties().getCode() + "</p>");
 		}
@@ -60,8 +71,7 @@ public class Enhancer {
 		if (codeTemplate.getVideoOpties() != null) {
 			htmlDocumentFile.append("<p>" + codeTemplate.getVideoOpties().getCode() + "</p>");
 		}
-		
-        
-        return htmlDocumentFile;
+
+		return htmlDocumentFile;
 	}
 }
