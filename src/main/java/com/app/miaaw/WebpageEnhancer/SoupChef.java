@@ -17,8 +17,7 @@ public class SoupChef {
 	}
 	
 	public static Document makeFileSoup(String file) throws IOException{
-		String fileName = file;
-	    Document documentFile = Jsoup.parse(new File(fileName), "utf-8");
+	    Document documentFile = Jsoup.parse(file, "utf-8");
 	    return documentFile;
 	}
 }
