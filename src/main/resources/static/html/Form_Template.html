@@ -19,20 +19,20 @@
         </div>
     </div>
         
-    <form id="labnol">
-        <div class="speech">
+    <form id="MIAAW_form">
+        <div class="MIAAW_form_speech">
             <input type="text" name="q" id="transcript"></input>
         </div>
-        <div class="speech">
+        <div class="MIAAW_form_speech">
             <input type="text" name="q" id="transcript1"></input>
         </div>
-        <div class="speech">
+        <div class="MIAAW_form_speech">
             <input type="text" name="q" id="transcript2"></input>
         </div>
     </form>
 
     <a href="#" class="say">Say It</a>
-    <audio src="" class="speech" hidden></audio>
+    <audio src="" class="MIAAW_form_speech" hidden></audio>
 
 <script>
 onload = function() {
@@ -103,7 +103,7 @@ onload = function() {
 <script>
 function startDictation() {
     var target = [];
-    document.getElementById("labnol").addEventListener("click", function(e) {
+    document.getElementById("MIAAW_form").addEventListener("click", function(e) {
         if(e.target && e.target.nodeName == "INPUT") {
             console.log("List item ", e.target.id.replace("post-", ""), " was clicked!");
             iets = e.target.id.replace("post-", "")
@@ -265,7 +265,7 @@ input[type="text"]
     font-size: 16px;
 }
 
-.speech img{
+.MIAAW_form_speech img{
     width: 20px;
     height: 20px;
 }
