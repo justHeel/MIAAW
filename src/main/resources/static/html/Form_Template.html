@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> ...... </title>
+
+</head>
+<body>
+	<button id="editor" onclick="document.getElementById('popup').style.display='block'">Editor</button>
+    <div id="popup"> 
+        <div class="tts">
+            <p>Text-to-Speech</p>
+            <button id=play><img style="height: 40px; width: 40px;" src="../fotos/play.png">Play</button>
+            <button id=pause><img style="height: 40px; width: 40px;" src="../fotos/pause.png">Pause</button>
+            <button id=stop><img style="height: 40px; width: 40px;" src="../fotos/stop.png">Stop</button>
+
+            <button class="exit" onclick="document.getElementById('popup').style.display='none'">Exit</button>
+
+        </div>
+    </div>
+        
+    <form id="labnol">
+        <div class="speech">
+            <input type="text" name="q" id="transcript"></input>
+        </div>
+        <div class="speech">
+            <input type="text" name="q" id="transcript1"></input>
+        </div>
+        <div class="speech">
+            <input type="text" name="q" id="transcript2"></input>
+        </div>
+    </form>
+
+    <a href="#" class="say">Say It</a>
+    <audio src="" class="speech" hidden></audio>
+
+<script>
+onload = function() {
+    if ('speechSynthesis' in window) with(speechSynthesis) {
+
+        var playEle = document.querySelector('#play');
+        var pauseEle = document.querySelector('#pause');
+        var stopEle = document.querySelector('#stop');
+        var flag = false;
+
+        playEle.addEventListener('click', onClickPlay);
+        pauseEle.addEventListener('click', onClickPause);
+        stopEle.addEventListener('click', onClickStop);
+
+        function onClickPlay() {
+            if(!flag){
+                flag = true;
+                utterance = new SpeechSynthesisUtterance(document.querySelector('body').textContent);
+
+                utterance.lang = 'nl-NL';
+                utterance.rate = 0.7;
+                utterance.onend = function(){
+                    flag = false; playEle.className = pauseEle.className = ''; stopEle.className = 'stopped';
+                };
+                playEle.className = 'played';
+                stopEle.className = '';
+                speak(utterance);
+            }
+             if (paused) { 
+                playEle.className = 'played';
+                pauseEle.className = '';
+                resume();
+            } 
+        }
+
+        function onClickPause() {
+            if(speaking && !paused){ 
+                pauseEle.className = 'paused';
+                playEle.className = '';
+                pause();
+            }
+        }
+
+        function onClickStop() {
+            if(speaking){
+                stopEle.className = 'stopped';
+                playEle.className = pauseEle.className = '';
+                flag = false;
+                cancel();
+
+            }
+        }
+
+    }
+
+    else { /* speech synthesis not supported */
+        msg = document.createElement('h5');
+        msg.textContent = "Detected no support for Speech Synthesis";
+        msg.style.textAlign = 'center';
+        msg.style.backgroundColor = 'red';
+        msg.style.color = 'white';
+        msg.style.marginTop = msg.style.marginBottom = 0;
+        document.body.insertBefore(msg, document.querySelector('div'));
+    }
+
+}
+</script>
+<script>
+function startDictation() {
+    var target = [];
+    document.getElementById("labnol").addEventListener("click", function(e) {
+        if(e.target && e.target.nodeName == "INPUT") {
+            console.log("List item ", e.target.id.replace("post-", ""), " was clicked!");
+            iets = e.target.id.replace("post-", "")
+            target.push(iets);
+
+
+            var arrayLength = target.length;
+            for (var i = 0; i < arrayLength; i++) {
+        
+                if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+                        var recognition = new webkitSpeechRecognition();
+                        recognition.continuous = false;
+                        recognition.interimResults = false;
+
+                        recognition.lang = "nl-NL";
+                        recognition.start();
+
+                        recognition.onresult = function(e) {
+                            document.getElementById(iets).value = e.results[0][0].transcript;
+                            recognition.stop();
+                        };
+
+                        recognition.onerror = function(e) {
+                            recognition.stop();
+                        }
+
+                    }
+                }
+
+        target.pop();
+    }
+})
+};
+startDictation();
+</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+    $(function() {
+        $('a.say').on('click',function(e){
+        e.preventDefault();
+        var text= $('input[name="q"]').val();
+        text = encodeURIComponent(text);
+        console.log(text);
+        var url = "http://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
+        $('audio').attr('src', url).get(0).play();
+    });
+});
+
+</script>
+<script type="text/javascript">
+	onload = function() {
+        document.querySelector('form').style.zoom = "250%";
+    }
+</script>
+</body>
+</html>
+<style type="text/css">
+#popup{
+    display:none; 
+    background:#efefef; 
+    border:1px solid black; 
+    width:30%; 
+    height:300px;
+    float: right
+}
+
+#editor{
+    float: right;
+    margin-bottom: 20px;
+    display: inline-block;
+    margin-left: 100%;
+}
+
+body{
+    font-family: Arial;
+    font-size: 16px;
+}
+
+.font-button{
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25pt;
+    cursor: pointer;
+}
+.fontsize{
+	margin-left: 5px;
+}
+
+.fontsize p{
+	display: inline;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.input-button{
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25pt;
+    cursor: pointer;
+}
+
+.inputsize{
+    margin-left: 5px;
+}
+
+.inputsize p{
+    display: inline;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.contrast{
+	margin-top: 30px;
+	margin-left: 20px;
+}
+
+.contrast button{
+	margin-left: 5px;
+	display: inline;
+    background-color:#ffffff;
+    border-radius:17px;
+    border:3px solid #000000;
+    cursor:pointer;
+    color:#000000;
+    font-family:Verdana;
+    font-size:18px;
+    font-weight:bold;
+    padding:7px 15px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+}
+
+.exit{
+    float: right;
+}
+
+.tts{
+    margin-left: 5px;
+}
+
+input{
+    width: 400px;
+    height: 25px;
+}
+
+input[type="text"]
+{
+    font-size:24px;
+}
+
+.tekst{
+    font-size: 16px;
+}
+
+.speech img{
+    width: 20px;
+    height: 20px;
+}
+
+form{
+    zoom: 100%;
+}
+</style>
