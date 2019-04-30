@@ -20,6 +20,17 @@ public class Enhancer {
 		if (codeTemplate.getFormOpties() != null) {
 			htmlDocument.append("<p>" + codeTemplate.getFormOpties().getCode() + "</p>");
 		}
+		if (codeTemplate.getBasicBar() != null) {
+			htmlDocument.append("<p>" + codeTemplate.getBasicBar().getBasicBarCode() + "</p>");
+			htmlDocument.append("<p>" + codeTemplate.getBasicBar().getContrastOptiesCode() + "</p>");
+			htmlDocument.append("<p>" + codeTemplate.getBasicBar().getFontOptiesCode() + "</p>");
+		}
+		if (codeTemplate.getTextToSpeech() != null) {
+			htmlDocument.append("<p>" + codeTemplate.getTextToSpeech().getCode() + "</p>");
+		}
+		if (codeTemplate.getVideoOpties() != null) {
+			htmlDocument.append("<p>" + codeTemplate.getVideoOpties().getCode() + "</p>");
+		}
 		
         
         return htmlDocument;
