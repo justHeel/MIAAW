@@ -22,7 +22,7 @@ document.getElementById("FetchViaLinkFormButton").addEventListener("click",funct
    	}).then(function(data) {console.log(data)})
    	.catch(error => console.log(error));*/
 	
-	fetch("/enhance", fetchoptions).then(function(res) {
+	fetch("/enhance/link", fetchoptions).then(function(res) {
 	    return res.text();
 	}).then(function(html) {
 	    editedPage = (`${html}`);

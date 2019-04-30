@@ -52,7 +52,7 @@ public class CodeTemplateManager {
 		this.basicBarRepository = basicBarRepository;
 		this.textToSpeechRepository = textToSpeechRepository;
 	}
-	@PostMapping
+	@PostMapping("/link")
 	public ResponseEntity getEnhancedLink(@RequestBody EnhanceRequestLink request) throws IOException {
 		String htmlCode = "";
 		String link = request.getLink();
@@ -78,7 +78,7 @@ public class CodeTemplateManager {
 		
 	}
 	
-	@PostMapping
+	@PostMapping("/file")
 	public ResponseEntity getEnhancedFile(@RequestBody EnhanceRequestFile request) throws IOException{
 		String htmlCode = "";
 		String file = request.getFile();
