@@ -17,8 +17,19 @@
             <p>Text-to-Speech Form</p>
             <button class="MIAAW_form_play">Play</button>
         </div>
+        <br>
             <button class="exit" onclick="document.getElementById('popup').style.display='none'">Exit</button>
     </div>
+
+
+    <div class="MIAAW_speech">
+        <!--Hier komt tekst-->
+    </div>
+
+    <div class="MIAAW_speech">
+        <!--Hier komt tekst-->
+    </div>
+
      
     <form id="MIAAW_form">
         <div class="MIAAW_form_speech">
@@ -30,14 +41,7 @@
         </div>
     </form>
 
-    <div class="MIAAW_speech">
-        <p></p>
-    </div>
-
-    <div class="MIAAW_speech">
-        <p></p>
-    </div>
-
+    
     <audio src="" class="MIAAW_form_speech" hidden></audio>
 
 </body>
@@ -97,8 +101,13 @@ startDictation();
 <script>
     $(function() {
         $('button.MIAAW_form_play').on('click',function(e){
+            var arrText= new Array();
+            $('input[type=text]').each(function(){
+                arrText.push($(this).val());
+
+            })
             e.preventDefault();
-            var text= $('input[name="MIAAW_input"]').val();
+            var text= arrText;
             text = encodeURIComponent(text);
             console.log(text);
             var url = "http://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
@@ -135,6 +144,27 @@ body{
 
 .exit{
     float: right;
+    display: inline-block;
+}
+
+.MIAAW_speech{
+    font-size: 20px;
+}
+
+.font-button{
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25pt;
+    cursor: pointer;
+}
+
+.fontsize p{
+    display: inline;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .tts, .tts_form{
