@@ -4,6 +4,7 @@ import com.app.miaaw.Domain.Admin;
 import com.app.miaaw.Domain.BasicBar;
 import com.app.miaaw.Domain.CodeTemplate;
 import com.app.miaaw.WebpageEnhancer.Enhancer;
+import com.app.miaaw.WebpageEnhancer.SoupChef;
 import com.app.miaaw.repos.BasicBarRepository;
 import com.app.miaaw.repos.CodeTemplateRepository;
 import com.app.miaaw.repos.FormOptiesRepository;
@@ -73,9 +74,8 @@ public class CodeTemplateManager {
 		
 		codeTemplateRepository.save(codeTemplate);
 		
-		htmlCode = Enhancer.enhanceDocumentLink(link, codeTemplate).toString();
+		htmlCode = Enhancer.enhanceDocument(SoupChef.makeLinkSoup(link), codeTemplate).toString();
 		return ResponseEntity.status(200).body(htmlCode);
-		
 	}
 	
 	@PostMapping("/file")
@@ -99,7 +99,7 @@ public class CodeTemplateManager {
 		
 		codeTemplateRepository.save(codeTemplate);
 		
-		htmlCode = Enhancer.enhanceDocumentFile(file, codeTemplate).toString();
+		htmlCode = Enhancer.enhanceDocument(SoupChef.makeFileSoup(file), codeTemplate).toString();
 		return ResponseEntity.status(200).body(htmlCode);
 		
 	}
