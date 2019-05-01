@@ -10,69 +10,58 @@
     <div id="popup"> 
         <div class="tts">
             <p>Text-to-Speech</p>
-            <button id=play><img style="height: 40px; width: 40px;" src="../fotos/play.png">Play</button>
-            <button id=pause><img style="height: 40px; width: 40px;" src="../fotos/pause.png">Pause</button>
-            <button id=stop><img style="height: 40px; width: 40px;" src="../fotos/stop.png">Stop</button>
+            
 
             <button class="exit" onclick="document.getElementById('popup').style.display='none'">Exit</button>
 
         </div>
     </div>
+
+    <button class="play">Play</button>
+    <button id="stop">Stop</button>
         
     <form id="MIAAW_form">
         <div class="MIAAW_form_speech">
             <input type="text" name="q" id="transcript"></input>
-        </div>
-        <div class="MIAAW_form_speech">
+        
             <input type="text" name="q" id="transcript1"></input>
-        </div>
-        <div class="MIAAW_form_speech">
+ 
             <input type="text" name="q" id="transcript2"></input>
         </div>
     </form>
 
+    <div class="yo">
+        <p>ik haat me leven. hier hebben we dagen lang over gedaan en niks werkt</p>
+    </div>
+
+    <div class="yo">
+        <p>2 2 2 22 2 2 </p>
+    </div>
+
     <a href="#" class="say">Say It</a>
     <audio src="" class="MIAAW_form_speech" hidden></audio>
-
+</body>
 <script>
 onload = function() {
     if ('speechSynthesis' in window) with(speechSynthesis) {
 
         var playEle = document.querySelector('#play');
-        var pauseEle = document.querySelector('#pause');
         var stopEle = document.querySelector('#stop');
         var flag = false;
 
         playEle.addEventListener('click', onClickPlay);
-        pauseEle.addEventListener('click', onClickPause);
         stopEle.addEventListener('click', onClickStop);
 
         function onClickPlay() {
             if(!flag){
                 flag = true;
-                utterance = new SpeechSynthesisUtterance(document.querySelector('body').textContent);
+                utterance = new SpeechSynthesisUtterance(document.querySelector("article").textContent);
 
                 utterance.lang = 'nl-NL';
                 utterance.rate = 0.7;
-                utterance.onend = function(){
-                    flag = false; playEle.className = pauseEle.className = ''; stopEle.className = 'stopped';
-                };
                 playEle.className = 'played';
                 stopEle.className = '';
                 speak(utterance);
-            }
-             if (paused) { 
-                playEle.className = 'played';
-                pauseEle.className = '';
-                resume();
-            } 
-        }
-
-        function onClickPause() {
-            if(speaking && !paused){ 
-                pauseEle.className = 'paused';
-                playEle.className = '';
-                pause();
             }
         }
 
@@ -85,8 +74,7 @@ onload = function() {
 
             }
         }
-
-    }
+        }
 
     else { /* speech synthesis not supported */
         msg = document.createElement('h5');
@@ -99,6 +87,7 @@ onload = function() {
     }
 
 }
+
 </script>
 <script>
 function startDictation() {
@@ -143,9 +132,9 @@ startDictation();
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script>
     $(function() {
-        $('a.say').on('click',function(e){
+        $('button.play').on('click',function(e){
         e.preventDefault();
-        var text= $('input[name="q"]').val();
+        var text= $('div.yo').text();
         text = encodeURIComponent(text);
         console.log(text);
         var url = "http://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
@@ -159,8 +148,6 @@ startDictation();
         document.querySelector('form').style.zoom = "250%";
     }
 </script>
-</body>
-</html>
 <style type="text/css">
 #popup{
     display:none; 
@@ -214,3 +201,4 @@ form{
     zoom: 100%;
 }
 </style>
+</html>
