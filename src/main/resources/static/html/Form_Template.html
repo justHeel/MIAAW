@@ -10,85 +10,37 @@
     <div id="popup"> 
         <div class="tts">
             <p>Text-to-Speech</p>
-            
-
-            <button class="exit" onclick="document.getElementById('popup').style.display='none'">Exit</button>
-
+            <button class="MIAAW_play">Play</button>
         </div>
+        <br>
+        <div class="tts_form">
+            <p>Text-to-Speech Form</p>
+            <button class="MIAAW_form_play">Play</button>
+        </div>
+            <button class="exit" onclick="document.getElementById('popup').style.display='none'">Exit</button>
     </div>
-
-    <button class="play">Play</button>
-    <button id="stop">Stop</button>
-        
+     
     <form id="MIAAW_form">
         <div class="MIAAW_form_speech">
-            <input type="text" name="q" id="transcript"></input>
+            <input type="text" name="MIAAW_input" id="transcript"></input>
         
-            <input type="text" name="q" id="transcript1"></input>
+            <input type="text" name="MIAAW_input" id="transcript1"></input>
  
-            <input type="text" name="q" id="transcript2"></input>
+            <input type="text" name="MIAAW_input" id="transcript2"></input>
         </div>
     </form>
 
-    <div class="yo">
-        <p>ik haat me leven. hier hebben we dagen lang over gedaan en niks werkt</p>
+    <div class="MIAAW_speech">
+        <p></p>
     </div>
 
-    <div class="yo">
-        <p>2 2 2 22 2 2 </p>
+    <div class="MIAAW_speech">
+        <p></p>
     </div>
 
-    <a href="#" class="say">Say It</a>
     <audio src="" class="MIAAW_form_speech" hidden></audio>
+
 </body>
-<script>
-onload = function() {
-    if ('speechSynthesis' in window) with(speechSynthesis) {
-
-        var playEle = document.querySelector('#play');
-        var stopEle = document.querySelector('#stop');
-        var flag = false;
-
-        playEle.addEventListener('click', onClickPlay);
-        stopEle.addEventListener('click', onClickStop);
-
-        function onClickPlay() {
-            if(!flag){
-                flag = true;
-                utterance = new SpeechSynthesisUtterance(document.querySelector("article").textContent);
-
-                utterance.lang = 'nl-NL';
-                utterance.rate = 0.7;
-                playEle.className = 'played';
-                stopEle.className = '';
-                speak(utterance);
-            }
-        }
-
-        function onClickStop() {
-            if(speaking){
-                stopEle.className = 'stopped';
-                playEle.className = pauseEle.className = '';
-                flag = false;
-                cancel();
-
-            }
-        }
-        }
-
-    else { /* speech synthesis not supported */
-        msg = document.createElement('h5');
-        msg.textContent = "Detected no support for Speech Synthesis";
-        msg.style.textAlign = 'center';
-        msg.style.backgroundColor = 'red';
-        msg.style.color = 'white';
-        msg.style.marginTop = msg.style.marginBottom = 0;
-        document.body.insertBefore(msg, document.querySelector('div'));
-    }
-
-}
-
-</script>
 <script>
 function startDictation() {
     var target = [];
@@ -132,16 +84,27 @@ startDictation();
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script>
     $(function() {
-        $('button.play').on('click',function(e){
-        e.preventDefault();
-        var text= $('div.yo').text();
-        text = encodeURIComponent(text);
-        console.log(text);
-        var url = "http://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
-        $('audio').attr('src', url).get(0).play();
-    });
+        $('button.MIAAW_play').on('click',function(e){
+            e.preventDefault();
+            var text= $('div.MIAAW_speech').text();
+            text = encodeURIComponent(text);
+            console.log(text);
+            var url = "http://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
+            $('audio').attr('src', url).get(0).play();
+        });
 });
-
+</script>
+<script>
+    $(function() {
+        $('button.MIAAW_form_play').on('click',function(e){
+            e.preventDefault();
+            var text= $('input[name="MIAAW_input"]').val();
+            text = encodeURIComponent(text);
+            console.log(text);
+            var url = "http://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
+            $('audio').attr('src', url).get(0).play();
+        });
+});
 </script>
 <script type="text/javascript">
 	onload = function() {
@@ -174,8 +137,20 @@ body{
     float: right;
 }
 
-.tts{
+.tts, .tts_form{
     margin-left: 5px;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.MIAAW_form_play, .MIAAW_play{
+    height: 30px;
+    width: 60px;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 900;
+    color: black;
+    border: 2px solid #555555;
 }
 
 input{
@@ -190,11 +165,6 @@ input[type="text"]
 
 .tekst{
     font-size: 16px;
-}
-
-.MIAAW_form_speech img{
-    width: 20px;
-    height: 20px;
 }
 
 form{
