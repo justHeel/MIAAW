@@ -19,10 +19,6 @@ public class TextToSpeech {
 	@JoinColumn(name="text_to_speech_id")
 	private long textToSpeechId;
 	
-	@OneToOne
-	@NotFound(action=NotFoundAction.IGNORE)
-	private CodeTemplate codeTemplate;
-	
 	private String code;
 
 	public long getTextToSpeechId() {
@@ -31,15 +27,6 @@ public class TextToSpeech {
 
 	public void setTextToSpeechId(long textToSpeechId) {
 		this.textToSpeechId = textToSpeechId;
-	}
-
-
-	public CodeTemplate getCodeTemplate() {
-		return codeTemplate;
-	}
-
-	public void setCodeTemplate(CodeTemplate codeTemplate) {
-		this.codeTemplate = codeTemplate;
 	}
 
 	public String getCode() {

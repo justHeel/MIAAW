@@ -8,6 +8,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.Id;
 
 @Entity
@@ -24,6 +27,42 @@ public class CodeTemplate {
     
     @OneToOne
     private BasicBar basicBar;
+    
+	@OneToOne
+	@NotFound(action=NotFoundAction.IGNORE)
+	private TextToSpeech textToSpeech;
+	
+	@OneToOne
+	@NotFound(action=NotFoundAction.IGNORE)
+	private FormOpties formOpties;
+	
+	@OneToOne
+	@NotFound(action=NotFoundAction.IGNORE)
+	private VideoOpties videoOpties;
+	
+	public VideoOpties getVideoOpties() {
+		return videoOpties;
+	}
+
+	public void setVideoOpties(VideoOpties videoOpties) {
+		this.videoOpties = videoOpties;
+	}
+
+	public FormOpties getFormOpties() {
+		return formOpties;
+	}
+
+	public void setFormOpties(FormOpties formOpties) {
+		this.formOpties = formOpties;
+	}
+
+	public TextToSpeech getTextToSpeech() {
+		return textToSpeech;
+	}
+
+	public void setTextToSpeech(TextToSpeech textToSpeech) {
+		this.textToSpeech = textToSpeech;
+	}
 
 	public long getCodeTemplateId() {
 		return codeTemplateId;

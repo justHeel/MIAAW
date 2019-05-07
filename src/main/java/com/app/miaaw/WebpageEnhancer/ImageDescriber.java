@@ -19,7 +19,7 @@ public class ImageDescriber {
 	    // **********************************************
 	    // *** Update or verify the following values. ***
 	    // **********************************************
-
+		
 	    // Replace <Subscription Key> with your valid subscription key.
 	    private static final String subscriptionKey = "7d868b20a97948c7af4ec3f9011170c2";
 	    private static ImageDescriberFinal iDF;
@@ -36,6 +36,7 @@ public class ImageDescriber {
 	            "https://northeurope.api.cognitive.microsoft.com//vision/v2.0/analyze";
 
 	    private static final String imageToAnalyze = "https://images-eu.ssl-images-amazon.com/images/G/03/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB454020359_.png";
+
 
 	    public static String getDescription(String url) {
 	    	String returnVal = "";

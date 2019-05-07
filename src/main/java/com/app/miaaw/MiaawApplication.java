@@ -28,7 +28,6 @@ import com.cmeza.sdgenerator.annotation.SDGenerator;
 )
 @SpringBootApplication
 public class MiaawApplication {
-
 	public static void main(String[] args) throws IOException {
 		//SpringApplication.run(MiaawApplication.class, args);
 		//System.out.println(ImageDescriber.getDescription());
@@ -63,5 +62,6 @@ public class MiaawApplication {
 			list.add(s);
 			System.out.println(list);
 		}*/	
+
 	}
 }

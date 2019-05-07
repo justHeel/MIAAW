@@ -15,20 +15,30 @@ public class BasicBar {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JoinColumn(name="basicbar_id")
 	private long basicBarId;
+	private String basicBarCode, fontOptiesCode, contrastOptiesCode;
 	
-	private String code;
-	
+	public String getBasicBarCode() {
+		return basicBarCode;
+	}
+	public void setBasicBarCode(String basicBarCode) {
+		this.basicBarCode = basicBarCode;
+	}
+	public String getFontOptiesCode() {
+		return fontOptiesCode;
+	}
+	public void setFontOptiesCode(String fontOptiesCode) {
+		this.fontOptiesCode = fontOptiesCode;
+	}
+	public String getContrastOptiesCode() {
+		return contrastOptiesCode;
+	}
+	public void setContrastOptiesCode(String contrastOptiesCode) {
+		this.contrastOptiesCode = contrastOptiesCode;
+	}
 	public long getBasicBarId() {
 		return basicBarId;
 	}
 	public void setBasicBarId(long basicBarId) {
 		this.basicBarId = basicBarId;
 	}
-	public String getCode() {
-		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
-	}
-	
 }

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../css/Style2.css">
+<title> ...... </title>
+
+</head>
+<body>
+    <button id="editor" onclick="document.getElementById('popup').style.display='block'">Editor</button>
+    <div id="popup"> 
+        <div class="tts">
+            <p>Text-to-Speech</p>
+            <button id=play><img style="height: 40px; width: 40px;" src="../fotos/play.png">Play</button>
+            <button id=pause><img style="height: 40px; width: 40px;" src="../fotos/pause.png">Pause</button>
+            <button id=stop><img style="height: 40px; width: 40px;" src="../fotos/stop.png">Stop</button>
+        </div>
+        
+        <button class="exit" onclick="document.getElementById('popup').style.display='none'">Exit</button>
+        
+        <br>
+        <div class="fontsize">
+            <a class="font-button plus">+</a> 
+            <p>Font size</p>
+            <a class="font-button minus">-</a>
+        </div>
+
+        <div class="inputsize">
+            <a class="input-button plus" id="plus">+</a> 
+            <p>Input size</p>
+            <a class="input-button minus" id="minus">-</a>
+        </div>
+
+        <!--<div class="videoplayer">
+            <video width="100%" height="auto" poster="some_image.jpg" controls="controls" autoplay="true">
+            <source type="video/mp4" src="video.mp4" />
+        </div>-->
+        
+
+        <div class="contrast">
+            <button><a href="#" onclick="changeCSS('../css/Style2.css', 0);">Licht contrast</a></button>
+            <button><a href="#" onclick="changeCSS('../css/negative.css', 0);">Donker contrast</a></button>
+        </div>
+    </div>
+    <div id="tekst" class="tekst">
+        Hey lees dit voor
+    </div>
+
+    <center>
+     <form id="labnol">
+            <div class="speech">
+                <input type="text" onclick="Zoomin()" name="q" id="transcript"></input>
+                <img src="../fotos/mic.png" />
+            </div>
+            <br>
+            First name:<br>
+            <div class="speech">
+                <input type="text" name="q" id="transcript1"></input>
+                <img src="../fotos/mic.png" />
+            </div>
+            <br>
+            Last name:<br>
+            <div class="speech">
+                <input type="text" name="q" id="transcript2"></input>
+                <img src="../fotos/mic.png" />
+            </div>
+            <br><br>
+            <button id="button">Submit</button>  
+    </form>
+    <a href="#" class="say">Say It</a>
+    <audio src="" class="speech" hidden></audio>
+    </center>
+<script>
+onload = function() {
+    if ('speechSynthesis' in window) with(speechSynthesis) {
+
+        var playEle = document.querySelector('#play');
+        var pauseEle = document.querySelector('#pause');
+        var stopEle = document.querySelector('#stop');
+        var flag = false;
+
+        playEle.addEventListener('click', onClickPlay);
+        pauseEle.addEventListener('click', onClickPause);
+        stopEle.addEventListener('click', onClickStop);
+
+        function onClickPlay() {
+            if(!flag){
+                flag = true;
+                utterance = new SpeechSynthesisUtterance(document.querySelector('.tekst').textContent);
+
+                utterance.lang = 'nl-NL';
+                utterance.rate = 0.7;
+                utterance.onend = function(){
+                    flag = false; playEle.className = pauseEle.className = ''; stopEle.className = 'stopped';
+                };
+                playEle.className = 'played';
+                stopEle.className = '';
+                speak(utterance);
+            }
+             if (paused) { /* unpause/resume narration */
+                playEle.className = 'played';
+                pauseEle.className = '';
+                resume();
+            } 
+        }
+
+        function onClickPause() {
+            if(speaking && !paused){ /* pause narration */
+                pauseEle.className = 'paused';
+                playEle.className = '';
+                pause();
+            }
+        }
+
+        function onClickStop() {
+            if(speaking){ /* stop narration */
+                /* for safari */
+                stopEle.className = 'stopped';
+                playEle.className = pauseEle.className = '';
+                flag = false;
+                cancel();
+
+            }
+        }
+
+    }
+
+    else { /* speech synthesis not supported */
+        msg = document.createElement('h5');
+        msg.textContent = "Detected no support for Speech Synthesis";
+        msg.style.textAlign = 'center';
+        msg.style.backgroundColor = 'red';
+        msg.style.color = 'white';
+        msg.style.marginTop = msg.style.marginBottom = 0;
+        document.body.insertBefore(msg, document.querySelector('div'));
+    }
+
+}
+</script>
+<script>
+function changeCSS(cssFile, cssLinkIndex) {
+
+    var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+
+    var newlink = document.createElement("link");
+    newlink.setAttribute("rel", "stylesheet");
+    newlink.setAttribute("type", "text/css");
+    newlink.setAttribute("href", cssFile);
+
+    document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+}
+</script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<!--<script type="text/javascript">
+    $(function () {
+        $(".font-button").bind("click", function () {
+            var size = parseInt($('input[type="text"]').css("font-size"));
+            var size = parseInt($('.tekst').css("font-size"));
+                if ($(this).hasClass("plus")) {
+                    size = size + 2;
+                } else {
+                    size = size - 2;
+                    if (size <= 10) {
+                        size = 10;
+                    }
+                }
+            $('.tekst').css("font-size", size);
+            $('input[type="text"]').css("font-size", size);
+        });
+    });
+</script>
+-->
+
+<!--<script type="text/javascript">
+    $(function () {
+        $(".input-button").bind("click", function () {
+            var size = parseInt($('input').css("height"));
+            var size2 = parseInt($('input').css("width"));
+                if ($(this).hasClass("plus")) {
+                    size = size +  5;
+                    size2 = size2 + 40;
+                } else {
+                    size = size - 5;
+                    size2 = size2 - 20;
+                    if (size <= 10) {
+                        size = 10;
+                    }
+                }
+            $('input').css("height", size);
+            $('input').css("width", size2);
+        });
+    });
+</script>
+-->
+
+<script>
+function startDictation() {
+    var target = [];
+    document.getElementById("labnol").addEventListener("click", function(e) {
+        if(e.target && e.target.nodeName == "INPUT") {
+            console.log("List item ", e.target.id.replace("post-", ""), " was clicked!");
+            iets = e.target.id.replace("post-", "")
+            target.push(iets);
+
+
+            var arrayLength = target.length;
+            for (var i = 0; i < arrayLength; i++) {
+        
+                if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+                        var recognition = new webkitSpeechRecognition();
+                        recognition.continuous = false;
+                        recognition.interimResults = false;
+
+                        recognition.lang = "nl-NL";
+                        recognition.start();
+
+                        recognition.onresult = function(e) {
+                            document.getElementById(iets).value = e.results[0][0].transcript;
+                            recognition.stop();
+                        };
+
+                        recognition.onerror = function(e) {
+                            recognition.stop();
+                        }
+
+                    }
+                }
+
+        target.pop();
+    }
+})
+};
+startDictation();
+</script>
+<script>
+        
+                $(function() {
+                    $('a.say').on('click',function(e){
+                    e.preventDefault();
+                    var text= $('input[name="q"]').val();
+                    text = encodeURIComponent(text);
+                    console.log(text);
+                    var url = "http://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
+                    $('audio').attr('src', url).get(0).play();
+                    });
+                });
+
+</script>
+<script type="text/javascript">
+    function Zoomin(){
+        document.querySelector('form').style.zoom = "250%";
+    }
+</script>
+<!--<script>
+document.getElementById("start-record-btn").addEventListener("click", function(){
+  document.getElementById("tekst").innerHTML = "Hello World";
+});
+</script>
+-->
+
+</body>
+</html>

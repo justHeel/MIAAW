@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> ...... </title>
+
+</head>
+<body>
+	<button id="editor" onclick="document.getElementById('popup').style.display='block'">Editor</button>
+    <div id="popup"> 
+        <div class="tts">
+            <p>Text-to-Speech</p>
+            <button id=play><img style="height: 40px; width: 40px;" src="../fotos/play.png">Play</button>
+            <button id=pause><img style="height: 40px; width: 40px;" src="../fotos/pause.png">Pause</button>
+            <button id=stop><img style="height: 40px; width: 40px;" src="../fotos/stop.png">Stop</button>
+		</div>
+            <button class="exit" onclick="document.getElementById('popup').style.display='none'">Exit</button>
+
+            <div class="fontsize">
+                <a class="font-button plus">+</a> 
+                <p>Font size</p>
+                <a class="font-button minus">-</a>
+            </div>
+
+    </div>
+      
+  
+    <p class="MIAAW_ResizeableText">
+    rchndy
+    </p>
+</body>
+<script>
+onload = function() {
+    if ('speechSynthesis' in window) with(speechSynthesis) {
+
+        var playEle = document.querySelector('#play');
+        var pauseEle = document.querySelector('#pause');
+        var stopEle = document.querySelector('#stop');
+        var flag = false;
+
+        playEle.addEventListener('click', onClickPlay);
+        pauseEle.addEventListener('click', onClickPause);
+        stopEle.addEventListener('click', onClickStop);
+
+        function onClickPlay() {
+            if(!flag){
+                flag = true;
+                utterance = new SpeechSynthesisUtterance(document.querySelector('body').textContent);
+
+                utterance.lang = 'nl-NL';
+                utterance.rate = 0.7;
+                utterance.onend = function(){
+                    flag = false; playEle.className = pauseEle.className = ''; stopEle.className = 'stopped';
+                };
+                playEle.className = 'played';
+                stopEle.className = '';
+                speak(utterance);
+            }
+             if (paused) { 
+                playEle.className = 'played';
+                pauseEle.className = '';
+                resume();
+            } 
+        }
+
+        function onClickPause() {
+            if(speaking && !paused){ 
+                pauseEle.className = 'paused';
+                playEle.className = '';
+                pause();
+            }
+        }
+
+        function onClickStop() {
+            if(speaking){
+                stopEle.className = 'stopped';
+                playEle.className = pauseEle.className = '';
+                flag = false;
+                cancel();
+
+            }
+        }
+
+    }
+
+    else { /* speech synthesis not supported */
+        msg = document.createElement('h5');
+        msg.textContent = "Detected no support for Speech Synthesis";
+        msg.style.textAlign = 'center';
+        msg.style.backgroundColor = 'red';
+        msg.style.color = 'white';
+        msg.style.marginTop = msg.style.marginBottom = 0;
+        document.body.insertBefore(msg, document.querySelector('div'));
+    }
+
+}
+</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".font-button").bind("click", function () {
+            var size = parseInt($('.MIAAW_ResizeableText').css("font-size"));
+                if ($(this).hasClass("plus")) {
+                    size = size + 2;
+                } else {
+                    size = size - 2;
+                    if (size <= 10) {
+                        size = 10;
+                    }
+                }
+            $('.MIAAW_ResizeableText').css("font-size", size);
+            console.log(size);
+        });
+    });
+</script>
+<style type="text/css">
+#popup{
+    display:none; 
+    background:#efefef; 
+    border:1px solid black; 
+    width:30%; 
+    height:300px;
+    float: right
+}
+
+#editor{
+    float: right;
+    margin-bottom: 20px;
+    display: inline-block;
+    margin-left: 100%;
+}
+
+.MIAAW_ResizeableText{
+    font-family: Arial;
+    font-size: 16px;
+}
+
+.font-button{
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25pt;
+    cursor: pointer;
+}
+.fontsize{
+    margin-left: 5px;
+}
+
+.fontsize p{
+    display: inline;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.exit{
+    float: right;
+}
+
+.tts{
+    margin-left: 5px;
+}
+
+input{
+    width: 400px;
+    height: 25px;
+}
+
+.tekst{
+    font-size: 16px;
+}
+
+.speech img{
+    width: 20px;
+    height: 20px;
+}
+
+</style>
+</html>
+        
