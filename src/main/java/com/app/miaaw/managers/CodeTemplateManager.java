@@ -76,6 +76,7 @@ public class CodeTemplateManager {
 		
 		htmlCode = Enhancer.enhanceDocument(SoupChef.makeLinkSoup(link), codeTemplate).toString();
 		return ResponseEntity.status(200).body(htmlCode);
+		
 	}
 	
 	@PostMapping("/file")

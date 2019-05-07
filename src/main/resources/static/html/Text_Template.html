@@ -25,7 +25,7 @@
     </div>
       
   
-    <p>
+    <p class="MIAAW_ResizeableText">
     rchndy
     </p>
 </body>
@@ -99,7 +99,7 @@ onload = function() {
 <script type="text/javascript">
     $(function () {
         $(".font-button").bind("click", function () {
-            var size = parseInt($('body').css("font-size"));
+            var size = parseInt($('.MIAAW_ResizeableText').css("font-size"));
                 if ($(this).hasClass("plus")) {
                     size = size + 2;
                 } else {
@@ -108,7 +108,8 @@ onload = function() {
                         size = 10;
                     }
                 }
-            $('body').css("font-size", size);
+            $('.MIAAW_ResizeableText').css("font-size", size);
+            console.log(size);
         });
     });
 </script>
@@ -129,7 +130,7 @@ onload = function() {
     margin-left: 100%;
 }
 
-body{
+.MIAAW_ResizeableText{
     font-family: Arial;
     font-size: 16px;
 }

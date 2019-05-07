@@ -15,7 +15,7 @@ public class ImageDescriber {
 	    // **********************************************
 	    // *** Update or verify the following values. ***
 	    // **********************************************
-
+		
 	    // Replace <Subscription Key> with your valid subscription key.
 	    private static final String subscriptionKey = "7d868b20a97948c7af4ec3f9011170c2";
 
@@ -30,7 +30,7 @@ public class ImageDescriber {
 	    private static final String uriBase =
 	            "https://northeurope.api.cognitive.microsoft.com//vision/v2.0/analyze";
 
-	    private static final String imageToAnalyze = "https://www.thomann.de/pics/bdb/371903/10395977_800.jpg";
+	    private static final String imageToAnalyze = "http://www.gehandicaptenhaarlemmermeer.nl/wp-content/uploads/2016/05/logo.jpg";
 
 	    public static String getDescription() {
 	    	String returnVal = "";
@@ -65,7 +65,6 @@ public class ImageDescriber {
 	                // Format and display the JSON response.
 	                String jsonString = EntityUtils.toString(entity);
 	                JSONObject json = new JSONObject(jsonString);
-	                System.out.println("REST Response:\n");
 	                returnVal = json.toString(2);
 	            }
 	        } catch (Exception e) {

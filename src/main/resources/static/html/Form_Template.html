@@ -54,7 +54,6 @@ function startDictation() {
             iets = e.target.id.replace("post-", "")
             target.push(iets);
 
-
             var arrayLength = target.length;
             for (var i = 0; i < arrayLength; i++) {
         
@@ -93,7 +92,7 @@ startDictation();
             var text= $('div.MIAAW_speech').text();
             text = encodeURIComponent(text);
             console.log(text);
-            var url = "http://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
+            var url = "https://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
             $('audio').attr('src', url).get(0).play();
         });
 });
@@ -104,13 +103,12 @@ startDictation();
             var arrText= new Array();
             $('input[type=text]').each(function(){
                 arrText.push($(this).val());
-
             })
             e.preventDefault();
             var text= arrText;
             text = encodeURIComponent(text);
             console.log(text);
-            var url = "http://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
+            var url = "https://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
             $('audio').attr('src', url).get(0).play();
         });
 });

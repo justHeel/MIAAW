@@ -13,7 +13,6 @@ public class SoupChef {
         String url = link;
         Document document = Jsoup.connect(url).get();
         return document;
-        
 	}
 	
 	public static Document makeFileSoup(String file) throws IOException{
