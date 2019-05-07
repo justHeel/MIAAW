@@ -28,28 +28,28 @@
         **Wat je gaat krijgen**<br>
         </p>
          
-
-        Text-to-speech: &nbsp; &nbsp;
+	<button id="testButton">test!</button>
+        Form Opties: &nbsp; &nbsp;
          <label class="switch">
-             <input id="TextToSpeechCheck"type="checkbox">
+             <input id="formOptiesCheck" type="checkbox">
              <span class=slider round"></span>
          </label><br><br>
 
-         Changing font-size: &nbsp; &nbsp;
+         Video Opties: &nbsp; &nbsp;
          <label class="switch">
-                <input type="checkbox">
+                <input id="videoOptiesCheck" type="checkbox">
                 <span class=slider round"></span>
             </label><br><br>
 
-            Changing font color: &nbsp; &nbsp;
+          Text to Speech: &nbsp; &nbsp;
             <label class="switch">
-                    <input type="checkbox">
+                    <input id="textToSpeechCheck" type="checkbox">
                     <span class=slider round"></span>
                 </label><br><br>
 
-                Changing theme to dark: &nbsp; &nbsp;
+          Basic Bar: &nbsp; &nbsp;
                 <label class="switch">
-                        <input type="checkbox">
+                        <input id="basicBarCheck" type="checkbox">
                         <span class=slider round"></span>
                     </label><br><br>
 		
@@ -63,7 +63,9 @@
         <div class="contents">
             Upload your html page: 
             <br>
-            <input type="file" name="htmlpage" placeholder="your html page"></form>
+      		
+              <input id="FetchViaFileForm" type="file" name="htmlpage" placeholder="file"></form>
+            <button id="FetchViaFileFormButton">GO!</button>
             <br>
                 <textarea rows="4" cols="50" placeholder="Your code"></textarea>
 
