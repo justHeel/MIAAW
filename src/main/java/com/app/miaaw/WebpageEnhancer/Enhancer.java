@@ -13,8 +13,7 @@ import com.app.miaaw.Domain.CodeTemplate;
 import ch.qos.logback.core.net.SyslogOutputStream;
 
 public class Enhancer {
-	static String basicBarCode = "<audio src=\"\" class=\"MIAAW_form_speech\" hidden></audio>"
-			+ "	<button id=\"editor\" onclick=\"document.getElementById('popup').style.display='block'\">Editor</button>\r\n" + 
+	static String basicBarCode = "	<button id=\"editor\" onclick=\"document.getElementById('popup').style.display='block'\">Editor</button>\r\n" + 
 			"    <div id=\"popup\"> \r\n" + 
 			"        <div class=\"tts\">\r\n" + 
 			"            <p>Text-to-Speech</p>\r\n" + 
@@ -27,8 +26,9 @@ public class Enhancer {
 			"        </div>\r\n" + 
 			"        <br>\r\n" + 
 			"            <button class=\"exit\" onclick=\"document.getElementById('popup').style.display='none'\">Exit</button>\r\n" + 
-			"    </div>"
-			+ "<script>\r\n" + 
+			"    </div>" +
+			" <audio src=\"\" class=\"MIAAW_form_speech\" hidden></audio>"+
+			"<script>\r\n" + 
 			"function startDictation() {\r\n" + 
 			"    var target = [];\r\n" + 
 			"    document.getElementById(\"MIAAW_form\").addEventListener(\"click\", function(e) {\r\n" + 
@@ -36,7 +36,6 @@ public class Enhancer {
 			"            console.log(\"List item \", e.target.id.replace(\"post-\", \"\"), \" was clicked!\");\r\n" + 
 			"            iets = e.target.id.replace(\"post-\", \"\")\r\n" + 
 			"            target.push(iets);\r\n" + 
-			"\r\n" + 
 			"\r\n" + 
 			"            var arrayLength = target.length;\r\n" + 
 			"            for (var i = 0; i < arrayLength; i++) {\r\n" + 
@@ -69,26 +68,26 @@ public class Enhancer {
 			"startDictation();\r\n" + 
 			"</script>\r\n" + 
 			"<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>\r\n" + 
-			"<script>\r\n"
-			+ "	var tts_classes = document.getElementsByClassName(\"MIAAW_TTS_Text_Group\");\r\n" + 
-			"	$('button.MIAAW_play').on('click',function(e){\r\n" + 
-			"		var i = 0;\r\n" + 
-			"		var next = false;\r\n" + 
-			"		    $(function() {\r\n" + 
-			"		            e.preventDefault();\r\n" + 
-			"		            var text= tts_classes[i].innerHTML;\r\n" + 
+			"<script>\r\n" + 
+			"var tts_classes = document.getElementsByClassName(\"MIAAW_TTS_Text_Group\");\r\n" + 
+			"$('button.MIAAW_play').on('click',function(e){\r\n" + 
+			"	var i = 0;\r\n" + 
+			"	var next = false;\r\n" + 
+			"	    $(function() {\r\n" + 
+			"	           	e.preventDefault();\r\n" + 
+			"	            var text= tts_classes[i].innerHTML;\r\n" + 
+			"	            text = encodeURIComponent(text);\r\n" + 
+			"	            var url = \"https://translate.google.com/translate_tts?tl=nl&q=\" + text + \"&client=tw-ob\";\r\n" + 
+			"	            $('audio').attr('src', url).get(0).play();\r\n" + 
+			"	           	$(\"audio\").bind('ended', function(){\r\n" + 
+			"	           		i++;\r\n" + 
+			"		            text= tts_classes[i].innerHTML;\r\n" + 
 			"		            text = encodeURIComponent(text);\r\n" + 
-			"		            var url = \"https://translate.google.com/translate_tts?tl=nl&q=\" + text + \"&client=tw-ob\";\r\n" + 
+			"		           	var url = \"https://translate.google.com/translate_tts?tl=nl&q=\" + text + \"&client=tw-ob\";\r\n" + 
 			"		            $('audio').attr('src', url).get(0).play();\r\n" + 
-			"		           	$(\"audio\").bind('ended', function(){\r\n" + 
-			"		           		i++;\r\n" + 
-			"			            text= tts_classes[i].innerHTML;\r\n" + 
-			"			            text = encodeURIComponent(text);\r\n" + 
-			"			           	var url = \"https://translate.google.com/translate_tts?tl=nl&q=\" + text + \"&client=tw-ob\";\r\n" + 
-			"			            $('audio').attr('src', url).get(0).play();\r\n" + 
-			"					});\r\n" + 
-			"		        });\r\n" + 
-			"	});" +
+			"				});\r\n" + 
+			"	        });\r\n" + 
+			"});\r\n" + 
 			"</script>\r\n" + 
 			"<script>\r\n" + 
 			"    $(function() {\r\n" + 
@@ -96,13 +95,12 @@ public class Enhancer {
 			"            var arrText= new Array();\r\n" + 
 			"            $('input[type=text]').each(function(){\r\n" + 
 			"                arrText.push($(this).val());\r\n" + 
-			"\r\n" + 
 			"            })\r\n" + 
 			"            e.preventDefault();\r\n" + 
 			"            var text= arrText;\r\n" + 
 			"            text = encodeURIComponent(text);\r\n" + 
 			"            console.log(text);\r\n" + 
-			"            var url = \"http://translate.google.com/translate_tts?tl=nl&q=\" + text + \"&client=tw-ob\";\r\n" + 
+			"            var url = \"https://translate.google.com/translate_tts?tl=nl&q=\" + text + \"&client=tw-ob\";\r\n" + 
 			"            $('audio').attr('src', url).get(0).play();\r\n" + 
 			"        });\r\n" + 
 			"});\r\n" + 
@@ -193,7 +191,7 @@ public class Enhancer {
 			"    zoom: 100%;\r\n" + 
 			"}\r\n" + 
 			"</style>";
-			
+
 	public static Document enhanceDocument(Document htmlDocument, CodeTemplate codeTemplate) throws IOException {
 		/*------------All text string builder and hidden tts creator------------*/
 		String giantSuperExtremeBigString = "";
@@ -202,21 +200,21 @@ public class Enhancer {
 			giantSuperExtremeBigString += ptje.text();
 		}
 		ArrayList<String> array = devideString(giantSuperExtremeBigString, 100);
+		
 		htmlDocument.append("<div id='MIAAW_Hidden_TTS_Div'></div>");
 		Elements hiddentts = htmlDocument.select("#MIAAW_Hidden_TTS_Div");
 		for (Element e : hiddentts) {
 			for (String textItem : array) {
-				e.append("<p style='display:none;' class='MIAAW_TTS_Text_Group'>"+textItem+"</p>");
+				e.append("<p style='display:none;' class='MIAAW_TTS_Text_Group'>" + textItem + "</p>");
 			}
 		}
 
-		
 		/*-------------Form Enhance-------------*/
 		if (codeTemplate.getFormOpties() != null) {
 			Elements forms = htmlDocument.select("form");
 			for (Element f : forms) {
 				f.attr("id", "MIAAW_form");
-				
+
 				Elements formInputs = htmlDocument.select("#MIAAW_form input");
 
 				f.append("<div class='MIAAW_form_speech'></div>");
@@ -240,7 +238,7 @@ public class Enhancer {
 		}
 		Elements forms = htmlDocument.select("form");
 		for (Element form : forms) {
-			form.attr("id","MIAAW_form");
+			form.attr("id", "MIAAW_form");
 		}
 		for (Element b : body) {
 			b.append(basicBarCode);
@@ -261,19 +259,35 @@ public class Enhancer {
 
 		return htmlDocument;
 	}
-	
-	public static ArrayList<String> devideString(String string, int devideOn) {
+
+	public static ArrayList<String> devideString(String string, int devideOn) {		
 		ArrayList<String> stringetjes = new ArrayList<String>();
-		
-		int i =0;
+		String subStr = "";
+		String subStr2 = "";
+		int i = 0;
+		Boolean done= false;
 		if (string.length() > devideOn) {
 			while (i < string.length()) {
-				if (i+devideOn > string.length()) {
+				if (i + devideOn > string.length()) {
 					stringetjes.add(string.substring(i, string.length()));
-					i+= string.length() - i;
+					i += string.length() - i;
 				} else {
-					stringetjes.add(string.substring(i, i+devideOn));
-					i+= devideOn;
+					subStr = string.substring(i, i + devideOn);
+					
+					for (int iSub = 100 -1; iSub > 0; iSub--) {
+						if (subStr.charAt(iSub) == ' ') {
+							subStr2 = string.substring(i, (i + iSub + 1));
+							stringetjes.add(subStr2);
+							i += iSub + 1;
+							done = true;
+							break;
+						}
+					}
+					if (done == false) {
+						stringetjes.add(string.substring(i, string.length()));
+						i += string.length() - i;
+					}
+					done = false;
 				}
 			}
 		} else {
@@ -282,4 +296,39 @@ public class Enhancer {
 		return stringetjes;
 	}
 	
+	
+	/*\/\/\/\/\/\/\/\/\/\/vooralsnog niet meer nodig\/\/\/\/\/\/\/\/\/\/v*/
+	public static int countCharInString(char charac, String string) {
+		int count = 0;
+		  
+		for (int i = 0; i < string.length(); i++) {
+		    if (string.charAt(i) == charac) {
+		        count++;
+		    }
+		}
+		return count;
+	}
+	
+	public static int countSpecialChar(String x){
+		char[] ch = x.toCharArray();
+		int letter = 0;
+		int space = 0;
+		int num = 0;
+		int other = 0;
+		for(int i = 0; i < x.length(); i++){
+			if(Character.isLetter(ch[i])){
+				letter ++ ;
+			}
+			else if(Character.isDigit(ch[i])){
+				num ++ ;
+			}
+			else if(Character.isSpaceChar(ch[i])){
+				space ++ ;
+			}
+			else{
+				other ++;
+			}
+		}
+		return other;
+	}
 }

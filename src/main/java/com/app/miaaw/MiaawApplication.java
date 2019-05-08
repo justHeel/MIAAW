@@ -29,7 +29,7 @@ import com.cmeza.sdgenerator.annotation.SDGenerator;
 @SpringBootApplication
 public class MiaawApplication {
 	public static void main(String[] args) throws IOException {
-		//SpringApplication.run(MiaawApplication.class, args);
+		SpringApplication.run(MiaawApplication.class, args);
 		//System.out.println(ImageDescriber.getDescription());
 		
 		//System.out.println(ImageDescriber.getAllDescription());
@@ -37,7 +37,7 @@ public class MiaawApplication {
 		//System.out.println(ImageDescriber.getAllDescription());
 		//System.out.println(ImageDescriberFinal.getDescription());
 		
-		List<String> urlOfImages = ImageDescriber.getAllDescription();
+/*		List<String> urlOfImages = ImageDescriber.getAllDescription();
 		Map<String, String> descriptions = new HashMap<>();
 		
 		for(String url : urlOfImages) {
@@ -50,7 +50,7 @@ public class MiaawApplication {
 			System.out.println("url: " + entry.getKey());
 			System.out.println("image details: " + entry.getValue());
 		});
-		
+		*/
 		
 		/*Document link = SoupChef.makeSoup("https://www.amazon.de/gp/switch-language/homepage.html?ie=UTF8&tag=googdeaen-21&ref=pd_sl_17puwuo972_e&hvadid=163602155469&hvpos=1t1&hvexid=&hvnetw=g&hvrand=15699322301001308934&hvpone=&hvptwo=&hvqmt=e&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9065291&hvtargid=kwd-10573980&language=nl_NL");
 		String s;
