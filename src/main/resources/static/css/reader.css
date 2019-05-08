@@ -1,0 +1,10 @@
+label {
+  cursor: pointer;
+}
+
+
+.field textarea{
+	width: 1000px;
+	height: 621px;
+	margin-top: 50px;
+}

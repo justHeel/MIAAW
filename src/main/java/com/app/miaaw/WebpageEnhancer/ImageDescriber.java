@@ -1,6 +1,10 @@
 package com.app.miaaw.WebpageEnhancer;
 
+import java.io.IOException;
 import java.net.URI;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -18,6 +22,7 @@ public class ImageDescriber {
 		
 	    // Replace <Subscription Key> with your valid subscription key.
 	    private static final String subscriptionKey = "7d868b20a97948c7af4ec3f9011170c2";
+	    private static ImageDescriberFinal iDF;
 
 	    // You must use the same Azure region in your REST API method as you used to
 	    // get your subscription keys. For example, if you got your subscription keys
@@ -30,9 +35,10 @@ public class ImageDescriber {
 	    private static final String uriBase =
 	            "https://northeurope.api.cognitive.microsoft.com//vision/v2.0/analyze";
 
-	    private static final String imageToAnalyze = "http://www.gehandicaptenhaarlemmermeer.nl/wp-content/uploads/2016/05/logo.jpg";
+	    private static final String imageToAnalyze = "https://images-eu.ssl-images-amazon.com/images/G/03/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB454020359_.png";
 
-	    public static String getDescription() {
+
+	    public static String getDescription(String url) {
 	    	String returnVal = "";
 	    	System.out.println("DESCRIBING");
 	        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
@@ -53,8 +59,9 @@ public class ImageDescriber {
 	            request.setHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
 
 	            // Request body.
+	            
 	            StringEntity requestEntity =
-	                    new StringEntity("{\"url\":\"" + imageToAnalyze + "\"}");
+	                    new StringEntity("{\"url\":\"" + url + "\"}");
 	            request.setEntity(requestEntity);
 
 	            // Call the REST API method and get the response entity.
@@ -67,10 +74,24 @@ public class ImageDescriber {
 	                JSONObject json = new JSONObject(jsonString);
 	                returnVal = json.toString(2);
 	            }
+	            
+	            TimeUnit.MILLISECONDS.sleep(250);
 	        } catch (Exception e) {
 	            // Display error message.
 	            System.out.println(e.getMessage());
 	        }
+	        
 			return returnVal;
+	    }
+	    public static List<String> getAllDescription() throws IOException {
+	    	//String s = "";
+	    	
+	    	//for(String i : iDF.getDescription()) {
+	    	//	s = i;
+	    	//	System.out.println(s);
+	    	//}
+	    	
+			//return s;
+	    	return iDF.getDescription();
 	    }
 	}
