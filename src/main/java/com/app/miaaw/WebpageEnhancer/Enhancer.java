@@ -1,12 +1,16 @@
 package com.app.miaaw.WebpageEnhancer;
 
+import java.awt.List;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.app.miaaw.Domain.CodeTemplate;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 public class Enhancer {
 	static String basicBarCode = "<audio src=\"\" class=\"MIAAW_form_speech\" hidden></audio>"
@@ -65,17 +69,26 @@ public class Enhancer {
 			"startDictation();\r\n" + 
 			"</script>\r\n" + 
 			"<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>\r\n" + 
-			"<script>\r\n" + 
-			"    $(function() {\r\n" + 
-			"        $('button.MIAAW_play').on('click',function(e){\r\n" + 
-			"            e.preventDefault();\r\n" + 
-			"            var text= $('div.MIAAW_speech').text();\r\n" + 
-			"            text = encodeURIComponent(text);\r\n" + 
-			"            console.log(text);\r\n" + 
-			"            var url = \"http://translate.google.com/translate_tts?tl=nl&q=\" + text + \"&client=tw-ob\";\r\n" + 
-			"            $('audio').attr('src', url).get(0).play();\r\n" + 
-			"        });\r\n" + 
-			"});\r\n" + 
+			"<script>\r\n"
+			+ "	var tts_classes = document.getElementsByClassName(\"MIAAW_TTS_Text_Group\");\r\n" + 
+			"	$('button.MIAAW_play').on('click',function(e){\r\n" + 
+			"		var i = 0;\r\n" + 
+			"		var next = false;\r\n" + 
+			"		    $(function() {\r\n" + 
+			"		            e.preventDefault();\r\n" + 
+			"		            var text= tts_classes[i].innerHTML;\r\n" + 
+			"		            text = encodeURIComponent(text);\r\n" + 
+			"		            var url = \"https://translate.google.com/translate_tts?tl=nl&q=\" + text + \"&client=tw-ob\";\r\n" + 
+			"		            $('audio').attr('src', url).get(0).play();\r\n" + 
+			"		           	$(\"audio\").bind('ended', function(){\r\n" + 
+			"		           		i++;\r\n" + 
+			"			            text= tts_classes[i].innerHTML;\r\n" + 
+			"			            text = encodeURIComponent(text);\r\n" + 
+			"			           	var url = \"https://translate.google.com/translate_tts?tl=nl&q=\" + text + \"&client=tw-ob\";\r\n" + 
+			"			            $('audio').attr('src', url).get(0).play();\r\n" + 
+			"					});\r\n" + 
+			"		        });\r\n" + 
+			"	});" +
 			"</script>\r\n" + 
 			"<script>\r\n" + 
 			"    $(function() {\r\n" + 
@@ -182,6 +195,22 @@ public class Enhancer {
 			"</style>";
 			
 	public static Document enhanceDocument(Document htmlDocument, CodeTemplate codeTemplate) throws IOException {
+		/*------------All text string builder and hidden tts creator------------*/
+		String giantSuperExtremeBigString = "";
+		Elements ptjes = htmlDocument.select("p");
+		for (Element ptje : ptjes) {
+			giantSuperExtremeBigString += ptje.text();
+		}
+		ArrayList<String> array = devideString(giantSuperExtremeBigString, 100);
+		htmlDocument.append("<div id='MIAAW_Hidden_TTS_Div'></div>");
+		Elements hiddentts = htmlDocument.select("#MIAAW_Hidden_TTS_Div");
+		for (Element e : hiddentts) {
+			for (String textItem : array) {
+				e.append("<p style='display:none;' class='MIAAW_TTS_Text_Group'>"+textItem+"</p>");
+			}
+		}
+
+		
 		/*-------------Form Enhance-------------*/
 		if (codeTemplate.getFormOpties() != null) {
 			Elements forms = htmlDocument.select("form");
@@ -205,7 +234,7 @@ public class Enhancer {
 		}
 		/*-------------Basic Bar-------------*/
 		Elements body = htmlDocument.select("body");
-		Elements divs = htmlDocument.select("div");
+		Elements divs = htmlDocument.select("p");
 		for (Element div : divs) {
 			div.addClass("MIAAW_speech");
 		}
@@ -232,4 +261,25 @@ public class Enhancer {
 
 		return htmlDocument;
 	}
+	
+	public static ArrayList<String> devideString(String string, int devideOn) {
+		ArrayList<String> stringetjes = new ArrayList<String>();
+		
+		int i =0;
+		if (string.length() > devideOn) {
+			while (i < string.length()) {
+				if (i+devideOn > string.length()) {
+					stringetjes.add(string.substring(i, string.length()));
+					i+= string.length() - i;
+				} else {
+					stringetjes.add(string.substring(i, i+devideOn));
+					i+= devideOn;
+				}
+			}
+		} else {
+			stringetjes.add(string);
+		}
+		return stringetjes;
+	}
+	
 }

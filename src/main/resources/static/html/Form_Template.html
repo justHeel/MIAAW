@@ -86,16 +86,21 @@ startDictation();
 </script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script>
-    $(function() {
-        $('button.MIAAW_play').on('click',function(e){
-            e.preventDefault();
-            var text= $('div.MIAAW_speech').text();
-            text = encodeURIComponent(text);
-            console.log(text);
-            var url = "https://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
-            $('audio').attr('src', url).get(0).play();
-        });
-});
+	var tts_classes = document.getElementsByClassName("MIAAW_TTS_Text_Group");
+	$('button.MIAAW_play').on('click',function(e){
+		var i;
+		for (i = 0; i < tts_classes.length; i++) {
+		    $(function() {
+		        
+		            e.preventDefault();
+		            var text= tts_classes[i].text();
+		            text = encodeURIComponent(text);
+		            console.log(text);
+		            var url = "https://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
+		            $('audio').attr('src', url).get(0).play();
+		        });
+		    };
+	});
 </script>
 <script>
     $(function() {
