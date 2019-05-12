@@ -2,210 +2,260 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title> ...... </title>
+<title>......</title>
 
 </head>
+
+
 <body>
-	<button id="editor" onclick="document.getElementById('popup').style.display='block'">Editor</button>
-    <div id="popup"> 
-        <div class="tts">
-            <p>Text-to-Speech</p>
-            <button class="MIAAW_play">Play</button>
-        </div>
-        <br>
-        <div class="tts_form">
-            <p>Text-to-Speech Form</p>
-            <button class="MIAAW_form_play">Play</button>
-        </div>
-        <br>
-            <button class="exit" onclick="document.getElementById('popup').style.display='none'">Exit</button>
-    </div>
+
+	<style type="text/css">	
+		body {
+			margin-top:50px;
+		}	
+		#MIAAW_Popup {
+			position: fixed;
+			right:0;
+			top:50px;
+			display: none;
+			background: #efefef;
+			border: 1px solid black;
+			width: 30%;
+			height: 300px;
+			float: right;
+			z-index:99999999999;
+		}
+		
+		#MIAAW_Access_editor {
+			position:fixed;
+			z-index:9999999999;
+			margin-bottom: 20px;
+			display: inline-block;
+			right:0;
+			top:0;
+			width:30%;
+			margin-left:10%;
+			font-size:40px;
+			
+			background-color: #00ba00;
+			border: none;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 15px;
+			cursor:pointer;
+		}
+		
+		#MIAAW_Access_editor:hover {
+			font-size:40px;
+		}
+		
+		.exit {
+			float: right;
+			display: inline-block;
+		}
+		
+		.MIAAW_speech {
+			font-size: 20px;
+		}
+		
+		.font-button {
+			height: 20px;
+			width: 20px;
+			display: inline-block;
+			text-align: center;
+			line-height: 50px;
+			font-size: 25pt;
+			cursor: pointer;
+		}
+		
+		.fontsize p {
+			display: inline;
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+		
+		.tts, .tts_form {
+			margin-left: 5px;
+			font-size: 22px;
+			font-weight: 900;
+		}
+		
+		.MIAAW_form_play, .MIAAW_play {
+			height: 30px;
+			width: 60px;
+			display: inline-block;
+			font-size: 18px;
+			font-weight: 900;
+			color: black;
+			border: 2px solid #555555;
+		}
+		
+		input {
+			width: 400px;
+			height: 25px;
+		}
+		
+		input[type="text"] {
+			font-size: 24px;
+		}
+		
+		.tekst {
+			font-size: 16px;
+		}
+		
+		form {
+			zoom: 100%;
+		}
+	</style>
+	<button id="MIAAW_Access_editor">Accessibility</button>
+	<div id="MIAAW_Popup">
+		<div class="tts">
+			<p>Text-to-Speech</p>
+			<button class="MIAAW_play">Play</button>
+		</div>
+		<br>
+		<div class="tts_form">
+			<p>Text-to-Speech Form</p>
+			<button class="MIAAW_form_play">Play</button>
+		</div>
+		<br>
+		<audio src="" class="MIAAW_form_speech" ></audio>
+	</div>
 
 
-    <div class="MIAAW_speech">
-        <p>yoyoyoyoyoyo</p>
-    </div>
+	<div class="MIAAW_speech">
+		<p>yoyoyoyoyoyo</p>
+	</div>
 
-    <div class="MIAAW_speech">
-        <!--Hier komt tekst-->
-    </div>
+	<div class="MIAAW_speech">
+		<!--Hier komt tekst-->
+	</div>
 
-     
-    <form id="MIAAW_form">
-        <div class="MIAAW_form_speech">
-            <input type="text" name="MIAAW_input" id="transcript"></input>
-        
-            <input type="text" name="MIAAW_input" id="transcript1"></input>
- 
-            <input type="text" name="MIAAW_input" id="transcript2"></input>
-        </div>
-    </form>
 
-    
-    <audio src="" class="MIAAW_form_speech" hidden></audio>
+	<form id="MIAAW_form">
+		<div class="MIAAW_form_speech">
+			<input type="text" name="MIAAW_input" id="transcript"></input> <input
+				type="text" name="MIAAW_input" id="transcript1"></input> <input
+				type="text" name="MIAAW_input" id="transcript2"></input>
+		</div>
+	</form>
 
 </body>
 <script>
-function startDictation() {
-    var target = [];
-    document.getElementById("MIAAW_form").addEventListener("click", function(e) {
-        if(e.target && e.target.nodeName == "INPUT") {
-            console.log("List item ", e.target.id.replace("post-", ""), " was clicked!");
-            iets = e.target.id.replace("post-", "")
-            target.push(iets);
-
-            var arrayLength = target.length;
-            for (var i = 0; i < arrayLength; i++) {
-        
-                if (window.hasOwnProperty('webkitSpeechRecognition')) {
-
-                        var recognition = new webkitSpeechRecognition();
-                        recognition.continuous = false;
-                        recognition.interimResults = false;
-
-                        recognition.lang = "nl-NL";
-                        recognition.start();
-
-                        recognition.onresult = function(e) {
-                            document.getElementById(iets).value = e.results[0][0].transcript;
-                            recognition.stop();
-                        };
-
-                        recognition.onerror = function(e) {
-                            recognition.stop();
-                        }
-
-                    }
-                }
-
-        target.pop();
-    }
-})
-};
-startDictation();
-</script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script>
-var tts_classes = document.getElementsByClassName("MIAAW_TTS_Text_Group");
-$('button.MIAAW_play').on('click',function(e){
-	var i = 0;
-	var next = false;
-	    $(function() {
-	           	e.preventDefault();
-	            var text= tts_classes[i].innerHTML;
-	            text = encodeURIComponent(text);
-	            var url = "https://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
-	            $('audio').attr('src', url).get(0).play();
-	           	$("audio").bind('ended', function(){
-	           		i++;
-		            text= tts_classes[i].innerHTML;
-		            text = encodeURIComponent(text);
-		           	var url = "https://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
-		            $('audio').attr('src', url).get(0).play();
-				});
-	        });
+document.getElementById('MIAAW_Popup').style.display = 'none';
+document.getElementById('MIAAW_Access_editor').addEventListener('click',function() {
+	console.log(document.getElementById('MIAAW_Popup').style.display);
+	if (document.getElementById('MIAAW_Popup').style.display == 'none') {
+		document.getElementById('MIAAW_Popup').style.display='block';
+	}else if (document.getElementById('MIAAW_Popup').style.display == 'block') {
+		document.getElementById('MIAAW_Popup').style.display= 'none';
+	}
 });
 </script>
 <script>
-    $(function() {
-        $('button.MIAAW_form_play').on('click',function(e){
-            var arrText= new Array();
-            $('input[type=text]').each(function(){
-                arrText.push($(this).val());
-            })
-            e.preventDefault();
-            var text= arrText;
-            text = encodeURIComponent(text);
-            console.log(text);
-            var url = "https://translate.google.com/translate_tts?tl=nl&q=" + text + "&client=tw-ob";
-            $('audio').attr('src', url).get(0).play();
-        });
-});
+	function startDictation() {
+		var target = [];
+		document
+				.getElementById("MIAAW_form")
+				.addEventListener(
+						"click",
+						function(e) {
+							if (e.target && e.target.nodeName == "INPUT") {
+								console.log("List item ", e.target.id.replace(
+										"post-", ""), " was clicked!");
+								iets = e.target.id.replace("post-", "")
+								target.push(iets);
+
+								var arrayLength = target.length;
+								for (var i = 0; i < arrayLength; i++) {
+
+									if (window
+											.hasOwnProperty('webkitSpeechRecognition')) {
+
+										var recognition = new webkitSpeechRecognition();
+										recognition.continuous = false;
+										recognition.interimResults = false;
+
+										recognition.lang = "nl-NL";
+										recognition.start();
+
+										recognition.onresult = function(e) {
+											document.getElementById(iets).value = e.results[0][0].transcript;
+											recognition.stop();
+										};
+
+										recognition.onerror = function(e) {
+											recognition.stop();
+										}
+
+									}
+								}
+
+								target.pop();
+							}
+						})
+	};
+	startDictation();
+</script>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+	var tts_classes = document.getElementsByClassName("MIAAW_TTS_Text_Group");
+	$('button.MIAAW_play')
+			.on(
+					'click',
+					function(e) {
+						var i = 0;
+						var next = false;
+						$(function() {
+							e.preventDefault();
+							var text = tts_classes[i].innerHTML;
+							text = encodeURIComponent(text);
+							var url = "https://translate.google.com/translate_tts?tl=nl&q="
+									+ text + "&client=tw-ob";
+							$('audio').attr('src', url).get(0).play();
+							$("audio")
+									.bind(
+											'ended',
+											function() {
+												i++;
+												text = tts_classes[i].innerHTML;
+												text = encodeURIComponent(text);
+												var url = "https://translate.google.com/translate_tts?tl=nl&q="
+														+ text
+														+ "&client=tw-ob";
+												$('audio').attr('src', url)
+														.get(0).play();
+											});
+						});
+					});
+</script>
+<script>
+	$(function() {
+		$('button.MIAAW_form_play')
+				.on(
+						'click',
+						function(e) {
+							var arrText = new Array();
+							$('input[type=text]').each(function() {
+								arrText.push($(this).val());
+							})
+							e.preventDefault();
+							var text = arrText;
+							text = encodeURIComponent(text);
+							console.log(text);
+							var url = "https://translate.google.com/translate_tts?tl=nl&q="
+									+ text + "&client=tw-ob";
+							$('audio').attr('src', url).get(0).play();
+						});
+	});
 </script>
 <script type="text/javascript">
 	onload = function() {
-        document.querySelector('form').style.zoom = "250%";
-    }
+		document.querySelector('form').style.zoom = "250%";
+	}
 </script>
-<style type="text/css">
-#popup{
-    display:none; 
-    background:#efefef; 
-    border:1px solid black; 
-    width:30%; 
-    height:300px;
-    float: right
-}
-
-#editor{
-    float: right;
-    margin-bottom: 20px;
-    display: inline-block;
-    margin-left: 100%;
-}
-
-body{
-    font-family: Arial;
-    font-size: 16px;
-}
-
-.exit{
-    float: right;
-    display: inline-block;
-}
-
-.MIAAW_speech{
-    font-size: 20px;
-}
-
-.font-button{
-    height: 20px;
-    width: 20px;
-    display: inline-block;
-    text-align: center;
-    line-height: 50px;
-    font-size: 25pt;
-    cursor: pointer;
-}
-
-.fontsize p{
-    display: inline;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.tts, .tts_form{
-    margin-left: 5px;
-    font-size: 22px;
-    font-weight: 900;
-}
-
-.MIAAW_form_play, .MIAAW_play{
-    height: 30px;
-    width: 60px;
-    display: inline-block;
-    font-size: 18px;
-    font-weight: 900;
-    color: black;
-    border: 2px solid #555555;
-}
-
-input{
-    width: 400px;
-    height: 25px;
-}
-
-input[type="text"]
-{
-    font-size:24px;
-}
-
-.tekst{
-    font-size: 16px;
-}
-
-form{
-    zoom: 100%;
-}
-</style>
 </html>

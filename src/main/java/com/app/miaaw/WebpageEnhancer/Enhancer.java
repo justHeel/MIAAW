@@ -13,184 +13,235 @@ import com.app.miaaw.Domain.CodeTemplate;
 import ch.qos.logback.core.net.SyslogOutputStream;
 
 public class Enhancer {
-	static String basicBarCode = "	<button id=\"editor\" onclick=\"document.getElementById('popup').style.display='block'\">Editor</button>\r\n" + 
-			"    <div id=\"popup\"> \r\n" + 
-			"        <div class=\"tts\">\r\n" + 
-			"            <p>Text-to-Speech</p>\r\n" + 
-			"            <button class=\"MIAAW_play\">Play</button>\r\n" + 
-			"        </div>\r\n" + 
-			"        <br>\r\n" + 
-			"        <div class=\"tts_form\">\r\n" + 
-			"            <p>Text-to-Speech Form</p>\r\n" + 
-			"            <button class=\"MIAAW_form_play\">Play</button>\r\n" + 
-			"        </div>\r\n" + 
-			"        <br>\r\n" + 
-			"            <button class=\"exit\" onclick=\"document.getElementById('popup').style.display='none'\">Exit</button>\r\n" + 
-			"    </div>" +
-			" <audio src=\"\" class=\"MIAAW_form_speech\" hidden></audio>"+
+	static String basicBarCode = "<style>" +
+			"		body {\r\n" + 
+			"			margin-top:50px;\r\n" + 
+			"		}	\r\n" + 
+			"		#MIAAW_Popup {\r\n" + 
+			"			position: fixed;\r\n" + 
+			"			right:0;\r\n" + 
+			"			top:50px;\r\n" + 
+			"			display: none;\r\n" + 
+			"			background: #efefef;\r\n" + 
+			"			border: 1px solid black;\r\n" + 
+			"			width: 30%;\r\n" + 
+			"			height: 300px;\r\n" + 
+			"			float: right;\r\n" + 
+			"			z-index:99999999999;"+
+			"		}\r\n" + 
+			"		\r\n" + 
+			"		#MIAAW_Access_editor {\r\n" + 
+			"			position:fixed;\r\n" + 
+			"			z-index:9999999999;\r\n" + 
+			"			margin-bottom: 20px;\r\n" + 
+			"			display: inline-block;\r\n" + 
+			"			right:0;\r\n" + 
+			"			top:0;\r\n" + 
+			"			width:30%;\r\n" + 
+			"			margin-left:10%;\r\n" + 
+			"			font-size:40px;\r\n" + 
+			"			\r\n" + 
+			"			background-color: #00ba00;\r\n" + 
+			"			border: none;\r\n" + 
+			"			color: white;\r\n" + 
+			"			padding: 15px 32px;\r\n" + 
+			"			text-align: center;\r\n" + 
+			"			text-decoration: none;\r\n" + 
+			"			display: inline-block;\r\n" + 
+			"			font-size: 15px;\r\n" + 
+			"			cursor:pointer;\r\n" + 
+			"		}\r\n" + 
+			"		\r\n" + 
+			"		#MIAAW_Access_editor:hover {\r\n" + 
+			"			font-size:40px;\r\n" + 
+			"		}\r\n" + 
+			"		\r\n" + 
+			"		.exit {\r\n" + 
+			"			float: right;\r\n" + 
+			"			display: inline-block;\r\n" + 
+			"		}\r\n" + 
+			"		\r\n" + 
+			"		.MIAAW_speech {\r\n" + 
+			"			font-size: 20px;\r\n" + 
+			"		}\r\n" + 
+			"		\r\n" + 
+			"		.font-button {\r\n" + 
+			"			height: 20px;\r\n" + 
+			"			width: 20px;\r\n" + 
+			"			display: inline-block;\r\n" + 
+			"			text-align: center;\r\n" + 
+			"			line-height: 50px;\r\n" + 
+			"			font-size: 25pt;\r\n" + 
+			"			cursor: pointer;\r\n" + 
+			"		}\r\n" + 
+			"		\r\n" + 
+			"		.fontsize p {\r\n" + 
+			"			display: inline;\r\n" + 
+			"			margin-left: 20px;\r\n" + 
+			"			margin-right: 20px;\r\n" + 
+			"		}\r\n" + 
+			"		\r\n" + 
+			"		.tts, .tts_form {\r\n" + 
+			"			margin-left: 5px;\r\n" + 
+			"			font-size: 22px;\r\n" + 
+			"			font-weight: 900;\r\n" + 
+			"		}\r\n" + 
+			"		\r\n" + 
+			"		.MIAAW_form_play, .MIAAW_play {\r\n" + 
+			"			height: 30px;\r\n" + 
+			"			width: 60px;\r\n" + 
+			"			display: inline-block;\r\n" + 
+			"			font-size: 18px;\r\n" + 
+			"			font-weight: 900;\r\n" + 
+			"			color: black;\r\n" + 
+			"			border: 2px solid #555555;\r\n" + 
+			"		}\r\n" + 
+			"		\r\n" + 
+			"		input {\r\n" + 
+			"			width: 400px;\r\n" + 
+			"			height: 25px;\r\n" + 
+			"		}\r\n" + 
+			"		\r\n" + 
+			"		input[type=\"text\"] {\r\n" + 
+			"			font-size: 24px;\r\n" + 
+			"		}\r\n" + 
+			"		\r\n" + 
+			"		.tekst {\r\n" + 
+			"			font-size: 16px;\r\n" + 
+			"		}\r\n" + 
+			"		\r\n" + 
+			"		form {\r\n" + 
+			"			zoom: 100%;\r\n" + 
+			"		}"+
+			"	</style>\r\n" + 
+			"	<button id=\"MIAAW_Access_editor\">Accessibility</button>\r\n" + 
+			"	<div id=\"MIAAW_Popup\">\r\n" + 
+			"		<div class=\"tts\">\r\n" + 
+			"			<p>Text-to-Speech</p>\r\n" + 
+			"			<button class=\"MIAAW_play\">Play</button>\r\n" + 
+			"		</div>\r\n" + 
+			"		<br>\r\n" + 
+			"		<div class=\"tts_form\">\r\n" + 
+			"			<p>Text-to-Speech Form</p>\r\n" + 
+			"			<button class=\"MIAAW_form_play\">Play</button>\r\n" + 
+			"		</div>\r\n" + 
+			"		<br>\r\n" + 
+			"		<audio src=\"\" class=\"MIAAW_form_speech\" controls></audio>"+
+			"	</div>"+
 			"<script>\r\n" + 
-			"function startDictation() {\r\n" + 
-			"    var target = [];\r\n" + 
-			"    document.getElementById(\"MIAAW_form\").addEventListener(\"click\", function(e) {\r\n" + 
-			"        if(e.target && e.target.nodeName == \"INPUT\") {\r\n" + 
-			"            console.log(\"List item \", e.target.id.replace(\"post-\", \"\"), \" was clicked!\");\r\n" + 
-			"            iets = e.target.id.replace(\"post-\", \"\")\r\n" + 
-			"            target.push(iets);\r\n" + 
-			"\r\n" + 
-			"            var arrayLength = target.length;\r\n" + 
-			"            for (var i = 0; i < arrayLength; i++) {\r\n" + 
-			"        \r\n" + 
-			"                if (window.hasOwnProperty('webkitSpeechRecognition')) {\r\n" + 
-			"\r\n" + 
-			"                        var recognition = new webkitSpeechRecognition();\r\n" + 
-			"                        recognition.continuous = false;\r\n" + 
-			"                        recognition.interimResults = false;\r\n" + 
-			"\r\n" + 
-			"                        recognition.lang = \"nl-NL\";\r\n" + 
-			"                        recognition.start();\r\n" + 
-			"\r\n" + 
-			"                        recognition.onresult = function(e) {\r\n" + 
-			"                            document.getElementById(iets).value = e.results[0][0].transcript;\r\n" + 
-			"                            recognition.stop();\r\n" + 
-			"                        };\r\n" + 
-			"\r\n" + 
-			"                        recognition.onerror = function(e) {\r\n" + 
-			"                            recognition.stop();\r\n" + 
-			"                        }\r\n" + 
-			"\r\n" + 
-			"                    }\r\n" + 
-			"                }\r\n" + 
-			"\r\n" + 
-			"        target.pop();\r\n" + 
-			"    }\r\n" + 
-			"})\r\n" + 
-			"};\r\n" + 
-			"startDictation();\r\n" + 
-			"</script>\r\n" + 
-			"<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>\r\n" + 
-			"<script>\r\n" + 
-			"var tts_classes = document.getElementsByClassName(\"MIAAW_TTS_Text_Group\");\r\n" + 
-			"$('button.MIAAW_play').on('click',function(e){\r\n" + 
-			"	var i = 0;\r\n" + 
-			"	var next = false;\r\n" + 
-			"	    $(function() {\r\n" + 
-			"	           	e.preventDefault();\r\n" + 
-			"	            var text= tts_classes[i].innerHTML;\r\n" + 
-			"	            text = encodeURIComponent(text);\r\n" + 
-			"	            var url = \"https://translate.google.com/translate_tts?tl=nl&q=\" + text + \"&client=tw-ob\";\r\n" + 
-			"	            $('audio').attr('src', url).get(0).play();\r\n" + 
-			"	           	$(\"audio\").bind('ended', function(){\r\n" + 
-			"	           		i++;\r\n" + 
-			"		            text= tts_classes[i].innerHTML;\r\n" + 
-			"		            text = encodeURIComponent(text);\r\n" + 
-			"		           	var url = \"https://translate.google.com/translate_tts?tl=nl&q=\" + text + \"&client=tw-ob\";\r\n" + 
-			"		            $('audio').attr('src', url).get(0).play();\r\n" + 
-			"				});\r\n" + 
-			"	        });\r\n" + 
+			"document.getElementById('MIAAW_Popup').style.display = 'none';\r\n" + 
+			"document.getElementById('MIAAW_Access_editor').addEventListener('click',function() {\r\n" + 
+			"	console.log(document.getElementById('MIAAW_Popup').style.display);\r\n" + 
+			"	if (document.getElementById('MIAAW_Popup').style.display == 'none') {\r\n" + 
+			"		document.getElementById('MIAAW_Popup').style.display='block';\r\n" + 
+			"	}else if (document.getElementById('MIAAW_Popup').style.display == 'block') {\r\n" + 
+			"		document.getElementById('MIAAW_Popup').style.display= 'none';\r\n" + 
+			"	}\r\n" + 
 			"});\r\n" + 
+			"</script>"+
+			"<script>\r\n" + 
+			"	function startDictation() {\r\n" + 
+			"		var target = [];\r\n" + 
+			"		document\r\n" + 
+			"				.getElementById(\"MIAAW_form\")\r\n" + 
+			"				.addEventListener(\r\n" + 
+			"						\"click\",\r\n" + 
+			"						function(e) {\r\n" + 
+			"							if (e.target && e.target.nodeName == \"INPUT\") {\r\n" + 
+			"								console.log(\"List item \", e.target.id.replace(\r\n" + 
+			"										\"post-\", \"\"), \" was clicked!\");\r\n" + 
+			"								iets = e.target.id.replace(\"post-\", \"\")\r\n" + 
+			"								target.push(iets);\r\n" + 
+			"\r\n" + 
+			"								var arrayLength = target.length;\r\n" + 
+			"								for (var i = 0; i < arrayLength; i++) {\r\n" + 
+			"\r\n" + 
+			"									if (window\r\n" + 
+			"											.hasOwnProperty('webkitSpeechRecognition')) {\r\n" + 
+			"\r\n" + 
+			"										var recognition = new webkitSpeechRecognition();\r\n" + 
+			"										recognition.continuous = false;\r\n" + 
+			"										recognition.interimResults = false;\r\n" + 
+			"\r\n" + 
+			"										recognition.lang = \"nl-NL\";\r\n" + 
+			"										recognition.start();\r\n" + 
+			"\r\n" + 
+			"										recognition.onresult = function(e) {\r\n" + 
+			"											document.getElementById(iets).value = e.results[0][0].transcript;\r\n" + 
+			"											recognition.stop();\r\n" + 
+			"										};\r\n" + 
+			"\r\n" + 
+			"										recognition.onerror = function(e) {\r\n" + 
+			"											recognition.stop();\r\n" + 
+			"										}\r\n" + 
+			"\r\n" + 
+			"									}\r\n" + 
+			"								}\r\n" + 
+			"\r\n" + 
+			"								target.pop();\r\n" + 
+			"							}\r\n" + 
+			"						})\r\n" + 
+			"	};\r\n" + 
+			"	startDictation();\r\n" + 
+			"</script>\r\n" + 
+			"<script type=\"text/javascript\"\r\n" + 
+			"	src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>\r\n" + 
+			"<script>\r\n" + 
+			"	var tts_classes = document.getElementsByClassName(\"MIAAW_TTS_Text_Group\");\r\n" + 
+			"	$('button.MIAAW_play')\r\n" + 
+			"			.on(\r\n" + 
+			"					'click',\r\n" + 
+			"					function(e) {\r\n" + 
+			"						var i = 0;\r\n" + 
+			"						var next = false;\r\n" + 
+			"						$(function() {\r\n" + 
+			"							e.preventDefault();\r\n" + 
+			"							var text = tts_classes[i].innerHTML;\r\n" + 
+			"							text = encodeURIComponent(text);\r\n" + 
+			"							var url = \"https://translate.google.com/translate_tts?tl=nl&q=\"\r\n" + 
+			"									+ text + \"&client=tw-ob\";\r\n" + 
+			"							$('audio').attr('src', url).get(0).play();\r\n" + 
+			"							$(\"audio\")\r\n" + 
+			"									.bind(\r\n" + 
+			"											'ended',\r\n" + 
+			"											function() {\r\n" + 
+			"												i++;\r\n" + 
+			"												text = tts_classes[i].innerHTML;\r\n" + 
+			"												text = encodeURIComponent(text);\r\n" + 
+			"												var url = \"https://translate.google.com/translate_tts?tl=nl&q=\"\r\n" + 
+			"														+ text\r\n" + 
+			"														+ \"&client=tw-ob\";\r\n" + 
+			"												$('audio').attr('src', url)\r\n" + 
+			"														.get(0).play();\r\n" + 
+			"											});\r\n" + 
+			"						});\r\n" + 
+			"					});\r\n" + 
 			"</script>\r\n" + 
 			"<script>\r\n" + 
-			"    $(function() {\r\n" + 
-			"        $('button.MIAAW_form_play').on('click',function(e){\r\n" + 
-			"            var arrText= new Array();\r\n" + 
-			"            $('input[type=text]').each(function(){\r\n" + 
-			"                arrText.push($(this).val());\r\n" + 
-			"            })\r\n" + 
-			"            e.preventDefault();\r\n" + 
-			"            var text= arrText;\r\n" + 
-			"            text = encodeURIComponent(text);\r\n" + 
-			"            console.log(text);\r\n" + 
-			"            var url = \"https://translate.google.com/translate_tts?tl=nl&q=\" + text + \"&client=tw-ob\";\r\n" + 
-			"            $('audio').attr('src', url).get(0).play();\r\n" + 
-			"        });\r\n" + 
-			"});\r\n" + 
+			"	$(function() {\r\n" + 
+			"		$('button.MIAAW_form_play')\r\n" + 
+			"				.on(\r\n" + 
+			"						'click',\r\n" + 
+			"						function(e) {\r\n" + 
+			"							var arrText = new Array();\r\n" + 
+			"							$('input[type=text]').each(function() {\r\n" + 
+			"								arrText.push($(this).val());\r\n" + 
+			"							})\r\n" + 
+			"							e.preventDefault();\r\n" + 
+			"							var text = arrText;\r\n" + 
+			"							text = encodeURIComponent(text);\r\n" + 
+			"							console.log(text);\r\n" + 
+			"							var url = \"https://translate.google.com/translate_tts?tl=nl&q=\"\r\n" + 
+			"									+ text + \"&client=tw-ob\";\r\n" + 
+			"							$('audio').attr('src', url).get(0).play();\r\n" + 
+			"						});\r\n" + 
+			"	});\r\n" + 
 			"</script>\r\n" + 
 			"<script type=\"text/javascript\">\r\n" + 
 			"	onload = function() {\r\n" + 
-			"        document.querySelector('form').style.zoom = \"250%\";\r\n" + 
-			"    }\r\n" + 
-			"</script>\r\n" + 
-			"<style type=\"text/css\">\r\n" + 
-			"#popup{\r\n" + 
-			"    display:none; \r\n" + 
-			"    background:#efefef; \r\n" + 
-			"    border:1px solid black; \r\n" + 
-			"    width:30%; \r\n" + 
-			"    height:300px;\r\n" + 
-			"    float: right\r\n" + 
-			"}\r\n" + 
-			"\r\n" + 
-			"#editor{\r\n" + 
-			"    float: right;\r\n" + 
-			"    margin-bottom: 20px;\r\n" + 
-			"    display: inline-block;\r\n" + 
-			"    margin-left: 100%;\r\n" + 
-			"}\r\n" + 
-			"\r\n" + 
-			"body{\r\n" + 
-			"    font-family: Arial;\r\n" + 
-			"    font-size: 16px;\r\n" + 
-			"}\r\n" + 
-			"\r\n" + 
-			".exit{\r\n" + 
-			"    float: right;\r\n" + 
-			"    display: inline-block;\r\n" + 
-			"}\r\n" + 
-			"\r\n" + 
-			".MIAAW_speech{\r\n" + 
-			"    font-size: 20px;\r\n" + 
-			"}\r\n" + 
-			"\r\n" + 
-			".font-button{\r\n" + 
-			"    height: 20px;\r\n" + 
-			"    width: 20px;\r\n" + 
-			"    display: inline-block;\r\n" + 
-			"    text-align: center;\r\n" + 
-			"    line-height: 50px;\r\n" + 
-			"    font-size: 25pt;\r\n" + 
-			"    cursor: pointer;\r\n" + 
-			"}\r\n" + 
-			"\r\n" + 
-			".fontsize p{\r\n" + 
-			"    display: inline;\r\n" + 
-			"    margin-left: 20px;\r\n" + 
-			"    margin-right: 20px;\r\n" + 
-			"}\r\n" + 
-			"\r\n" + 
-			".tts, .tts_form{\r\n" + 
-			"    margin-left: 5px;\r\n" + 
-			"    font-size: 22px;\r\n" + 
-			"    font-weight: 900;\r\n" + 
-			"}\r\n" + 
-			"\r\n" + 
-			".MIAAW_form_play, .MIAAW_play{\r\n" + 
-			"    height: 30px;\r\n" + 
-			"    width: 60px;\r\n" + 
-			"    display: inline-block;\r\n" + 
-			"    font-size: 18px;\r\n" + 
-			"    font-weight: 900;\r\n" + 
-			"    color: black;\r\n" + 
-			"    border: 2px solid #555555;\r\n" + 
-			"}\r\n" + 
-			"\r\n" + 
-			"input{\r\n" + 
-			"    width: 400px;\r\n" + 
-			"    height: 25px;\r\n" + 
-			"}\r\n" + 
-			"\r\n" + 
-			"input[type=\"text\"]\r\n" + 
-			"{\r\n" + 
-			"    font-size:24px;\r\n" + 
-			"}\r\n" + 
-			"\r\n" + 
-			".tekst{\r\n" + 
-			"    font-size: 16px;\r\n" + 
-			"}\r\n" + 
-			"\r\n" + 
-			"form{\r\n" + 
-			"    zoom: 100%;\r\n" + 
-			"}\r\n" + 
-			"</style>";
+			"		document.querySelector('form').style.zoom = \"250%\";\r\n" + 
+			"	}\r\n" + 
+			"</script>";
 
 	public static Document enhanceDocument(Document htmlDocument, CodeTemplate codeTemplate) throws IOException {
 		/*------------All text string builder and hidden tts creator------------*/
