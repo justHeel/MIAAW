@@ -2,6 +2,8 @@ package com.app.miaaw.WebpageEnhancer;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +16,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
+import org.jsoup.nodes.Document;
 
 public class ImageDescriber {
 	    // **********************************************
@@ -22,7 +25,6 @@ public class ImageDescriber {
 		
 	    // Replace <Subscription Key> with your valid subscription key.
 	    private static final String subscriptionKey = "7d868b20a97948c7af4ec3f9011170c2";
-	    private static ImageDescriberFinal iDF;
 
 	    // You must use the same Azure region in your REST API method as you used to
 	    // get your subscription keys. For example, if you got your subscription keys
@@ -35,7 +37,7 @@ public class ImageDescriber {
 	    private static final String uriBase =
 	            "https://northeurope.api.cognitive.microsoft.com//vision/v2.0/analyze";
 
-	    private static final String imageToAnalyze = "https://images-eu.ssl-images-amazon.com/images/G/03/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB454020359_.png";
+	    /*private static final String imageToAnalyze = "https://images-eu.ssl-images-amazon.com/images/G/03/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB454020359_.png";*/
 
 
 	    public static String getDescription(String url) {
@@ -83,15 +85,13 @@ public class ImageDescriber {
 	        
 			return returnVal;
 	    }
-	    public static List<String> getAllDescription() throws IOException {
-	    	//String s = "";
+	    public static List<String> getAllDescription(Document page) throws IOException {	    	
+	    	List<String> imageLinks = ImageFinder.getImagesFromPage(page);    	
+	    	List<String> imageDescriptions = new ArrayList<String>();
 	    	
-	    	//for(String i : iDF.getDescription()) {
-	    	//	s = i;
-	    	//	System.out.println(s);
-	    	//}
-	    	
-			//return s;
-	    	return iDF.getDescription();
+	    	for (String link : imageLinks) {
+	    		imageDescriptions.add(ImageDescriber.getDescription(link));
+	    	}
+	    	return imageDescriptions;
 	    }
 	}

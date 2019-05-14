@@ -18,6 +18,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -54,7 +55,7 @@ public class CodeTemplateManager {
 		this.textToSpeechRepository = textToSpeechRepository;
 	}
 	@PostMapping("/link")
-	public ResponseEntity getEnhancedLink(@RequestBody EnhanceRequestLink request) throws IOException {
+	public ResponseEntity getEnhancedLink(@RequestBody EnhanceRequestLink request) throws IOException, JSONException {
 		String htmlCode = "";
 		String link = request.getLink();
 		
@@ -80,7 +81,7 @@ public class CodeTemplateManager {
 	}
 	
 	@PostMapping("/file")
-	public ResponseEntity getEnhancedFile(@RequestBody EnhanceRequestFile request) throws IOException{
+	public ResponseEntity getEnhancedFile(@RequestBody EnhanceRequestFile request) throws IOException, JSONException{
 		String htmlCode = "";
 		String file = request.getFile();
 		

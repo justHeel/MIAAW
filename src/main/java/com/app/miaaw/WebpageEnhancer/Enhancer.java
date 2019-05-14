@@ -4,6 +4,8 @@ import java.awt.List;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -243,7 +245,7 @@ public class Enhancer {
 			"	}\r\n" + 
 			"</script>";
 
-	public static Document enhanceDocument(Document htmlDocument, CodeTemplate codeTemplate) throws IOException {
+	public static Document enhanceDocument(Document htmlDocument, CodeTemplate codeTemplate) throws IOException, JSONException {
 		/*------------All text string builder and hidden tts creator------------*/
 		String giantSuperExtremeBigString = "";
 		Elements ptjes = htmlDocument.select("p");
@@ -307,7 +309,31 @@ public class Enhancer {
 		if (codeTemplate.getVideoOpties() != null) {
 			htmlDocument.append("<p>" + codeTemplate.getVideoOpties().getCode() + "</p>");
 		}
-
+		
+		/*--------------------Add Image Description-------------------*/
+		ArrayList<String> imageDescriptions = new ArrayList<String>();
+		for (String l : ImageDescriber.getAllDescription(htmlDocument)) {
+			JSONObject json = new JSONObject(l);
+			
+			try {
+				for (int i = 0; i < json.getJSONObject("description").getJSONArray("captions").length(); i++) {
+					
+					if (Double.parseDouble(json.getJSONObject("description").getJSONArray("captions").getJSONObject(i).get("confidence").toString()) > 0.6) {
+						imageDescriptions.add(json.getJSONObject("description").getJSONArray("captions").getJSONObject(i).get("text").toString());
+					}
+				}
+			} catch(Exception e) {
+				imageDescriptions.add("");
+			}
+		}
+		Elements images = htmlDocument.select("img");
+		
+		int loopIndex = 0;
+		for (Element img : images) {
+			img.attr("alt",imageDescriptions.get(loopIndex));
+			loopIndex++;
+		}
+		
 		return htmlDocument;
 	}
 
@@ -345,41 +371,5 @@ public class Enhancer {
 			stringetjes.add(string);
 		}
 		return stringetjes;
-	}
-	
-	
-	/*\/\/\/\/\/\/\/\/\/\/vooralsnog niet meer nodig\/\/\/\/\/\/\/\/\/\/v*/
-	public static int countCharInString(char charac, String string) {
-		int count = 0;
-		  
-		for (int i = 0; i < string.length(); i++) {
-		    if (string.charAt(i) == charac) {
-		        count++;
-		    }
-		}
-		return count;
-	}
-	
-	public static int countSpecialChar(String x){
-		char[] ch = x.toCharArray();
-		int letter = 0;
-		int space = 0;
-		int num = 0;
-		int other = 0;
-		for(int i = 0; i < x.length(); i++){
-			if(Character.isLetter(ch[i])){
-				letter ++ ;
-			}
-			else if(Character.isDigit(ch[i])){
-				num ++ ;
-			}
-			else if(Character.isSpaceChar(ch[i])){
-				space ++ ;
-			}
-			else{
-				other ++;
-			}
-		}
-		return other;
 	}
 }
