@@ -70,17 +70,7 @@
             transform: scale(1.5);
           }
           
-          #linkWebsite {
-            width: 500px;
-            height: 40px;
-            margin: 20px 0 35px 0;
-            font-size: 1em;
-            border-radius: 12px;
-            border: 1px #ddd solid;
-            box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.20);
-          }
-          
-          .buttonsDiv input {
+          #linkFetchField{
             border-radius: 12px;
             margin: auto;
             padding: 6px;
@@ -90,7 +80,29 @@
             font-size: 17px;
             border: none;
             cursor: pointer;
-            
+          }
+          
+          .buttonsDiv button{
+            border-radius: 12px;
+            margin: auto;
+            padding: 6px;
+            margin-top: 8px;
+            margin-right: 16px;
+            background: #ddd;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+           
+          
+          }
+          #linkFetchField {
+            width: 500px;
+            height: 40px;
+            margin: 20px 0 35px 0;
+            font-size: 1em;
+            border-radius: 12px;
+            border: 1px #ddd solid;
+            box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.20);
           }
           
 
