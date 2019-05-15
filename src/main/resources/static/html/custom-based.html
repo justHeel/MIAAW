@@ -30,37 +30,37 @@
                 </p>
                  </div>
 
-        Text-to-speech: &nbsp; &nbsp;
+        Form Opties: &nbsp; &nbsp;
          <label class="switch">
-             <input type="checkbox">
+             <input type="checkbox" id="formOptiesCheck">
              <span class=slider round"></span>
          </label><br><br>
 
-         Changing font-size: &nbsp; &nbsp;
+         Video Opties: &nbsp; &nbsp;
          <label class="switch">
-                <input type="checkbox">
+                <input type="checkbox" id="videoOptiesCheck">
                 <span class=slider round"></span>
             </label><br><br>
 
-            Changing font color: &nbsp; &nbsp;
+            Text to Speech: &nbsp; &nbsp;
             <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" id="textToSpeechCheck">
                     <span class=slider round"></span>
                 </label><br><br>
 
-                Changing theme to dark: &nbsp; &nbsp;
+                Basic Bar: &nbsp; &nbsp;
                 <label class="switch">
-                        <input type="checkbox">
+                        <input type="checkbox" id="basicBarCheck">
                         <span class=slider round"></span>
                     </label><br><br>
 
                     <div class="link-container">
                             <form>
                             
-                              <input id="linkWebsite" type="text" placeholder="https://www.hierjewebsite.com" name="search"><br>
+                              <input id="linkFetchField" type="text" placeholder="https://www.hierjewebsite.com" name="search"><br>
                               <div class="buttonsDiv">
                               <button id="FetchViaLinkFormButton"  >Generate!</button>
-                              <input type= "file" class="upload" onclick="FetchViaLinkFormButton()" id="fileButton" name="file"></input>
+                              <input id="FetchViaFileFormButton" type= "file" class="upload" id="fileButton" name="file"></input>
                               <label for="fileButton">Upload File!</label>
                             </div>
                             </form>

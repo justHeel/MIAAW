@@ -1,15 +1,3 @@
-document.getElementById("generateButton").addEventListener("click", function(){
-	values = document.getElementById("textToSpeechCheck").checked;
-	console.log(values)
-});;
-
-	formOpties = document.getElementById("formOptiesCheck").checked
-	videoOpties = document.getElementById("videoOptiesCheck").checked
-	textToSpeech = document.getElementById("textToSpeechCheck").checked
-	basicBar = document.getElementById("basicBarCheck").checked
-
-
-
 document.getElementById("FetchViaLinkFormButton").addEventListener("click",function() {
 	
 	if(document.getElementById("formOptiesCheck").checked == true){
