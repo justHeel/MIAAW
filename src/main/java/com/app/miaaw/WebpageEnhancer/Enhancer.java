@@ -330,7 +330,10 @@ public class Enhancer {
 		
 		int loopIndex = 0;
 		for (Element img : images) {
-			img.attr("alt",imageDescriptions.get(loopIndex));
+			if (loopIndex < imageDescriptions.toArray().length) {
+				img.before("<p class='MIAAW_Picture_Description'><i> picture of: " + imageDescriptions.get(loopIndex) + "</i></p>");
+				System.out.println(imageDescriptions.get(loopIndex));
+			}
 			loopIndex++;
 		}
 		

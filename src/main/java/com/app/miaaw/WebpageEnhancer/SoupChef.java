@@ -8,6 +8,8 @@ import java.net.URLConnection;
 
 import java.io.File;
 import java.io.IOException;
+
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,8 +17,10 @@ import org.jsoup.nodes.Element;
 public class SoupChef {
 	public static Document makeLinkSoup(String link) throws IOException {
         String url = link;
-
-        Document document = Jsoup.connect(url).get();
+        Connection conn = Jsoup.connect(url);
+        conn.timeout(999999);
+        
+        Document document = conn.get();
         return document;
 	}
 	
