@@ -15,25 +15,25 @@ document.getElementById("FetchViaLinkFormButton").addEventListener("click",funct
 	if(document.getElementById("formOptiesCheck").checked == true){
 		document.getElementById("formOptiesCheck").value = +true;
 	}else{
-			document.getElementById("formOptiesCheck").value = +false;
+			document.getElementById("formOptiesCheck").value = null;
 		}
 		console.log(document.getElementById("formOptiesCheck").value)
 	if(document.getElementById("videoOptiesCheck").checked == true){
 		document.getElementById("videoOptiesCheck").value = +true;
 	}else{
-			document.getElementById("videoOptiesCheck").value = +false;
+			document.getElementById("videoOptiesCheck").value = null;
 		}
 		console.log(document.getElementById("videoOptiesCheck").value)
 	if(document.getElementById("textToSpeechCheck").checked == true){
 		document.getElementById("textToSpeechCheck").value = +true;
 	}else{
-			document.getElementById("textToSpeechCheck").value = +false;
+			document.getElementById("textToSpeechCheck").value = null;
 		}
 		console.log(document.getElementById("textToSpeechCheck").value)
 	if(document.getElementById("basicBarCheck").checked == true){
 		document.getElementById("basicBarCheck").value = +true;
 	}else{
-			document.getElementById("basicBarCheck").value = +false;
+			document.getElementById("basicBarCheck").value = null;
 		}
 		console.log(document.getElementById("basicBarCheck").value)
 	

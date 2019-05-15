@@ -8,9 +8,10 @@
     </head>
     <body>
         <div id="wrapper" class="top">
-            <a class="logo" href="../html/home.html">
-                <img src="../fotos/miaawLogoTemp.png" alt="miaaw" width="350" height="350">
-            </a>
+             <a class="h1class" href="../html/home.html">
+            <h1 class="h1top">
+                Making Internet Accesibility Accesible for Webdevelopers
+            </h1></a>
             <h1 class="h1top">
                 Making Internet Accesibility Accesible for Webdevelopers
             </h1>
@@ -23,46 +24,52 @@
                 </a>
             </p>
         </div>
-        <h3>Custom based</h3>
-        <p>
-        **Wat je gaat krijgen**<br>
-        </p>
-         
-	<button id="testButton">test!</button>
-        Form Opties: &nbsp; &nbsp;
+  <div class="text-container">
+                <h3>Text Based</h3>
+                <p>
+                **Wat je gaat krijgen**<br>
+                    **Check this preview**
+                <button id="buttonPreview" type="button">Preview</button>
+                </p>
+                 </div>
+
+        Text-to-speech: &nbsp; &nbsp;
          <label class="switch">
-             <input id="formOptiesCheck" type="checkbox">
+             <input type="checkbox">
              <span class=slider round"></span>
          </label><br><br>
 
-         Video Opties: &nbsp; &nbsp;
+         Changing font-size: &nbsp; &nbsp;
          <label class="switch">
-                <input id="videoOptiesCheck" type="checkbox">
+                <input type="checkbox">
                 <span class=slider round"></span>
             </label><br><br>
 
-          Text to Speech: &nbsp; &nbsp;
+            Changing font color: &nbsp; &nbsp;
             <label class="switch">
-                    <input id="textToSpeechCheck" type="checkbox">
+                    <input type="checkbox">
                     <span class=slider round"></span>
                 </label><br><br>
 
-          Basic Bar: &nbsp; &nbsp;
+                Changing theme to dark: &nbsp; &nbsp;
                 <label class="switch">
-                        <input id="basicBarCheck" type="checkbox">
+                        <input type="checkbox">
                         <span class=slider round"></span>
                     </label><br><br>
-		
-		<form id="FetchViaLinkForm">
-			<label>Via link:</label>
-			<input id="linkFetchField"type="text" placeholder="Link"></input>
-			
-		</form>
-		<button id="FetchViaLinkFormButton">GO!</button>
-		
-        <div class="contents">
-            Upload your html page: 
-            <br>
+
+                    <div class="link-container">
+                            <form>
+                            
+                              <input id="linkWebsite" type="text" placeholder="https://www.hierjewebsite.com" name="search"><br>
+                              <div class="buttonsDiv">
+                              <input type="submit" value= "Generate!"</input>
+                              <input type= "file" class="upload" id="fileButton" name="file"</input>
+                              <label for="fileButton">Upload File!</label>
+                            </div>
+                            </form>
+                          </div>
+
+          
       		
               <input id="FetchViaFileForm" type="file" name="htmlpage" placeholder="file"></form>
             <button id="FetchViaFileFormButton">GO!</button>

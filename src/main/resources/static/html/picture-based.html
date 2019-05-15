@@ -8,35 +8,41 @@
     </head>
     <body>
         <div id="wrapper" class="top">
-            <a class="logo" href="../html/home.html">
-                <img src="../fotos/miaawLogoTemp.png" alt="miaaw" width="350" height="350">
-            </a>
+            <a class="h1class" href="../html/home.html">
+            <h1 class="h1top">
+                Making Internet Accesibility Accesible for Webdevelopers
+            </h1></a>
             <h1 class="h1top">
                 Making Internet Accesibility Accesible for Webdevelopers
             </h1>
             <p class="social-links">
                 <a href="https://twitter.com/MIAAW13">
-               <img src="../fotos//twitterIcon.png">
+               <img src="twitterIcon.png">
                 </a>
                 <a href="https://www.facebook.com/MIAAW-1286624231490728/">
-                <img src="../fotos/facebookIcon.png">
+                <img src="facebookIcon.png">
                 </a>
             </p>
         </div>
-        <h3>Picture based/h3>
+              <div class="text-container">
+        <h3>Text Based</h3>
         <p>
         **Wat je gaat krijgen**<br>
             **Check this preview**
-        <button type="button">Preview</button>
+        <button id="buttonPreview" type="button">Preview</button>
         </p>
+         </div>
 
-        <div class="contents">
-            Upload your html page: 
-            <br>
-            <input id="FetchViaFileForm" type="file" name="htmlpage" placeholder="file"></form>
-            <button id="FetchViaFileFormButton">GO!</button>
-            <br>
-                <textarea rows="4" cols="50" placeholder="Your code">  
-                        </textarea>
-               
-                </div>
+        <div class="link-container">
+            <form>
+            
+              <input id="linkWebsite" type="text" placeholder="https://www.hierjewebsite.com" name="search"><br>
+              <div class="buttonsDiv">
+              <input type="submit" value= "Generate!"></input>
+              <input type= "file" class="upload" id="fileButton" name="file"></input>
+              <label for="fileButton">Upload File!</label>
+            </div>
+            </form>
+          </div>
+        </body>
+        </html>
