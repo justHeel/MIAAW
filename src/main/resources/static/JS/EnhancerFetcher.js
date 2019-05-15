@@ -1,7 +1,7 @@
-document.getElementById("testButton").addEventListener("click", function(){
-	values = document.getElementById("textToSpeechCheck").checked
+document.getElementById("generateButton").addEventListener("click", function(){
+	values = document.getElementById("textToSpeechCheck").checked;
 	console.log(values)
-})
+});;
 
 	formOpties = document.getElementById("formOptiesCheck").checked
 	videoOpties = document.getElementById("videoOptiesCheck").checked
