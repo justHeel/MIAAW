@@ -118,6 +118,11 @@ public class Enhancer {
 			"	</style>\r\n" + 
 			"	<button id=\"MIAAW_Access_editor\">Accessibility</button>\r\n" + 
 			"	<div id=\"MIAAW_Popup\">\r\n" + 
+			"	    <div class=\"fontsize\">\r\n" + 
+			"        	<a class=\"font-button plus\">+</a> \r\n" + 
+			"                <p>Font size</p>\r\n" + 
+			"            <a class=\"font-button minus\">-</a>\r\n" + 
+			"        </div>\r\n" + 
 			"		<div class=\"tts\">\r\n" + 
 			"			<p>Text-to-Speech</p>\r\n" + 
 			"			<button class=\"MIAAW_play\">Play</button>\r\n" + 
@@ -128,8 +133,27 @@ public class Enhancer {
 			"			<button class=\"MIAAW_form_play\">Play</button>\r\n" + 
 			"		</div>\r\n" + 
 			"		<br>\r\n" + 
-			"		<audio src=\"\" class=\"MIAAW_form_speech\" controls></audio>"+
+			"		<audio src=\"\" class=\"MIAAW_form_speech\" ></audio>\r\n" + 
 			"	</div>"+
+			"<script type=\"text/javascript\"\r\n" + 
+			"	src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>\r\n" + 
+			"<script type=\"text/javascript\">\r\n" + 
+			"    $(function () {\r\n" + 
+			"        $(\".font-button\").bind(\"click\", function () {\r\n" + 
+			"            var size = parseInt($('body').css(\"font-size\"));\r\n" + 
+			"                if ($(this).hasClass(\"plus\")) {\r\n" + 
+			"                    size = size + 2;\r\n" + 
+			"                } else {\r\n" + 
+			"                    size = size - 2;\r\n" + 
+			"                    if (size <= 10) {\r\n" + 
+			"                        size = 10;\r\n" + 
+			"                    }\r\n" + 
+			"                }\r\n" + 
+			"            $('body').css(\"font-size\", size);\r\n" + 
+			"            console.log(size);\r\n" + 
+			"        });\r\n" + 
+			"    });\r\n" + 
+			"</script>\r\n" + 
 			"<script>\r\n" + 
 			"document.getElementById('MIAAW_Popup').style.display = 'none';\r\n" + 
 			"document.getElementById('MIAAW_Access_editor').addEventListener('click',function() {\r\n" + 
@@ -140,7 +164,7 @@ public class Enhancer {
 			"		document.getElementById('MIAAW_Popup').style.display= 'none';\r\n" + 
 			"	}\r\n" + 
 			"});\r\n" + 
-			"</script>"+
+			"</script>\r\n" + 
 			"<script>\r\n" + 
 			"	function startDictation() {\r\n" + 
 			"		var target = [];\r\n" + 
@@ -186,8 +210,6 @@ public class Enhancer {
 			"	};\r\n" + 
 			"	startDictation();\r\n" + 
 			"</script>\r\n" + 
-			"<script type=\"text/javascript\"\r\n" + 
-			"	src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>\r\n" + 
 			"<script>\r\n" + 
 			"	var tts_classes = document.getElementsByClassName(\"MIAAW_TTS_Text_Group\");\r\n" + 
 			"	$('button.MIAAW_play')\r\n" + 
@@ -318,7 +340,7 @@ public class Enhancer {
 			try {
 				for (int i = 0; i < json.getJSONObject("description").getJSONArray("captions").length(); i++) {
 					
-					if (Double.parseDouble(json.getJSONObject("description").getJSONArray("captions").getJSONObject(i).get("confidence").toString()) > 0.6) {
+					if (Double.parseDouble(json.getJSONObject("description").getJSONArray("captions").getJSONObject(i).get("confidence").toString()) > 0.1) {
 						imageDescriptions.add(json.getJSONObject("description").getJSONArray("captions").getJSONObject(i).get("text").toString());
 					}
 				}
@@ -331,8 +353,8 @@ public class Enhancer {
 		int loopIndex = 0;
 		for (Element img : images) {
 			if (loopIndex < imageDescriptions.toArray().length) {
-				img.before("<p class='MIAAW_Picture_Description'><i> picture of: " + imageDescriptions.get(loopIndex) + "</i></p>");
-				System.out.println(imageDescriptions.get(loopIndex));
+				img.before("<p class='MIAAW_Picture_Description'><i> picture: " + imageDescriptions.get(loopIndex) + "</i></p>");
+				
 			}
 			loopIndex++;
 		}

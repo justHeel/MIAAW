@@ -112,6 +112,11 @@
 	</style>
 	<button id="MIAAW_Access_editor">Accessibility</button>
 	<div id="MIAAW_Popup">
+	    <div class="fontsize">
+        	<a class="font-button plus">+</a> 
+                <p>Font size</p>
+            <a class="font-button minus">-</a>
+        </div>
 		<div class="tts">
 			<p>Text-to-Speech</p>
 			<button class="MIAAW_play">Play</button>
@@ -144,6 +149,25 @@
 	</form>
 
 </body>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".font-button").bind("click", function () {
+            var size = parseInt($('body').css("font-size"));
+                if ($(this).hasClass("plus")) {
+                    size = size + 2;
+                } else {
+                    size = size - 2;
+                    if (size <= 10) {
+                        size = 10;
+                    }
+                }
+            $('body').css("font-size", size);
+            console.log(size);
+        });
+    });
+</script>
 <script>
 document.getElementById('MIAAW_Popup').style.display = 'none';
 document.getElementById('MIAAW_Access_editor').addEventListener('click',function() {
@@ -200,8 +224,6 @@ document.getElementById('MIAAW_Access_editor').addEventListener('click',function
 	};
 	startDictation();
 </script>
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script>
 	var tts_classes = document.getElementsByClassName("MIAAW_TTS_Text_Group");
 	$('button.MIAAW_play')

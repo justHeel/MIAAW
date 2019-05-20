@@ -18,6 +18,7 @@ public class ImageFinder {
 		
 		for (Element img : images) {
 			s = img.attr("abs:src");
+			System.out.println(s);
 			if(!"".equals(s)) {
 				list.add(s);
 			}

@@ -99,7 +99,7 @@ onload = function() {
 <script type="text/javascript">
     $(function () {
         $(".font-button").bind("click", function () {
-            var size = parseInt($('.MIAAW_ResizeableText').css("font-size"));
+            var size = parseInt($('body').css("font-size"));
                 if ($(this).hasClass("plus")) {
                     size = size + 2;
                 } else {
@@ -108,7 +108,7 @@ onload = function() {
                         size = 10;
                     }
                 }
-            $('.MIAAW_ResizeableText').css("font-size", size);
+            $('body').css("font-size", size);
             console.log(size);
         });
     });

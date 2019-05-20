@@ -12,9 +12,9 @@
     padding: 10px;
   }
 
-  .top:hover{
+/*   .top:hover{
     transform: scale(1.5);
-  }
+  } */
 
   .h1class{
       text-decoration: none;
@@ -58,7 +58,7 @@
 
     .content li:hover{
             background-color: red;
-            transform: scale(1.5);
+            transform: scale(1.2);
           }
 
           .link-container {
@@ -66,9 +66,9 @@
            padding: 10px;
           }
 
-          .link-container:hover{
+/*           .link-container:hover{
             transform: scale(1.5);
-          }
+          } */
           
           #linkFetchField{
             border-radius: 12px;
@@ -124,10 +124,10 @@
             cursor: pointer;
           }
 
-          .text-container:hover{
+/*           .text-container:hover{
               margin:auto;
               transform: scale(1.5)
-          }
+          } */
 
           .upload {
             width: 0.1px;
