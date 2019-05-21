@@ -8,53 +8,52 @@
 
 
 <body>
-
 	<style type="text/css">	
 		body {
-			margin-top:50px;
+			margin-top:50px !important;
 		}	
 		#MIAAW_Popup {
-			position: fixed;
-			right:0;
-			top:50px;
+			position: fixed !important;
+			right:0 !important;
+			top:50px !important;
 			display: none;
-			background: #efefef;
-			border: 1px solid black;
-			width: 30%;
-			height: 300px;
+			background: #efefef !important;
+			border: 1px solid black !important;
+			width: 30% !important;
+			height: 300px !important;
 			float: right;
-			z-index:99999999999;
+			z-index:99999999999 !important;
 		}
 		
 		#MIAAW_Access_editor {
-			position:fixed;
-			z-index:9999999999;
-			margin-bottom: 20px;
-			display: inline-block;
-			right:0;
-			top:0;
-			width:30%;
-			margin-left:10%;
+			position:fixed !important;
+			z-index:9999999999 !important;
+			margin-bottom: 20px !important;
+			display: inline-block !important;
+			right:0 !important;
+			top:0 !important;
+			width:30% !important;
+			margin-left:10% !important;
 			font-size:40px;
 			
-			background-color: #00ba00;
-			border: none;
-			color: white;
-			padding: 15px 32px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
+			background-color: #00ba00 !important;
+			border: none !important;
+			color: white !important;
+			padding: 15px 32px !important;
+			text-align: center !important;
+			text-decoration: none !important;
+			display: inline-block !important;
 			font-size: 15px;
 			cursor:pointer;
 		}
 		
 		#MIAAW_Access_editor:hover {
-			font-size:40px;
+			font-size:40px !important;
 		}
 		
 		.exit {
-			float: right;
-			display: inline-block;
+			float: right !important;
+			display: inline-block !important;
 		}
 		
 		.MIAAW_speech {
@@ -72,15 +71,19 @@
 		}
 		
 		.fontsize p {
-			display: inline;
-			margin-left: 20px;
-			margin-right: 20px;
+			display: inline !important;
+			margin-left: 20px !important;
+			margin-right: 20px !important;
+			font-size:35px !important;
 		}
 		
 		.tts, .tts_form {
 			margin-left: 5px;
-			font-size: 22px;
-			font-weight: 900;
+			font-weight: 900 !important;
+		}
+		.tts p, .tts_form p {
+			font-size: 22px !important;
+			margin:2px !important;
 		}
 		
 		.MIAAW_form_play, .MIAAW_play {
@@ -94,16 +97,16 @@
 		}
 		
 		input {
-			width: 400px;
-			height: 25px;
+			width: 400px !important;
+			height: 25px !important;
 		}
 		
 		input[type="text"] {
-			font-size: 24px;
+			font-size: 24px !important;
 		}
 		
 		.tekst {
-			font-size: 16px;
+			font-size: 16px !important;
 		}
 		
 		form {
@@ -163,10 +166,23 @@
                         size = 10;
                     }
                 }
-            $('body').css("font-size", size);
+         		$('body').css('font-size', size); 
+         		$('p').css('font-size',size); 
+ /*            $('body').css("font-size", size); */
             console.log(size);
         });
     });
+    
+    function addNewStyle(newStyle) {
+        var styleElement = document.getElementById('styles_js');
+        if (!styleElement) {
+            styleElement = document.createElement('style');
+            styleElement.type = 'text/css';
+            styleElement.id = 'styles_js';
+            document.getElementsByTagName('head')[0].appendChild(styleElement);
+        }
+        styleElement.appendChild(document.createTextNode(newStyle));
+    }
 </script>
 <script>
 document.getElementById('MIAAW_Popup').style.display = 'none';

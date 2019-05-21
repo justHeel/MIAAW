@@ -15,52 +15,52 @@ import com.app.miaaw.Domain.CodeTemplate;
 import ch.qos.logback.core.net.SyslogOutputStream;
 
 public class Enhancer {
-	static String basicBarCode = "<style>" +
+	static String basicBarCode =  "	<style type=\"text/css\">	\r\n" + 
 			"		body {\r\n" + 
-			"			margin-top:50px;\r\n" + 
+			"			margin-top:50px !important;\r\n" + 
 			"		}	\r\n" + 
 			"		#MIAAW_Popup {\r\n" + 
-			"			position: fixed;\r\n" + 
-			"			right:0;\r\n" + 
-			"			top:50px;\r\n" + 
+			"			position: fixed !important;\r\n" + 
+			"			right:0 !important;\r\n" + 
+			"			top:50px !important;\r\n" + 
 			"			display: none;\r\n" + 
-			"			background: #efefef;\r\n" + 
-			"			border: 1px solid black;\r\n" + 
-			"			width: 30%;\r\n" + 
-			"			height: 300px;\r\n" + 
+			"			background: #efefef !important;\r\n" + 
+			"			border: 1px solid black !important;\r\n" + 
+			"			width: 30% !important;\r\n" + 
+			"			height: 300px !important;\r\n" + 
 			"			float: right;\r\n" + 
-			"			z-index:99999999999;"+
+			"			z-index:99999999999 !important;\r\n" + 
 			"		}\r\n" + 
 			"		\r\n" + 
 			"		#MIAAW_Access_editor {\r\n" + 
-			"			position:fixed;\r\n" + 
-			"			z-index:9999999999;\r\n" + 
-			"			margin-bottom: 20px;\r\n" + 
-			"			display: inline-block;\r\n" + 
-			"			right:0;\r\n" + 
-			"			top:0;\r\n" + 
-			"			width:30%;\r\n" + 
-			"			margin-left:10%;\r\n" + 
+			"			position:fixed !important;\r\n" + 
+			"			z-index:9999999999 !important;\r\n" + 
+			"			margin-bottom: 20px !important;\r\n" + 
+			"			display: inline-block !important;\r\n" + 
+			"			right:0 !important;\r\n" + 
+			"			top:0 !important;\r\n" + 
+			"			width:30% !important;\r\n" + 
+			"			margin-left:10% !important;\r\n" + 
 			"			font-size:40px;\r\n" + 
 			"			\r\n" + 
-			"			background-color: #00ba00;\r\n" + 
-			"			border: none;\r\n" + 
-			"			color: white;\r\n" + 
-			"			padding: 15px 32px;\r\n" + 
-			"			text-align: center;\r\n" + 
-			"			text-decoration: none;\r\n" + 
-			"			display: inline-block;\r\n" + 
+			"			background-color: #00ba00 !important;\r\n" + 
+			"			border: none !important;\r\n" + 
+			"			color: white !important;\r\n" + 
+			"			padding: 15px 32px !important;\r\n" + 
+			"			text-align: center !important;\r\n" + 
+			"			text-decoration: none !important;\r\n" + 
+			"			display: inline-block !important;\r\n" + 
 			"			font-size: 15px;\r\n" + 
 			"			cursor:pointer;\r\n" + 
 			"		}\r\n" + 
 			"		\r\n" + 
 			"		#MIAAW_Access_editor:hover {\r\n" + 
-			"			font-size:40px;\r\n" + 
+			"			font-size:40px !important;\r\n" + 
 			"		}\r\n" + 
 			"		\r\n" + 
 			"		.exit {\r\n" + 
-			"			float: right;\r\n" + 
-			"			display: inline-block;\r\n" + 
+			"			float: right !important;\r\n" + 
+			"			display: inline-block !important;\r\n" + 
 			"		}\r\n" + 
 			"		\r\n" + 
 			"		.MIAAW_speech {\r\n" + 
@@ -78,15 +78,18 @@ public class Enhancer {
 			"		}\r\n" + 
 			"		\r\n" + 
 			"		.fontsize p {\r\n" + 
-			"			display: inline;\r\n" + 
-			"			margin-left: 20px;\r\n" + 
-			"			margin-right: 20px;\r\n" + 
+			"			display: inline !important;\r\n" + 
+			"			margin-left: 20px !important;\r\n" + 
+			"			margin-right: 20px !important;\r\n" + 
+			"			font-size:35px !important;\r\n" + 
 			"		}\r\n" + 
 			"		\r\n" + 
 			"		.tts, .tts_form {\r\n" + 
 			"			margin-left: 5px;\r\n" + 
-			"			font-size: 22px;\r\n" + 
-			"			font-weight: 900;\r\n" + 
+			"			font-weight: 900 !important;\r\n" + 
+			"		}\r\n" + 
+			"		.tts p, .tts_form p {\r\n" + 
+			"			font-size: 22px !important;\r\n" + 
 			"		}\r\n" + 
 			"		\r\n" + 
 			"		.MIAAW_form_play, .MIAAW_play {\r\n" + 
@@ -100,21 +103,21 @@ public class Enhancer {
 			"		}\r\n" + 
 			"		\r\n" + 
 			"		input {\r\n" + 
-			"			width: 400px;\r\n" + 
-			"			height: 25px;\r\n" + 
+			"			width: 400px !important;\r\n" + 
+			"			height: 25px !important;\r\n" + 
 			"		}\r\n" + 
 			"		\r\n" + 
 			"		input[type=\"text\"] {\r\n" + 
-			"			font-size: 24px;\r\n" + 
+			"			font-size: 24px !important;\r\n" + 
 			"		}\r\n" + 
 			"		\r\n" + 
 			"		.tekst {\r\n" + 
-			"			font-size: 16px;\r\n" + 
+			"			font-size: 16px !important;\r\n" + 
 			"		}\r\n" + 
 			"		\r\n" + 
 			"		form {\r\n" + 
 			"			zoom: 100%;\r\n" + 
-			"		}"+
+			"		}\r\n" + 
 			"	</style>\r\n" + 
 			"	<button id=\"MIAAW_Access_editor\">Accessibility</button>\r\n" + 
 			"	<div id=\"MIAAW_Popup\">\r\n" + 
@@ -134,7 +137,7 @@ public class Enhancer {
 			"		</div>\r\n" + 
 			"		<br>\r\n" + 
 			"		<audio src=\"\" class=\"MIAAW_form_speech\" ></audio>\r\n" + 
-			"	</div>"+
+			"	</div>" + 
 			"<script type=\"text/javascript\"\r\n" + 
 			"	src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>\r\n" + 
 			"<script type=\"text/javascript\">\r\n" + 
@@ -149,10 +152,23 @@ public class Enhancer {
 			"                        size = 10;\r\n" + 
 			"                    }\r\n" + 
 			"                }\r\n" + 
-			"            $('body').css(\"font-size\", size);\r\n" + 
+			"         		$('body').css('font-size', size); \r\n" + 
+			"         		$('p').css('font-size',size); \r\n" + 
+			" /*            $('body').css(\"font-size\", size); */\r\n" + 
 			"            console.log(size);\r\n" + 
 			"        });\r\n" + 
 			"    });\r\n" + 
+			"    \r\n" + 
+			"    function addNewStyle(newStyle) {\r\n" + 
+			"        var styleElement = document.getElementById('styles_js');\r\n" + 
+			"        if (!styleElement) {\r\n" + 
+			"            styleElement = document.createElement('style');\r\n" + 
+			"            styleElement.type = 'text/css';\r\n" + 
+			"            styleElement.id = 'styles_js';\r\n" + 
+			"            document.getElementsByTagName('head')[0].appendChild(styleElement);\r\n" + 
+			"        }\r\n" + 
+			"        styleElement.appendChild(document.createTextNode(newStyle));\r\n" + 
+			"    }\r\n" + 
 			"</script>\r\n" + 
 			"<script>\r\n" + 
 			"document.getElementById('MIAAW_Popup').style.display = 'none';\r\n" + 
