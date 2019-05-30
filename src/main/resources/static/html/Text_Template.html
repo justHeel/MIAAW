@@ -6,28 +6,44 @@
 
 </head>
 <body>
-	<button id="editor" onclick="document.getElementById('popup').style.display='block'">Editor</button>
-    <div id="popup"> 
+	<button id="MIAAW_Access_editor">Accessibility</button>
+    <div id="MIAAW_Popup">
+        <div class="fontsize">
+            <a class="font-button plus">+</a> 
+                <p>Font size</p>
+            <a class="font-button minus">-</a>
+        </div>
         <div class="tts">
             <p>Text-to-Speech</p>
-            <button id=play><img style="height: 40px; width: 40px;" src="../fotos/play.png">Play</button>
-            <button id=pause><img style="height: 40px; width: 40px;" src="../fotos/pause.png">Pause</button>
-            <button id=stop><img style="height: 40px; width: 40px;" src="../fotos/stop.png">Stop</button>
-		</div>
-            <button class="exit" onclick="document.getElementById('popup').style.display='none'">Exit</button>
-
-            <div class="fontsize">
-                <a class="font-button plus">+</a> 
-                <p>Font size</p>
-                <a class="font-button minus">-</a>
-            </div>
+            <button id="play" class="MIAAW_play"><img style="height: 40px; width: 40px;" src="../fotos/play.png"></button>
+            <button id="pause" class="MIAAW_play"><img style="height: 40px; width: 40px;" src="../fotos/pause.png"></button>
+            <button id="stop" class="MIAAW_play"><img style="height: 40px; width: 40px;" src="../fotos/stop.png"></button>
+        </div>
+        <br>
+        <div class="tts_form">
+            <p>Text-to-Speech Form</p>
+            <button class="MIAAW_form_play"><img style="height: 40px; width: 40px;" src="../fotos/play.png"></button>
+        </div>
+        <div class="tts_popup">
+            <p>Text-to-Speech Popup</p>
+            <button id="playpp" class="MIAAW_form_play"><img style="height: 40px; width: 40px;" src="../fotos/play.png"></button>
+        </div>
+        <br>
+        <audio src="" class="MIAAW_form_speech" ></audio>
+    </div>
 
     </div>
       
   
     <p class="MIAAW_ResizeableText">
-    rchndy
+    Donald John Trump (New York, 14 juni 1946) is sinds 20 januari 2017 de 45e president van de Verenigde Staten. Trump behoort tot de Republikeinse Partij. Vóór zijn presidentschap had hij nooit eerder een politieke functie vervuld. Van beroep was hij ondernemer, voornamelijk in het vastgoed, en verder schrijver en televisiepersoonlijkheid.
+
+Donald Trump is de zoon van Fred Trump, een vastgoedontwikkelaar uit New York. Toen Donald Trump naar de Wharton School van de Universiteit van Pennsylvania ging, werkte hij al voor het bedrijf van zijn vader en grootmoeder, Elizabeth Trump & Son, de voorloper van The Trump Organization. In 1968 sloot hij zich officieel bij zijn vaders bedrijf aan. Hij kreeg in 1971 de zeggenschap over het bedrijf en veranderde de naam in The Trump Organization. Door zijn promotie-inspanningen, carrière, verschijningen in media en boeken (vaak door ghostwriters geschreven) werd hij een mediapersoonlijkheid in de Verenigde Staten. Trump presenteerde The Apprentice, een Amerikaans televisieprogramma op NBC.
+
+Op 16 juni 2015 stelde Trump zich officieel kandidaat voor de presidentsverkiezingen van 2016 als Republikein. In eerste stadium van zijn campagne bleek hij zeer populair te zijn, dit tot grote verontrusting van de leiders van de Republikeinse Partij. Vanaf eind juli 2015 stond hij bovenaan in de peilingen voor de Republikeinse nominatie, en sinds juli 2016 was hij de presidentskandidaat voor de Republikeinse Partij. Op 8 november 2016 won hij de presidentsverkiezingen en werd hij president-elect van de Verenigde Staten, en op 20 januari 2017 werd hij beëdigd als president.
     </p>
+
+
 </body>
 <script>
 onload = function() {
@@ -42,10 +58,21 @@ onload = function() {
         pauseEle.addEventListener('click', onClickPause);
         stopEle.addEventListener('click', onClickStop);
 
+
+        var myTimeout;
+        function myTimer() {
+        window.speechSynthesis.pause();
+        window.speechSynthesis.resume();
+        myTimeout = setTimeout(myTimer, 10000);
+        }
+
+         window.speechSynthesis.cancel();
+        myTimeout = setTimeout(myTimer, 10000);
+
         function onClickPlay() {
             if(!flag){
                 flag = true;
-                utterance = new SpeechSynthesisUtterance(document.querySelector('body').textContent);
+                utterance = new SpeechSynthesisUtterance(document.querySelector('.MIAAW_ResizeableText').textContent);
 
                 utterance.lang = 'nl-NL';
                 utterance.rate = 0.7;
@@ -95,11 +122,58 @@ onload = function() {
 
 }
 </script>
+<script>
+onload = function() {
+    if ('speechSynthesis' in window) with(speechSynthesis) {
+
+        var playEle = document.querySelector('#playpp');
+
+        var flag = false;
+
+        playEle.addEventListener('click', onClickPlay);
+ 
+
+
+        var myTimeout;
+        function myTimer() {
+        window.speechSynthesis.pause();
+        window.speechSynthesis.resume();
+        myTimeout = setTimeout(myTimer, 10000);
+        }
+
+         window.speechSynthesis.cancel();
+        myTimeout = setTimeout(myTimer, 10000);
+
+        function onClickPlay() {
+            if(!flag){
+                flag = true;
+                utterance = new SpeechSynthesisUtterance(document.querySelector('#MIAAW_Popup').textContent);
+
+                utterance.lang = 'nl-NL';
+                utterance.rate = 0.7;
+                speak(utterance);
+            }
+        }
+
+    }
+
+    else { /* speech synthesis not supported */
+        msg = document.createElement('h5');
+        msg.textContent = "Detected no support for Speech Synthesis";
+        msg.style.textAlign = 'center';
+        msg.style.backgroundColor = 'red';
+        msg.style.color = 'white';
+        msg.style.marginTop = msg.style.marginBottom = 0;
+        document.body.insertBefore(msg, document.querySelector('div'));
+    }
+
+}
+</script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
     $(function () {
         $(".font-button").bind("click", function () {
-            var size = parseInt($('body').css("font-size"));
+            var size = parseInt($('.MIAAW_ResizeableText').css("font-size"));
                 if ($(this).hasClass("plus")) {
                     size = size + 2;
                 } else {
@@ -108,27 +182,62 @@ onload = function() {
                         size = 10;
                     }
                 }
-            $('body').css("font-size", size);
+            $('.MIAAW_ResizeableText').css("font-size", size);
             console.log(size);
         });
     });
 </script>
+<script>
+document.getElementById('MIAAW_Popup').style.display = 'none';
+document.getElementById('MIAAW_Access_editor').addEventListener('click',function() {
+    console.log(document.getElementById('MIAAW_Popup').style.display);
+    if (document.getElementById('MIAAW_Popup').style.display == 'none') {
+        document.getElementById('MIAAW_Popup').style.display='block';
+    }else if (document.getElementById('MIAAW_Popup').style.display == 'block') {
+        document.getElementById('MIAAW_Popup').style.display= 'none';
+    }
+});
+</script>
 <style type="text/css">
-#popup{
-    display:none; 
-    background:#efefef; 
-    border:1px solid black; 
-    width:30%; 
-    height:300px;
-    float: right
-}
-
-#editor{
-    float: right;
-    margin-bottom: 20px;
-    display: inline-block;
-    margin-left: 100%;
-}
+    #MIAAW_Popup {
+            position: fixed !important;
+            right:0 !important;
+            top:50px !important;
+            display: none;
+            background: #efefef !important;
+            border: 1px solid black !important;
+            width: 30% !important;
+            height: 350px !important;
+            float: right;
+            z-index:99999999999 !important;
+            overflow: hidden;
+        }
+        
+        #MIAAW_Access_editor {
+            position:fixed !important;
+            z-index:9999999999 !important;
+            margin-bottom: 20px !important;
+            display: inline-block !important;
+            right:0 !important;
+            top:0 !important;
+            width:30% !important;
+            margin-left:10% !important;
+            font-size:40px;
+            
+            background-color: #ffff00 !important;
+            border: none !important;
+            color: black !important;
+            padding: 15px 32px !important;
+            text-align: center !important;
+            text-decoration: none !important;
+            display: inline-block !important;
+            font-size: 24px;
+            cursor:pointer;
+        }
+        
+        #MIAAW_Access_editor:hover {
+            font-size:40px !important;
+        }
 
 .MIAAW_ResizeableText{
     font-family: Arial;
@@ -158,9 +267,20 @@ onload = function() {
     float: right;
 }
 
-.tts{
+.tts, .tts_form, .fontsize, .tts_popup {
     margin-left: 5px;
+    font-weight: 900 !important;
 }
+
+.tts{
+    margin-top: 20px;
+}
+
+.tts p, .tts_form p, .fontsize p, .tts_popup p {
+    font-size: 20px !important;
+    margin:2px !important;
+}
+
 
 input{
     width: 400px;
@@ -174,6 +294,14 @@ input{
 .speech img{
     width: 20px;
     height: 20px;
+}
+
+.MIAAW_ResizeableText{
+    font-size: 20px;
+}
+
+.tts_popup{
+    margin-top: 25px;
 }
 
 </style>
