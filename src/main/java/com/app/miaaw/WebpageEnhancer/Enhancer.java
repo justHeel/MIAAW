@@ -117,27 +117,99 @@ public class Enhancer {
 			"		\r\n" + 
 			"		form {\r\n" + 
 			"			zoom: 100%;\r\n" + 
+			"		}\r\n"
+			+ "		.MIAAW_contrastOption1 {\r\n" + 
+			"			width: 50px;\r\n" + 
+			"			height: 50px;\r\n" + 
+			"			background-color: blue !important;\r\n" + 
+			"			color:white !important;\r\n" + 
+			"			text-shadow: none !important;\r\n" + 
 			"		}\r\n" + 
+			"		.MIAAW_contrastOption2 {\r\n" + 
+			"			width: 50px;\r\n" + 
+			"			height: 50px;\r\n" + 
+			"			background-color: black !important;\r\n" + 
+			"			color:white !important;\r\n" + 
+			"			text-shadow: none !important;\r\n" + 
+			"		}\r\n" + 
+			"		.MIAAW_contrastOption3 {\r\n" + 
+			"			width: 50px;\r\n" + 
+			"			height: 50px;\r\n" + 
+			"			background-color: white !important;\r\n" + 
+			"			color:black !important;\r\n" + 
+			"			text-shadow: none !important;\r\n" + 
+			"		}\r\n" + 
+			"		.MIAAW_undocontrast, .MIAAW_undooutline,.MIAAW_undoinputborder {\r\n" + 
+			"			width: 50px;\r\n" + 
+			"			height: 50px;\r\n" + 
+			"		}\r\n" + 
+			"		.MIAAW_textoutline1 {\r\n" + 
+			"			width: 50px;\r\n" + 
+			"			height: 50px;\r\n" + 
+			"			text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black !important;\r\n" + 
+			"			color:white !important;\r\n" + 
+			"			background-color:white !important;\r\n" + 
+			"		}\r\n" + 
+			"		.MIAAW_textoutline2 {\r\n" + 
+			"			width: 50px;\r\n" + 
+			"			height: 50px;\r\n" + 
+			"			text-shadow: -1px -1px 0 blue, 1px -1px 0 blue, -1px 1px 0 blue, 1px 1px 0 blue !important;\r\n" + 
+			"			color:white !important;\r\n" + 
+			"			background-color:white !important;\r\n" + 
+			"		}\r\n" + 
+			"		.MIAAW_textoutline3 {\r\n" + 
+			"			width: 50px;\r\n" + 
+			"			height: 50px;\r\n" + 
+			"			text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white !important;\r\n" + 
+			"			color:black !important;\r\n" + 
+			"			background-color:black !important;\r\n" + 
+			"		}\r\n" + 
+			"		.MIAAW_inputborder1 {\r\n" + 
+			"			width: 50px;\r\n" + 
+			"			height: 50px;\r\n" + 
+			"			background-color:#ffff00 !important;\r\n" + 
+			"		}\r\n" + 
+			"		.MIAAW_inputborder2 {\r\n" + 
+			"			width: 50px;\r\n" + 
+			"			height: 50px;\r\n" + 
+			"			background-color:blue !important;\r\n" + 
+			"		} \r\n" + 
+			"		.MIAAW_inputborder3 {\r\n" + 
+			"			width: 50px;\r\n" + 
+			"			height: 50px;\r\n" + 
+			"			background-color:black !important;\r\n" + 
+			"		}" +
 			"	</style>\r\n" + 
-			"	<button id=\"MIAAW_Access_editor\">Accessibility</button>\r\n" + 
-			"	<div id=\"MIAAW_Popup\">\r\n" + 
-			"	    <div class=\"fontsize\">\r\n" + 
-			"        	<a class=\"font-button plus\">+</a> \r\n" + 
-			"                <p>Font size</p>\r\n" + 
-			"            <a class=\"font-button minus\">-</a>\r\n" + 
-			"        </div>\r\n" + 
-			"		<div class=\"tts\">\r\n" + 
-			"			<p>Text-to-Speech</p>\r\n" + 
-			"			<button class=\"MIAAW_play\">Play</button>\r\n" + 
-			"		</div>\r\n" + 
-			"		<br>\r\n" + 
-			"		<div class=\"tts_form\">\r\n" + 
-			"			<p>Text-to-Speech Form</p>\r\n" + 
-			"			<button class=\"MIAAW_form_play\">Play</button>\r\n" + 
-			"		</div>\r\n" + 
-			"		<br>\r\n" + 
-			"		<audio src=\"\" class=\"MIAAW_form_speech\" ></audio>\r\n" + 
-			"	</div>" + 
+			"  <button id=\"MIAAW_Access_editor\">Accessibility</button> \r\n" + 
+			"  <div id=\"MIAAW_Popup\"> \r\n" + 
+			"   <div class=\"tts\"> \r\n" + 
+			"    <p>Text-to-Speech</p> \r\n" + 
+			"    <button class=\"MIAAW_play\">Play</button> \r\n" + 
+			"   </div> \r\n" + 
+			"   <br> \r\n" + 
+			"   <div class=\"tts_form\"> \r\n" + 
+			"    <p>Text-to-Speech Form</p> \r\n" + 
+			"    <button class=\"MIAAW_form_play\">Play</button> \r\n" + 
+			"   </div> \r\n" + 
+			"   <br> \r\n" + 
+			"\r\n" + 
+			"   <button class=\"MIAAW_contrastOption1\">Abc</button>\r\n" + 
+			"   <button class=\"MIAAW_contrastOption2\">Abc</button>\r\n" + 
+			"   <button class=\"MIAAW_contrastOption3\">Abc</button>\r\n" + 
+			"   <button class=\"MIAAW_undocontrast\">X</button>\r\n" + 
+			"   <br>\r\n" + 
+			"   <button class=\"MIAAW_textoutline1\">Abc</button>\r\n" + 
+			"   <button class=\"MIAAW_textoutline2\">Abc</button>\r\n" + 
+			"   <button class=\"MIAAW_textoutline3\">Abc</button>\r\n" + 
+			"   <button class=\"MIAAW_undooutline\">X</button>\r\n" + 
+			"   <br>\r\n" + 
+			"   <button class=\"MIAAW_inputborder1\"></button>\r\n" + 
+			"   <button class=\"MIAAW_inputborder2\"></button>\r\n" + 
+			"   <button class=\"MIAAW_inputborder3\"></button>\r\n" + 
+			"   <button class=\"MIAAW_undoinputborder\">X</button>\r\n" + 
+			"\r\n" + 
+			"   <audio src=\"\" class=\"MIAAW_form_speech\" controls></audio> \r\n" + 
+			"  </div>"+
 			"<script type=\"text/javascript\"\r\n" + 
 			"	src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>\r\n" + 
 			"<script type=\"text/javascript\">\r\n" + 
@@ -281,6 +353,91 @@ public class Enhancer {
 			"	onload = function() {\r\n" + 
 			"		document.querySelector('form').style.zoom = \"250%\";\r\n" + 
 			"	}\r\n" + 
+			"</script>"
+			+ "<script>\r\n" + 
+			"	var elems = document.querySelectorAll(\"p,h1,h2,h3,button,a,label\");\r\n" + 
+			"	$('button.MIAAW_contrastOption1').on('click', function() {\r\n" + 
+			"	    var index = 0, length = elems.length;\r\n" + 
+			"	    for ( ; index < length; index++) {\r\n" + 
+			"	        elems[index].style.backgroundColor = \"blue\";\r\n" + 
+			"	        elems[index].style.color = \"white\";\r\n" + 
+			"	    }\r\n" + 
+			"	});\r\n" + 
+			"	$('button.MIAAW_contrastOption2').on('click', function() {\r\n" + 
+			"	    var index = 0, length = elems.length;\r\n" + 
+			"	    for ( ; index < length; index++) {\r\n" + 
+			"	        elems[index].style.backgroundColor = \"black\";\r\n" + 
+			"	        elems[index].style.color = \"white\";\r\n" + 
+			"	    }\r\n" + 
+			"	});\r\n" + 
+			"	$('button.MIAAW_contrastOption3').on('click', function() {\r\n" + 
+			"	    var index = 0, length = elems.length;\r\n" + 
+			"	    for ( ; index < length; index++) {\r\n" + 
+			"	        elems[index].style.backgroundColor = \"white\";\r\n" + 
+			"	        elems[index].style.color = \"black\";\r\n" + 
+			"	    }\r\n" + 
+			"	});\r\n" + 
+			"	$('button.MIAAW_undocontrast').on('click', function() {\r\n" + 
+			"	    var index = 0, length = elems.length;\r\n" + 
+			"	    for ( ; index < length; index++) {\r\n" + 
+			"	        elems[index].style.backgroundColor = \"\";\r\n" + 
+			"	        elems[index].style.color = \"\";\r\n" + 
+			"	    }\r\n" + 
+			"	});\r\n" + 
+			"\r\n" + 
+			"	$('button.MIAAW_textoutline1').on('click', function(){\r\n" + 
+			"	    var index = 0, length = elems.length;\r\n" + 
+			"	    for ( ; index < length; index++) {\r\n" + 
+			"	        elems[index].style.textShadow = \"-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black\";\r\n" + 
+			"	        elems[index].style.color = \"white\";\r\n" + 
+			"	    }\r\n" + 
+			"	});\r\n" + 
+			"	$('button.MIAAW_textoutline2').on('click', function(){\r\n" + 
+			"	    var index = 0, length = elems.length;\r\n" + 
+			"	    for ( ; index < length; index++) {\r\n" + 
+			"	        elems[index].style.textShadow = \"-1px -1px 0 blue, 1px -1px 0 blue, -1px 1px 0 red, 1px 1px 0 blue\";\r\n" + 
+			"	        elems[index].style.color = \"white\";\r\n" + 
+			"	    }\r\n" + 
+			"	});\r\n" + 
+			"	$('button.MIAAW_textoutline3').on('click', function(){\r\n" + 
+			"	    var index = 0, length = elems.length;\r\n" + 
+			"	    for ( ; index < length; index++) {\r\n" + 
+			"	        elems[index].style.textShadow = \"-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white\";\r\n" + 
+			"	        elems[index].style.color = \"black\";\r\n" + 
+			"	    }\r\n" + 
+			"	});\r\n" + 
+			"	$('button.MIAAW_undooutline').on('click', function(){\r\n" + 
+			"	    var index = 0, length = elems.length;\r\n" + 
+			"	    for ( ; index < length; index++) {\r\n" + 
+			"	        elems[index].style.textShadow = \"\";\r\n" + 
+			"	        elems[index].style.color = \"\";\r\n" + 
+			"	    }\r\n" + 
+			"	});\r\n" + 
+			"	var borderelems = document.querySelectorAll(\"input,textarea\");\r\n" + 
+			"	$('button.MIAAW_inputborder1').on('click', function(){\r\n" + 
+			"	    var index = 0, length = elems.length;\r\n" + 
+			"	    for ( ; index < length; index++) {\r\n" + 
+			"	        borderelems[index].style.border = '4px solid #ffff00'\r\n" + 
+			"	    }\r\n" + 
+			"	});\r\n" + 
+			"	$('button.MIAAW_inputborder2').on('click', function(){\r\n" + 
+			"	    var index = 0, length = elems.length;\r\n" + 
+			"	    for ( ; index < length; index++) {\r\n" + 
+			"	        borderelems[index].style.border = '4px solid blue'\r\n" + 
+			"	    }\r\n" + 
+			"	});\r\n" + 
+			"	$('button.MIAAW_inputborder3').on('click', function(){\r\n" + 
+			"	    var index = 0, length = elems.length;\r\n" + 
+			"	    for ( ; index < length; index++) {\r\n" + 
+			"	        borderelems[index].style.border = '4px solid black'\r\n" + 
+			"	    }\r\n" + 
+			"	});\r\n" + 
+			"	$('button.MIAAW_undoinputborder').on('click', function(){\r\n" + 
+			"	    var index = 0, length = elems.length;\r\n" + 
+			"	    for ( ; index < length; index++) {\r\n" + 
+			"	        borderelems[index].style.border = \"\";\r\n" + 
+			"	    }\r\n" + 
+			"	});\r\n" + 
 			"</script>";
 
 	public static Document enhanceDocument(Document htmlDocument, CodeTemplate codeTemplate) throws IOException, JSONException {
