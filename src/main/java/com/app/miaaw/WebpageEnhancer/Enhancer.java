@@ -15,110 +15,128 @@ import com.app.miaaw.Domain.CodeTemplate;
 import ch.qos.logback.core.net.SyslogOutputStream;
 
 public class Enhancer {
-	static String basicBarCode =  "	<style type=\"text/css\">	\r\n" + 
-			"		body {\r\n" + 
-			"			margin-top:50px !important;\r\n" + 
-			"		}	\r\n" + 
-			"		#MIAAW_Popup {\r\n" + 
-			"			position: fixed !important;\r\n" + 
-			"			right:0 !important;\r\n" + 
-			"			top:50px !important;\r\n" + 
-			"			display: none;\r\n" + 
-			"			background: #efefef !important;\r\n" + 
-			"			border: 1px solid black !important;\r\n" + 
-			"			width: 30% !important;\r\n" + 
-			"			height: 300px !important;\r\n" + 
-			"			float: right;\r\n" + 
-			"			z-index:99999999999 !important;\r\n" + 
-			"		}\r\n" + 
-			"		\r\n" + 
-			"		#MIAAW_Access_editor {\r\n" + 
-			"			position:fixed !important;\r\n" + 
-			"			z-index:9999999999 !important;\r\n" + 
-			"			margin-bottom: 20px !important;\r\n" + 
-			"			display: inline-block !important;\r\n" + 
-			"			right:0 !important;\r\n" + 
-			"			top:0 !important;\r\n" + 
-			"			width:30% !important;\r\n" + 
-			"			margin-left:10% !important;\r\n" + 
-			"			font-size:40px;\r\n" + 
-			"			\r\n" + 
-			"			background-color: #00ba00 !important;\r\n" + 
-			"			border: none !important;\r\n" + 
-			"			color: white !important;\r\n" + 
-			"			padding: 15px 32px !important;\r\n" + 
-			"			text-align: center !important;\r\n" + 
-			"			text-decoration: none !important;\r\n" + 
-			"			display: inline-block !important;\r\n" + 
-			"			font-size: 15px;\r\n" + 
-			"			cursor:pointer;\r\n" + 
-			"		}\r\n" + 
-			"		\r\n" + 
-			"		#MIAAW_Access_editor:hover {\r\n" + 
-			"			font-size:40px !important;\r\n" + 
-			"		}\r\n" + 
-			"		\r\n" + 
-			"		.exit {\r\n" + 
-			"			float: right !important;\r\n" + 
-			"			display: inline-block !important;\r\n" + 
-			"		}\r\n" + 
-			"		\r\n" + 
-			"		.MIAAW_speech {\r\n" + 
-			"			font-size: 20px;\r\n" + 
-			"		}\r\n" + 
-			"		\r\n" + 
-			"		.font-button {\r\n" + 
-			"			height: 20px;\r\n" + 
-			"			width: 20px;\r\n" + 
-			"			display: inline-block;\r\n" + 
-			"			text-align: center;\r\n" + 
-			"			line-height: 50px;\r\n" + 
-			"			font-size: 25pt;\r\n" + 
-			"			cursor: pointer;\r\n" + 
-			"		}\r\n" + 
-			"		\r\n" + 
-			"		.fontsize p {\r\n" + 
-			"			display: inline !important;\r\n" + 
-			"			margin-left: 20px !important;\r\n" + 
-			"			margin-right: 20px !important;\r\n" + 
-			"			font-size:35px !important;\r\n" + 
-			"		}\r\n" + 
-			"		\r\n" + 
-			"		.tts, .tts_form {\r\n" + 
-			"			margin-left: 5px;\r\n" + 
-			"			font-weight: 900 !important;\r\n" + 
-			"		}\r\n" + 
-			"		.tts p, .tts_form p {\r\n" + 
-			"			font-size: 22px !important;\r\n" + 
-			"		}\r\n" + 
-			"		\r\n" + 
-			"		.MIAAW_form_play, .MIAAW_play {\r\n" + 
-			"			height: 30px;\r\n" + 
-			"			width: 60px;\r\n" + 
-			"			display: inline-block;\r\n" + 
-			"			font-size: 18px;\r\n" + 
-			"			font-weight: 900;\r\n" + 
-			"			color: black;\r\n" + 
-			"			border: 2px solid #555555;\r\n" + 
-			"		}\r\n" + 
-			"		\r\n" + 
-			"		input {\r\n" + 
-			"			width: 400px !important;\r\n" + 
-			"			height: 25px !important;\r\n" + 
-			"		}\r\n" + 
-			"		\r\n" + 
-			"		input[type=\"text\"] {\r\n" + 
-			"			font-size: 24px !important;\r\n" + 
-			"		}\r\n" + 
-			"		\r\n" + 
-			"		.tekst {\r\n" + 
-			"			font-size: 16px !important;\r\n" + 
-			"		}\r\n" + 
-			"		\r\n" + 
-			"		form {\r\n" + 
-			"			zoom: 100%;\r\n" + 
-			"		}\r\n"
-			+ "		.MIAAW_contrastOption1 {\r\n" + 
+	static String basicBarCode = "<style type=\"text/css\">\r\n" + 
+			"#MIAAW_ContrastOption_Container {\r\n" + 
+			"	display:block;\r\n" + 
+			"	width:100%;\r\n" + 
+			"}\r\n" + 
+			"#MIAAW_ContrastOption_Container label {\r\n" + 
+			"	width:100px;\r\n" + 
+			"	overflow:hidden;\r\n" + 
+			"	font-size:20px !important;\r\n" + 
+			"}\r\n" + 
+			"#MIAAW_Popup button {\r\n" + 
+			"	margin:0px !important;\r\n" + 
+			"	padding:0px !important;\r\n" + 
+			"	background-color:white;\r\n" + 
+			"}\r\n" + 
+			"    #MIAAW_Popup {\r\n" + 
+			"    		line-height:18px !important;\r\n" + 
+			"            position: fixed !important;\r\n" + 
+			"            right:0 !important;\r\n" + 
+			"            top:50px !important;\r\n" + 
+			"            display: none;\r\n" + 
+			"            background: #efefef !important;\r\n" + 
+			"            border: 1px solid black !important;\r\n" + 
+			"            width: 35% !important;\r\n" + 
+			"            height: 100% !important;\r\n" + 
+			"            float: right;\r\n" + 
+			"            z-index:99999999999 !important;\r\n" + 
+			"            overflow: hidden;\r\n" + 
+			"        }\r\n" + 
+			"        \r\n" + 
+			"        #MIAAW_Access_editor {\r\n" + 
+			"            position:fixed !important;\r\n" + 
+			"            z-index:9999999999 !important;\r\n" + 
+			"            margin-bottom: 20px !important;\r\n" + 
+			"            display: inline-block !important;\r\n" + 
+			"            right:0 !important;\r\n" + 
+			"            top:0 !important;\r\n" + 
+			"            width:30% !important;\r\n" + 
+			"            margin-left:10% !important;\r\n" + 
+			"            font-size:40px;\r\n" + 
+			"            \r\n" + 
+			"            background-color: #ffff00 !important;\r\n" + 
+			"            border: none !important;\r\n" + 
+			"            color: black !important;\r\n" + 
+			"            padding: 15px 32px !important;\r\n" + 
+			"            text-align: center !important;\r\n" + 
+			"            text-decoration: none !important;\r\n" + 
+			"            display: inline-block !important;\r\n" + 
+			"            font-size: 24px;\r\n" + 
+			"            cursor:pointer;\r\n" + 
+			"        }\r\n" + 
+			"        \r\n" + 
+			"        #MIAAW_Access_editor:hover {\r\n" + 
+			"            font-size:40px !important;\r\n" + 
+			"        }\r\n" + 
+			"\r\n" + 
+			".MIAAW_ResizeableText{\r\n" + 
+			"    font-family: Arial;\r\n" + 
+			"    font-size: 16px;\r\n" + 
+			"}\r\n" + 
+			"\r\n" + 
+			".font-button{\r\n" + 
+			"    height: 20px;\r\n" + 
+			"    width: 20px;\r\n" + 
+			"    display: inline-block;\r\n" + 
+			"    text-align: center;\r\n" + 
+			"    line-height: 50px;\r\n" + 
+			"    font-size: 25pt;\r\n" + 
+			"    cursor: pointer;\r\n" + 
+			"}\r\n" + 
+			".fontsize{\r\n" + 
+			"    margin-left: 5px;\r\n" + 
+			"}\r\n" + 
+			"\r\n" + 
+			".fontsize p{\r\n" + 
+			"    display: inline;\r\n" + 
+			"    margin-left: 20px;\r\n" + 
+			"    margin-right: 20px;\r\n" + 
+			"}\r\n" + 
+			"\r\n" + 
+			".exit{\r\n" + 
+			"    float: right;\r\n" + 
+			"}\r\n" + 
+			"\r\n" + 
+			".tts, .tts_form, .fontsize, .tts_popup {\r\n" + 
+			"    margin-left: 5px;\r\n" + 
+			"    font-weight: 900 !important;\r\n" + 
+			"}\r\n" + 
+			"\r\n" + 
+			".tts{\r\n" + 
+			"    margin-top: 20px;\r\n" + 
+			"}\r\n" + 
+			"\r\n" + 
+			".tts p, .tts_form p, .fontsize p, .tts_popup p {\r\n" + 
+			"    font-size: 20px !important;\r\n" + 
+			"    margin:2px !important;\r\n" + 
+			"}\r\n" + 
+			"\r\n" + 
+			"\r\n" + 
+			"input{\r\n" + 
+			"    width: 400px;\r\n" + 
+			"    height: 25px;\r\n" + 
+			"}\r\n" + 
+			"\r\n" + 
+			".tekst{\r\n" + 
+			"    font-size: 16px;\r\n" + 
+			"}\r\n" + 
+			"\r\n" + 
+			".speech img{\r\n" + 
+			"    width: 20px;\r\n" + 
+			"    height: 20px;\r\n" + 
+			"}\r\n" + 
+			"\r\n" + 
+			".MIAAW_ResizeableText{\r\n" + 
+			"    font-size: 20px;\r\n" + 
+			"}\r\n" + 
+			"\r\n" + 
+			".tts_popup{\r\n" + 
+			"    margin-top: 25px;\r\n" + 
+			"}\r\n" + 
+			"\r\n" + 
+			"		.MIAAW_contrastOption1 {\r\n" + 
 			"			width: 50px;\r\n" + 
 			"			height: 50px;\r\n" + 
 			"			background-color: blue !important;\r\n" + 
@@ -178,40 +196,178 @@ public class Enhancer {
 			"			width: 50px;\r\n" + 
 			"			height: 50px;\r\n" + 
 			"			background-color:black !important;\r\n" + 
-			"		}" +
-			"	</style>\r\n" + 
-			"  <button id=\"MIAAW_Access_editor\">Accessibility</button> \r\n" + 
-			"  <div id=\"MIAAW_Popup\"> \r\n" + 
-			"   <div class=\"tts\"> \r\n" + 
-			"    <p>Text-to-Speech</p> \r\n" + 
-			"    <button class=\"MIAAW_play\">Play</button> \r\n" + 
-			"   </div> \r\n" + 
-			"   <br> \r\n" + 
-			"   <div class=\"tts_form\"> \r\n" + 
-			"    <p>Text-to-Speech Form</p> \r\n" + 
-			"    <button class=\"MIAAW_form_play\">Play</button> \r\n" + 
-			"   </div> \r\n" + 
-			"   <br> \r\n" + 
+			"		}\r\n" + 
 			"\r\n" + 
-			"   <button class=\"MIAAW_contrastOption1\">Abc</button>\r\n" + 
-			"   <button class=\"MIAAW_contrastOption2\">Abc</button>\r\n" + 
-			"   <button class=\"MIAAW_contrastOption3\">Abc</button>\r\n" + 
-			"   <button class=\"MIAAW_undocontrast\">X</button>\r\n" + 
-			"   <br>\r\n" + 
-			"   <button class=\"MIAAW_textoutline1\">Abc</button>\r\n" + 
-			"   <button class=\"MIAAW_textoutline2\">Abc</button>\r\n" + 
-			"   <button class=\"MIAAW_textoutline3\">Abc</button>\r\n" + 
-			"   <button class=\"MIAAW_undooutline\">X</button>\r\n" + 
-			"   <br>\r\n" + 
-			"   <button class=\"MIAAW_inputborder1\"></button>\r\n" + 
-			"   <button class=\"MIAAW_inputborder2\"></button>\r\n" + 
-			"   <button class=\"MIAAW_inputborder3\"></button>\r\n" + 
-			"   <button class=\"MIAAW_undoinputborder\">X</button>\r\n" + 
+			"</style>" +
+			"	<button id=\"MIAAW_Access_editor\">Accessibility</button>\r\n" + 
+			"    <div id=\"MIAAW_Popup\">\r\n" + 
+			"        <div class=\"fontsize\">\r\n" + 
+			"            <a class=\"font-button plus\">+</a> \r\n" + 
+			"                <p>Font size</p>\r\n" + 
+			"            <a class=\"font-button minus\">-</a>\r\n" + 
+			"        </div>\r\n" + 
+			"        <div class=\"tts\">\r\n" + 
+			"            <p>Text-to-Speech</p>\r\n" + 
+			"            <button id=\"play\" class=\"MIAAW_play\"><img style=\"height: 40px; width: 40px;\" src=\"../fotos/play.png\"></button>\r\n" + 
+			"            <button id=\"pause\" class=\"MIAAW_play\"><img style=\"height: 40px; width: 40px;\" src=\"../fotos/pause.png\"></button>\r\n" + 
+			"            <button id=\"stop\" class=\"MIAAW_play\"><img style=\"height: 40px; width: 40px;\" src=\"../fotos/stop.png\"></button>\r\n" + 
+			"        </div>\r\n" + 
+			"        <br>\r\n" + 
+			"        <div class=\"tts_form\">\r\n" + 
+			"            <p>Text-to-Speech Form</p>\r\n" + 
+			"            <button class=\"MIAAW_form_play\"><img style=\"height: 40px; width: 40px;\" src=\"../fotos/play.png\"></button>\r\n" + 
+			"        </div>\r\n" + 
+			"        <div class=\"tts_popup\">\r\n" + 
+			"            <p>Text-to-Speech Popup</p>\r\n" + 
+			"            <button id=\"playpp\" class=\"MIAAW_form_play\"><img style=\"height: 40px; width: 40px;\" src=\"../fotos/play.png\"></button>\r\n" + 
+			"        </div>\r\n" + 
+			"        <br>\r\n" + 
+			"        <div id=\"MIAAW_ContrastOption_Container\">\r\n" + 
+			"        	<label>Text Contrast:</label><br>\r\n" + 
+			"	       <button class=\"MIAAW_contrastOption1\">Abc</button>\r\n" + 
+			"		   <button class=\"MIAAW_contrastOption2\">Abc</button>\r\n" + 
+			"		   <button class=\"MIAAW_contrastOption3\">Abc</button>\r\n" + 
+			"		   <button class=\"MIAAW_undocontrast\">X</button>\r\n" + 
+			"		   <br>\r\n" + 
+			"		   <label>Letter Contrast::</label><br>\r\n" + 
+			"		   <button class=\"MIAAW_textoutline1\">Abc</button>\r\n" + 
+			"		   <button class=\"MIAAW_textoutline2\">Abc</button>\r\n" + 
+			"		   <button class=\"MIAAW_textoutline3\">Abc</button>\r\n" + 
+			"		   <button class=\"MIAAW_undooutline\">X</button>\r\n" + 
+			"		   <br>\r\n" + 
+			"		   <label>Form Contrast:</label><br>\r\n" + 
+			"		   <button class=\"MIAAW_inputborder1\"></button>\r\n" + 
+			"		   <button class=\"MIAAW_inputborder2\"></button>\r\n" + 
+			"		   <button class=\"MIAAW_inputborder3\"></button>\r\n" + 
+			"		   <button class=\"MIAAW_undoinputborder\">X</button>\r\n" + 
+			"	   </div>\r\n" + 
+			"        <audio src=\"\" class=\"MIAAW_form_speech\" ></audio>\r\n" + 
+			"    </div>" +
+			"<script>\r\n" + 
+			"onload = function() {\r\n" + 
+			"    if ('speechSynthesis' in window) with(speechSynthesis) {\r\n" + 
 			"\r\n" + 
-			"   <audio src=\"\" class=\"MIAAW_form_speech\" controls></audio> \r\n" + 
-			"  </div>"+
-			"<script type=\"text/javascript\"\r\n" + 
-			"	src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>\r\n" + 
+			"        var playEle = document.querySelector('#play');\r\n" + 
+			"        var pauseEle = document.querySelector('#pause');\r\n" + 
+			"        var stopEle = document.querySelector('#stop');\r\n" + 
+			"        var flag = false;\r\n" + 
+			"\r\n" + 
+			"        playEle.addEventListener('click', onClickPlay);\r\n" + 
+			"        pauseEle.addEventListener('click', onClickPause);\r\n" + 
+			"        stopEle.addEventListener('click', onClickStop);\r\n" + 
+			"\r\n" + 
+			"\r\n" + 
+			"        var myTimeout;\r\n" + 
+			"        function myTimer() {\r\n" + 
+			"        window.speechSynthesis.pause();\r\n" + 
+			"        window.speechSynthesis.resume();\r\n" + 
+			"        myTimeout = setTimeout(myTimer, 10000);\r\n" + 
+			"        }\r\n" + 
+			"\r\n" + 
+			"         window.speechSynthesis.cancel();\r\n" + 
+			"        myTimeout = setTimeout(myTimer, 10000);\r\n" + 
+			"\r\n" + 
+			"        function onClickPlay() {\r\n" + 
+			"            if(!flag){\r\n" + 
+			"                flag = true;\r\n" + 
+			"                utterance = new SpeechSynthesisUtterance(document.querySelector('.MIAAW_ResizeableText').textContent);\r\n" + 
+			"\r\n" + 
+			"                utterance.lang = 'nl-NL';\r\n" + 
+			"                utterance.rate = 0.7;\r\n" + 
+			"                utterance.onend = function(){\r\n" + 
+			"                    flag = false; playEle.className = pauseEle.className = ''; stopEle.className = 'stopped';\r\n" + 
+			"                };\r\n" + 
+			"                playEle.className = 'played';\r\n" + 
+			"                stopEle.className = '';\r\n" + 
+			"                speak(utterance);\r\n" + 
+			"            }\r\n" + 
+			"             if (paused) { \r\n" + 
+			"                playEle.className = 'played';\r\n" + 
+			"                pauseEle.className = '';\r\n" + 
+			"                resume();\r\n" + 
+			"            } \r\n" + 
+			"        }\r\n" + 
+			"\r\n" + 
+			"        function onClickPause() {\r\n" + 
+			"            if(speaking && !paused){ \r\n" + 
+			"                pauseEle.className = 'paused';\r\n" + 
+			"                playEle.className = '';\r\n" + 
+			"                pause();\r\n" + 
+			"            }\r\n" + 
+			"        }\r\n" + 
+			"\r\n" + 
+			"        function onClickStop() {\r\n" + 
+			"            if(speaking){\r\n" + 
+			"                stopEle.className = 'stopped';\r\n" + 
+			"                playEle.className = pauseEle.className = '';\r\n" + 
+			"                flag = false;\r\n" + 
+			"                cancel();\r\n" + 
+			"\r\n" + 
+			"            }\r\n" + 
+			"        }\r\n" + 
+			"\r\n" + 
+			"    }\r\n" + 
+			"\r\n" + 
+			"    else { /* speech synthesis not supported */\r\n" + 
+			"        msg = document.createElement('h5');\r\n" + 
+			"        msg.textContent = \"Detected no support for Speech Synthesis\";\r\n" + 
+			"        msg.style.textAlign = 'center';\r\n" + 
+			"        msg.style.backgroundColor = 'red';\r\n" + 
+			"        msg.style.color = 'white';\r\n" + 
+			"        msg.style.marginTop = msg.style.marginBottom = 0;\r\n" + 
+			"        document.body.insertBefore(msg, document.querySelector('div'));\r\n" + 
+			"    }\r\n" + 
+			"\r\n" + 
+			"}\r\n" + 
+			"</script>\r\n" + 
+			"<script>\r\n" + 
+			"onload = function() {\r\n" + 
+			"    if ('speechSynthesis' in window) with(speechSynthesis) {\r\n" + 
+			"\r\n" + 
+			"        var playEle = document.querySelector('#playpp');\r\n" + 
+			"\r\n" + 
+			"        var flag = false;\r\n" + 
+			"\r\n" + 
+			"        playEle.addEventListener('click', onClickPlay);\r\n" + 
+			" \r\n" + 
+			"\r\n" + 
+			"\r\n" + 
+			"        var myTimeout;\r\n" + 
+			"        function myTimer() {\r\n" + 
+			"        window.speechSynthesis.pause();\r\n" + 
+			"        window.speechSynthesis.resume();\r\n" + 
+			"        myTimeout = setTimeout(myTimer, 10000);\r\n" + 
+			"        }\r\n" + 
+			"\r\n" + 
+			"         window.speechSynthesis.cancel();\r\n" + 
+			"        myTimeout = setTimeout(myTimer, 10000);\r\n" + 
+			"\r\n" + 
+			"        function onClickPlay() {\r\n" + 
+			"            if(!flag){\r\n" + 
+			"                flag = true;\r\n" + 
+			"                utterance = new SpeechSynthesisUtterance(document.querySelector('#MIAAW_Popup').textContent);\r\n" + 
+			"\r\n" + 
+			"                utterance.lang = 'nl-NL';\r\n" + 
+			"                utterance.rate = 0.7;\r\n" + 
+			"                speak(utterance);\r\n" + 
+			"            }\r\n" + 
+			"        }\r\n" + 
+			"\r\n" + 
+			"    }\r\n" + 
+			"\r\n" + 
+			"    else { /* speech synthesis not supported */\r\n" + 
+			"        msg = document.createElement('h5');\r\n" + 
+			"        msg.textContent = \"Detected no support for Speech Synthesis\";\r\n" + 
+			"        msg.style.textAlign = 'center';\r\n" + 
+			"        msg.style.backgroundColor = 'red';\r\n" + 
+			"        msg.style.color = 'white';\r\n" + 
+			"        msg.style.marginTop = msg.style.marginBottom = 0;\r\n" + 
+			"        document.body.insertBefore(msg, document.querySelector('div'));\r\n" + 
+			"    }\r\n" + 
+			"\r\n" + 
+			"}\r\n" + 
+			"</script>\r\n" + 
+			"<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>\r\n" + 
 			"<script type=\"text/javascript\">\r\n" + 
 			"    $(function () {\r\n" + 
 			"        $(\".font-button\").bind(\"click\", function () {\r\n" + 
@@ -224,137 +380,23 @@ public class Enhancer {
 			"                        size = 10;\r\n" + 
 			"                    }\r\n" + 
 			"                }\r\n" + 
-			"         		$('body').css('font-size', size); \r\n" + 
-			"         		$('p').css('font-size',size); \r\n" + 
-			" /*            $('body').css(\"font-size\", size); */\r\n" + 
+			"            $('body').css(\"font-size\", size);\r\n" + 
 			"            console.log(size);\r\n" + 
 			"        });\r\n" + 
 			"    });\r\n" + 
-			"    \r\n" + 
-			"    function addNewStyle(newStyle) {\r\n" + 
-			"        var styleElement = document.getElementById('styles_js');\r\n" + 
-			"        if (!styleElement) {\r\n" + 
-			"            styleElement = document.createElement('style');\r\n" + 
-			"            styleElement.type = 'text/css';\r\n" + 
-			"            styleElement.id = 'styles_js';\r\n" + 
-			"            document.getElementsByTagName('head')[0].appendChild(styleElement);\r\n" + 
-			"        }\r\n" + 
-			"        styleElement.appendChild(document.createTextNode(newStyle));\r\n" + 
-			"    }\r\n" + 
 			"</script>\r\n" + 
 			"<script>\r\n" + 
 			"document.getElementById('MIAAW_Popup').style.display = 'none';\r\n" + 
 			"document.getElementById('MIAAW_Access_editor').addEventListener('click',function() {\r\n" + 
-			"	console.log(document.getElementById('MIAAW_Popup').style.display);\r\n" + 
-			"	if (document.getElementById('MIAAW_Popup').style.display == 'none') {\r\n" + 
-			"		document.getElementById('MIAAW_Popup').style.display='block';\r\n" + 
-			"	}else if (document.getElementById('MIAAW_Popup').style.display == 'block') {\r\n" + 
-			"		document.getElementById('MIAAW_Popup').style.display= 'none';\r\n" + 
-			"	}\r\n" + 
+			"    console.log(document.getElementById('MIAAW_Popup').style.display);\r\n" + 
+			"    if (document.getElementById('MIAAW_Popup').style.display == 'none') {\r\n" + 
+			"        document.getElementById('MIAAW_Popup').style.display='block';\r\n" + 
+			"    }else if (document.getElementById('MIAAW_Popup').style.display == 'block') {\r\n" + 
+			"        document.getElementById('MIAAW_Popup').style.display= 'none';\r\n" + 
+			"    }\r\n" + 
 			"});\r\n" + 
 			"</script>\r\n" + 
 			"<script>\r\n" + 
-			"	function startDictation() {\r\n" + 
-			"		var target = [];\r\n" + 
-			"		document\r\n" + 
-			"				.getElementById(\"MIAAW_form\")\r\n" + 
-			"				.addEventListener(\r\n" + 
-			"						\"click\",\r\n" + 
-			"						function(e) {\r\n" + 
-			"							if (e.target && e.target.nodeName == \"INPUT\") {\r\n" + 
-			"								console.log(\"List item \", e.target.id.replace(\r\n" + 
-			"										\"post-\", \"\"), \" was clicked!\");\r\n" + 
-			"								iets = e.target.id.replace(\"post-\", \"\")\r\n" + 
-			"								target.push(iets);\r\n" + 
-			"\r\n" + 
-			"								var arrayLength = target.length;\r\n" + 
-			"								for (var i = 0; i < arrayLength; i++) {\r\n" + 
-			"\r\n" + 
-			"									if (window\r\n" + 
-			"											.hasOwnProperty('webkitSpeechRecognition')) {\r\n" + 
-			"\r\n" + 
-			"										var recognition = new webkitSpeechRecognition();\r\n" + 
-			"										recognition.continuous = false;\r\n" + 
-			"										recognition.interimResults = false;\r\n" + 
-			"\r\n" + 
-			"										recognition.lang = \"nl-NL\";\r\n" + 
-			"										recognition.start();\r\n" + 
-			"\r\n" + 
-			"										recognition.onresult = function(e) {\r\n" + 
-			"											document.getElementById(iets).value = e.results[0][0].transcript;\r\n" + 
-			"											recognition.stop();\r\n" + 
-			"										};\r\n" + 
-			"\r\n" + 
-			"										recognition.onerror = function(e) {\r\n" + 
-			"											recognition.stop();\r\n" + 
-			"										}\r\n" + 
-			"\r\n" + 
-			"									}\r\n" + 
-			"								}\r\n" + 
-			"\r\n" + 
-			"								target.pop();\r\n" + 
-			"							}\r\n" + 
-			"						})\r\n" + 
-			"	};\r\n" + 
-			"	startDictation();\r\n" + 
-			"</script>\r\n" + 
-			"<script>\r\n" + 
-			"	var tts_classes = document.getElementsByClassName(\"MIAAW_TTS_Text_Group\");\r\n" + 
-			"	$('button.MIAAW_play')\r\n" + 
-			"			.on(\r\n" + 
-			"					'click',\r\n" + 
-			"					function(e) {\r\n" + 
-			"						var i = 0;\r\n" + 
-			"						var next = false;\r\n" + 
-			"						$(function() {\r\n" + 
-			"							e.preventDefault();\r\n" + 
-			"							var text = tts_classes[i].innerHTML;\r\n" + 
-			"							text = encodeURIComponent(text);\r\n" + 
-			"							var url = \"https://translate.google.com/translate_tts?tl=nl&q=\"\r\n" + 
-			"									+ text + \"&client=tw-ob\";\r\n" + 
-			"							$('audio').attr('src', url).get(0).play();\r\n" + 
-			"							$(\"audio\")\r\n" + 
-			"									.bind(\r\n" + 
-			"											'ended',\r\n" + 
-			"											function() {\r\n" + 
-			"												i++;\r\n" + 
-			"												text = tts_classes[i].innerHTML;\r\n" + 
-			"												text = encodeURIComponent(text);\r\n" + 
-			"												var url = \"https://translate.google.com/translate_tts?tl=nl&q=\"\r\n" + 
-			"														+ text\r\n" + 
-			"														+ \"&client=tw-ob\";\r\n" + 
-			"												$('audio').attr('src', url)\r\n" + 
-			"														.get(0).play();\r\n" + 
-			"											});\r\n" + 
-			"						});\r\n" + 
-			"					});\r\n" + 
-			"</script>\r\n" + 
-			"<script>\r\n" + 
-			"	$(function() {\r\n" + 
-			"		$('button.MIAAW_form_play')\r\n" + 
-			"				.on(\r\n" + 
-			"						'click',\r\n" + 
-			"						function(e) {\r\n" + 
-			"							var arrText = new Array();\r\n" + 
-			"							$('input[type=text]').each(function() {\r\n" + 
-			"								arrText.push($(this).val());\r\n" + 
-			"							})\r\n" + 
-			"							e.preventDefault();\r\n" + 
-			"							var text = arrText;\r\n" + 
-			"							text = encodeURIComponent(text);\r\n" + 
-			"							console.log(text);\r\n" + 
-			"							var url = \"https://translate.google.com/translate_tts?tl=nl&q=\"\r\n" + 
-			"									+ text + \"&client=tw-ob\";\r\n" + 
-			"							$('audio').attr('src', url).get(0).play();\r\n" + 
-			"						});\r\n" + 
-			"	});\r\n" + 
-			"</script>\r\n" + 
-			"<script type=\"text/javascript\">\r\n" + 
-			"	onload = function() {\r\n" + 
-			"		document.querySelector('form').style.zoom = \"250%\";\r\n" + 
-			"	}\r\n" + 
-			"</script>"
-			+ "<script>\r\n" + 
 			"	var elems = document.querySelectorAll(\"p,h1,h2,h3,button,a,label\");\r\n" + 
 			"	$('button.MIAAW_contrastOption1').on('click', function() {\r\n" + 
 			"	    var index = 0, length = elems.length;\r\n" + 
@@ -395,7 +437,7 @@ public class Enhancer {
 			"	$('button.MIAAW_textoutline2').on('click', function(){\r\n" + 
 			"	    var index = 0, length = elems.length;\r\n" + 
 			"	    for ( ; index < length; index++) {\r\n" + 
-			"	        elems[index].style.textShadow = \"-1px -1px 0 blue, 1px -1px 0 blue, -1px 1px 0 red, 1px 1px 0 blue\";\r\n" + 
+			"	        elems[index].style.textShadow = \"-1px -1px 0 blue, 1px -1px 0 blue, -1px 1px 0 blue, 1px 1px 0 blue\";\r\n" + 
 			"	        elems[index].style.color = \"white\";\r\n" + 
 			"	    }\r\n" + 
 			"	});\r\n" + 
@@ -526,7 +568,7 @@ public class Enhancer {
 		int loopIndex = 0;
 		for (Element img : images) {
 			if (loopIndex < imageDescriptions.toArray().length) {
-				img.before("<p class='MIAAW_Picture_Description'><i> picture: " + imageDescriptions.get(loopIndex) + "</i></p>");
+				img.attr("alt", imageDescriptions.get(loopIndex));
 				
 			}
 			loopIndex++;
