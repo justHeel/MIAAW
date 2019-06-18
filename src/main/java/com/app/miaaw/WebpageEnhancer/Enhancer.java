@@ -208,7 +208,7 @@ public class Enhancer {
 			"        </div>\r\n" + 
 			"        <div class=\"tts\">\r\n" + 
 			"            <p>Text-to-Speech</p>\r\n" + 
-			"            <button id=\"play\" class=\"MIAAW_play\"><img style=\"height: 40px; width: 40px;\" src=\"../fotos/play.png\"></button>\r\n" + 
+			"            <button id=\"play\" class=\"MIAAW_play\"><img class=\\\"MIAAW_play\\\" style=\"height: 40px; width: 40px;\" src=\"../fotos/play.png\"></button>\r\n" + 
 			"            <button id=\"pause\" class=\"MIAAW_play\"><img style=\"height: 40px; width: 40px;\" src=\"../fotos/pause.png\"></button>\r\n" + 
 			"            <button id=\"stop\" class=\"MIAAW_play\"><img style=\"height: 40px; width: 40px;\" src=\"../fotos/stop.png\"></button>\r\n" + 
 			"        </div>\r\n" + 
@@ -270,7 +270,7 @@ public class Enhancer {
 			"        function onClickPlay() {\r\n" + 
 			"            if(!flag){\r\n" + 
 			"                flag = true;\r\n" + 
-			"                utterance = new SpeechSynthesisUtterance(document.querySelector('.MIAAW_ResizeableText').textContent);\r\n" + 
+			"                utterance = new SpeechSynthesisUtterance(document.querySelector('.MIAAW_speech').textContent);\r\n" + 
 			"\r\n" + 
 			"                utterance.lang = 'nl-NL';\r\n" + 
 			"                utterance.rate = 0.7;\r\n" + 
@@ -534,17 +534,17 @@ public class Enhancer {
 			b.append(basicBarCode);
 		}
 		if (codeTemplate.getBasicBar() != null) {
-			htmlDocument.append("<p>" + codeTemplate.getBasicBar().getBasicBarCode() + "</p>");
-			htmlDocument.append("<p>" + codeTemplate.getBasicBar().getContrastOptiesCode() + "</p>");
-			htmlDocument.append("<p>" + codeTemplate.getBasicBar().getFontOptiesCode() + "</p>");
+			htmlDocument.append(codeTemplate.getBasicBar().getBasicBarCode());
+			htmlDocument.append(codeTemplate.getBasicBar().getContrastOptiesCode());
+			htmlDocument.append(codeTemplate.getBasicBar().getFontOptiesCode());
 		}
 		/*-------------TTS-------------*/
 		if (codeTemplate.getTextToSpeech() != null) {
-			htmlDocument.append("<p>" + codeTemplate.getTextToSpeech().getCode() + "</p>");
+			htmlDocument.append(codeTemplate.getTextToSpeech().getCode());
 		}
 		/*-------------Video Enhance-------------*/
 		if (codeTemplate.getVideoOpties() != null) {
-			htmlDocument.append("<p>" + codeTemplate.getVideoOpties().getCode() + "</p>");
+			htmlDocument.append(codeTemplate.getVideoOpties().getCode());
 		}
 		
 		/*--------------------Add Image Description-------------------*/

@@ -1,5 +1,6 @@
 package com.app.miaaw.Domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,10 @@ public class BasicBar {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JoinColumn(name="basicbar_id")
 	private long basicBarId;
-	private String basicBarCode, fontOptiesCode, contrastOptiesCode;
+	
+	@Column(name="code", columnDefinition = "VARCHAR(MAX)")
+	private String basicBarCode;
+	private String fontOptiesCode, contrastOptiesCode;
 	
 	public String getBasicBarCode() {
 		return basicBarCode;
