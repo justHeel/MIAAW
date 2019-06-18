@@ -12,7 +12,7 @@ fetch("/basicbar", fetchoptions).then(function(res) {
 	txtarea.innerHTML = res;
 });
 
-document.getElementById("UpdateCode").addEventListener("click", function(){
+document.getElementById("UpdateBasicBarCode").addEventListener("click", function(){
 	var fetchoptions = { 
 			method: 'POST',
 			headers: {

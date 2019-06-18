@@ -1,36 +1,11 @@
 document.getElementById("FetchViaLinkFormButton").addEventListener("click",function() {
 	
-	if(document.getElementById("formOptiesCheck").checked == true){
-		document.getElementById("formOptiesCheck").value = +true;
-	}else{
-			document.getElementById("formOptiesCheck").value = null;
-		}
-		console.log(document.getElementById("formOptiesCheck").value)
-	if(document.getElementById("videoOptiesCheck").checked == true){
-		document.getElementById("videoOptiesCheck").value = +true;
-	}else{
-			document.getElementById("videoOptiesCheck").value = null;
-		}
-		console.log(document.getElementById("videoOptiesCheck").value)
-	if(document.getElementById("textToSpeechCheck").checked == true){
-		document.getElementById("textToSpeechCheck").value = +true;
-	}else{
-			document.getElementById("textToSpeechCheck").value = null;
-		}
-		console.log(document.getElementById("textToSpeechCheck").value)
-	if(document.getElementById("basicBarCheck").checked == true){
-		document.getElementById("basicBarCheck").value = +true;
-	}else{
-			document.getElementById("basicBarCheck").value = null;
-		}
-		console.log(document.getElementById("basicBarCheck").value)
-	
 	var fetchJson = {
 			"link" : document.getElementById("linkFetchField").value,
-			"formOpties" : document.getElementById("formOptiesCheck").value,
-			"videoOpties" : document.getElementById("videoOptiesCheck").value,
-			"textToSpeech" : document.getElementById("textToSpeechCheck").value,
-			"basicBar" : document.getElementById("basicBarCheck").value
+			"formOpties" : document.getElementById("formOptiesCheck").checked,
+			"videoOpties" : document.getElementById("videoOptiesCheck").checked,
+			"textToSpeech" : document.getElementById("textToSpeechCheck").checked,
+			"basicBar" : document.getElementById("basicBarCheck").checked
 	};
 
 	var fetchoptions = { 
@@ -57,39 +32,13 @@ document.getElementById("FetchViaLinkFormButton").addEventListener("click",funct
 	});
 });
 
-document.getElementById("FetchViaFileFormButton").addEventListener("click",function() {
-
-	if(document.getElementById("formOptiesCheck").checked == true){
-		document.getElementById("formOptiesCheck").value = +true;
-	}else{
-			document.getElementById("formOptiesCheck").value = +false;
-		}
-		console.log(document.getElementById("formOptiesCheck").value)
-	if(document.getElementById("videoOptiesCheck").checked == true){
-		document.getElementById("videoOptiesCheck").value = +true;
-	}else{
-			document.getElementById("videoOptiesCheck").value = +false;
-		}
-		console.log(document.getElementById("videoOptiesCheck").value)
-	if(document.getElementById("textToSpeechCheck").checked == true){
-		document.getElementById("textToSpeechCheck").value = +true;
-	}else{
-			document.getElementById("textToSpeechCheck").value = +false;
-		}
-		console.log(document.getElementById("textToSpeechCheck").value)
-	if(document.getElementById("basicBarCheck").checked == true){
-		document.getElementById("basicBarCheck").value = +true;
-	}else{
-			document.getElementById("basicBarCheck").value = +false;
-		}
-		console.log(document.getElementById("basicBarCheck").value)
-	
+document.getElementById("FetchViaFileFormButton").addEventListener("click",function() {	
 	var fetchJson = {
-			"file" : document.getElementById("fileFetchField").value,
-			"formOpties" : document.getElementById("formOptiesCheck").value,
-			"videoOpties" : document.getElementById("videoOptiesCheck").value,
-			"textToSpeech" : document.getElementById("textToSpeechCheck").value,
-			"basicBar" : document.getElementById("basicBarCheck").value
+			"link" : document.getElementById("linkFetchField").checked,
+			"formOpties" : document.getElementById("formOptiesCheck").checked,
+			"videoOpties" : document.getElementById("videoOptiesCheck").checked,
+			"textToSpeech" : document.getElementById("textToSpeechCheck").checked,
+			"basicBar" : document.getElementById("basicBarCheck").checked
 	};
 
 	var fetchoptions = { 

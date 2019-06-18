@@ -60,17 +60,21 @@ public class CodeTemplateManager {
 		String link = request.getLink();
 		
 		CodeTemplate codeTemplate = new CodeTemplate();
-		if (request.getFormOpties() != 0) {
-			codeTemplate.setFormOpties(formOptiesRepository.findById(request.getFormOpties()).get());
+		if (request.isFormOpties() != false) {
+			long formId = 2;
+			codeTemplate.setFormOpties(formOptiesRepository.findById(formId).get());
 		}
-		if (request.getBasicBar() != 0) {
-			codeTemplate.setBasicBar(basicBarRepository.findById(request.getBasicBar()).get());
+		if (request.isBasicBar() != false) {
+			long basicBarId = 7;
+			codeTemplate.setBasicBar(basicBarRepository.findById(basicBarId).get());
 		}
-		if (request.getTextToSpeech() != 0 ) {
-			codeTemplate.setTextToSpeech(textToSpeechRepository.findById(request.getTextToSpeech()).get());
+		if (request.isTextToSpeech() != false) {
+			long ttsId = 2;
+			codeTemplate.setTextToSpeech(textToSpeechRepository.findById(ttsId).get());
 		}
-		if (request.getVideoOpties() != 0) {
-			codeTemplate.setVideoOpties(videoOptiesRepository.findById(request.getVideoOpties()).get());
+		if (request.isVideoOpties() != false) {
+			long vidId = 2;
+			codeTemplate.setVideoOpties(videoOptiesRepository.findById(vidId).get());
 		}
 		
 		codeTemplateRepository.save(codeTemplate);

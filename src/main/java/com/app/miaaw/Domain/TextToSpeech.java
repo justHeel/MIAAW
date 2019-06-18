@@ -1,5 +1,6 @@
 package com.app.miaaw.Domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class TextToSpeech {
 	@JoinColumn(name="text_to_speech_id")
 	private long textToSpeechId;
 	
+	@Column(name="code", columnDefinition = "VARCHAR(MAX)")
 	private String code;
 
 	public long getTextToSpeechId() {
