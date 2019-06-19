@@ -20,7 +20,7 @@ public class Enhancer {
 	
 	public static Document enhanceDocument(Document htmlDocument, CodeTemplate codeTemplate, boolean describeImage) throws IOException, JSONException {
 		/*------------All text string builder and hidden tts creator------------*/
-		TextToSpeech tts = codeTemplate.getTextToSpeech()
+		TextToSpeech tts = codeTemplate.getTextToSpeech();
 		if (tts != null) {
 			String giantSuperExtremeBigString = "";
 			Elements ptjes = htmlDocument.select("p");

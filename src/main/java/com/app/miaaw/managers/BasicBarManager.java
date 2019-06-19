@@ -39,7 +39,6 @@ public class BasicBarManager {
 		BasicBar bar = basicBarRepository.findById(id).get();
 		bar.setBasicBarCode(request.getCode());
 		basicBarRepository.save(bar);
-		System.out.println(request.getCode());
 	}
 
 }
