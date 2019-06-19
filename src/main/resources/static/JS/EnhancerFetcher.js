@@ -3,7 +3,7 @@ document.getElementById("FetchViaLinkFormButton").addEventListener("click",funct
 	var fetchJson = {
 			"link" : document.getElementById("linkFetchField").value,
 			"formOpties" : document.getElementById("formOptiesCheck").checked,
-			"videoOpties" : document.getElementById("videoOptiesCheck").checked,
+			"imgOpties" : document.getElementById("imgOptiesCheck").checked,
 			"textToSpeech" : document.getElementById("textToSpeechCheck").checked,
 			"basicBar" : document.getElementById("basicBarCheck").checked
 	};

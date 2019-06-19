@@ -1,5 +1,6 @@
 package com.app.miaaw.Domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,22 @@ public class FormOpties {
 	@JoinColumn(name="form_id")
 	private long formId;
 	
-	private String code;
+	@Column(name="ContrastCode", columnDefinition = "VARCHAR(MAX)")
+	private String FormContrastCode;
+	
+	@Column(name="OtherCode", columnDefinition = "VARCHAR(MAX)")
+	private String OtherFormCode;
+	
+	@Column(name="ttsCode", columnDefinition = "VARCHAR(MAX)")
+	private String ttsCode;
+
+	public String getTtsCode() {
+		return ttsCode;
+	}
+
+	public void setTtsCode(String ttsCode) {
+		this.ttsCode = ttsCode;
+	}
 
 	public long getFormId() {
 		return formId;
@@ -29,11 +45,20 @@ public class FormOpties {
 		this.formId = formId;
 	}
 
-	public String getCode() {
-		return code;
+	public String getFormContrastCode() {
+		return FormContrastCode;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setFormContrastCode(String formContrastCode) {
+		FormContrastCode = formContrastCode;
 	}
+
+	public String getOtherFormCode() {
+		return OtherFormCode;
+	}
+
+	public void setOtherFormCode(String otherFormCode) {
+		OtherFormCode = otherFormCode;
+	}
+
 }

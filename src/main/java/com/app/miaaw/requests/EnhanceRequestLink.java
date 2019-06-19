@@ -3,11 +3,12 @@ package com.app.miaaw.requests;
 public class EnhanceRequestLink {
 	String link;
 	boolean formOpties;
-	boolean videoOpties;
+	boolean imgOpties;
 	boolean textToSpeech;
 	boolean basicBar;
 	boolean basicBarContrast;
 	boolean basicBarFont;
+	
 	public String getLink() {
 		return link;
 	}
@@ -20,11 +21,11 @@ public class EnhanceRequestLink {
 	public void setFormOpties(boolean formOpties) {
 		this.formOpties = formOpties;
 	}
-	public boolean isVideoOpties() {
-		return videoOpties;
+	public boolean isImgOpties() {
+		return imgOpties;
 	}
-	public void setVideoOpties(boolean videoOpties) {
-		this.videoOpties = videoOpties;
+	public void setImgOpties(boolean imgOpties) {
+		this.imgOpties = imgOpties;
 	}
 	public boolean isTextToSpeech() {
 		return textToSpeech;
